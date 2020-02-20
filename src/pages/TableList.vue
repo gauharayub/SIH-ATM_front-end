@@ -9,17 +9,7 @@
           </md-card-header>
 
           <md-card-content>
-            <div class="md-layout-item">
-              <md-field>
-                <label for="list">List</label>
-                <md-select v-model="list" name="list" id="list">
-                  <md-option value="3 month">3 month</md-option>
-                  <md-option value="6 month">6 month</md-option>
-                  <md-option value="yearly">yearly</md-option>
-                  
-                </md-select>
-              </md-field>
-            </div>
+            
             <ordered-table></ordered-table>
           </md-card-content>
         </md-card>
@@ -38,7 +28,6 @@ export default {
     // SimpleTable,
   },
   data(){
-      list:'3 month'
     }
 };
 </script>

@@ -7,6 +7,7 @@ import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
+import itemDescription from "@/pages/itemDescription.vue";
 
 const routes = [
   {
@@ -51,6 +52,16 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
+      },
+      {
+        path:'/joblist',
+        name: 'joblist',
+        component:TableList
+      },
+      {
+        path:'/joblist/:id',
+        name:'Item description',
+        component: itemDescription
       }
     ]
   }
