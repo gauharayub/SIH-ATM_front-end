@@ -8,6 +8,7 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import itemDescription from "@/pages/itemDescription.vue";
+import ComplianceForm from "@/pages/Complianceform.vue";
 
 const routes = [
   {
@@ -62,6 +63,11 @@ const routes = [
         path:'/joblist/:id',
         name:'Item description',
         component: itemDescription
+      },
+      {
+        path:'/complianceform',
+        name:'Compliance Form',
+        component: ComplianceForm
       }
     ]
   }
