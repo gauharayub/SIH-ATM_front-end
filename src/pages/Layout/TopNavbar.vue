@@ -26,7 +26,7 @@
             </md-autocomplete>
           </div>
           <md-list>
-            <md-list-item href="#/">
+            <md-list-item href="/">
               <i class="material-icons">dashboard</i>
               <p class="hidden-lg hidden-md">Dashboard</p>
             </md-list-item>
