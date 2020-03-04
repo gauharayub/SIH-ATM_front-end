@@ -4,11 +4,9 @@
 // import StatsCard from "./Cards/StatsCard.vue";
 
 // Tables
-import NavTabsTable from "./Tables/NavTabsTable.vue";
+// import NavTabsTable from "./Tables/NavTabsTable.vue";
 import OrderedTable from "./Tables/OrderedTable.vue";
 
 export {
-  
-  NavTabsTable,
   OrderedTable
 };

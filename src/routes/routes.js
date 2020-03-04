@@ -1,6 +1,6 @@
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
-import Dashboard from "@/pages/Dashboard.vue";
+// import Dashboard from "@/pages/Dashboard.vue";
 import TableList from "@/pages/TableList.vue";
 import itemDescription from "@/pages/itemDescription.vue";
 import ComplianceForm from "@/pages/Complianceform.vue";
@@ -15,11 +15,7 @@ const routes = [{
   path: "/",
   component: DashboardLayout,
   redirect: "/joblist",
-  children: [{
-      path: "dashboard",
-      name: "Dashboard",
-      component: Dashboard
-    },
+  children: [
     {
       path: '/joblist',
       name: 'joblist',

@@ -28,25 +28,7 @@ export default {
   },
   data(){
     return{
-      mounted() {
-        console.log("Hello")
-        fetch("http://localhost:3000/get-orders", {
-          method: "get"
-        })
-          .then(response => {
-            console.log("Anas2");
-            return response.json();
-          })
-          .then(jsondata => {
-            this.items = jsondata.results;
-          })
-          .catch(er => {
-            console.log("Cant fetch the data:", er);
-            prompt("Check internet connection");
-          });
-        console.log("Anas");
       }
-    }
     }
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="md-layout-item">
       <md-field>
         <label for="list">List</label>
-        <md-select v-model="list" name="list" id="list">
+        <md-select v-if="items.legth" v-model="list" name="list" id="list">
           <md-option value="3 month">3 month</md-option>
           <md-option value="6 month">6 month</md-option>
           <md-option value="yearly">yearly</md-option>
@@ -22,6 +22,24 @@
 export default {
   data() {
     return {
+      mounted() {
+        console.log("Hello");
+        fetch("http://localhost:3000/get-orders", {
+          method: "get"
+        })
+          .then(response => {
+            console.log("Anas2");
+            return response.json();
+          })
+          .then(jsondata => {
+            this.items = jsondata.results;
+          })
+          .catch(er => {
+            console.log("Cant fetch the data:", er);
+            prompt("Check internet connection");
+          });
+        console.log("Anas");
+      },
       list: "3 month",
       fields: [
         "id",
@@ -39,12 +57,6 @@ export default {
         "Assets"
       ],
       items: [],
-      
-      methods: {
-        fullName(value, key, item) {
-          return `${item.first_name} ${item.last_name}`;
-        }
-      }
     };
   }
 };
