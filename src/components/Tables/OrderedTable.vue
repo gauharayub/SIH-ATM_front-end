@@ -12,29 +12,20 @@
     </div>
     <b-table striped hover :fields="fields" :items="items">
       <template v-slot:cell(name)="data">
-        <router-link :to="`/joblist/${data.item.assignmentCode}`">{{ data.value }}</router-link>
+        <router-link :to="`/joblist/${data.item._id}`">{{ data.value }}</router-link>
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   mounted() {
-    fetch("http://localhost:3000/get-orders", {
-      method: "get",
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(jsondata => {
-        this.items = jsondata
-        console.log(this.items)
-      })
-      .catch(er => {
-        console.log("Cant fetch the data:", er);
-        prompt("Check internet connection");
-      });
+    axios
+      .get("http://localhost:3000/get-orders")
+      .then(response => this.items = response.data)
+      .catch(er => console.log("Cant fetch the data:", er));
   },
 
   data() {
@@ -45,18 +36,22 @@ export default {
           key: "name",
           label: "Code",
           formatter(value, key, item) {
-            return item.assignmentCode;
+            return item.equipmentCode;
           }
         },
+        "assignmentCode",
         "completed",
-        "equipment",
+        {
+          key: "number",
+          label: "Order No."
+        },
         {
           key: "work",
-          label:"description"
+          label: "description"
         },
         "status",
-        "task",
-        "location"
+        "location",
+        "cycle"
       ],
       items: []
     };
