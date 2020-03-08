@@ -35,7 +35,7 @@
                 buttons
                 button-variant="outline-primary"
                 size="md"
-                name="radio-btn-outline"bhvhvhjvhjvj
+                name="radio-btn-outline"
               ></b-form-radio-group>
             </div>
           </b-form-group>
