@@ -105,7 +105,7 @@ export default {
   mounted() {
     //hard coded  id of task
     axios
-      .get('http://localhost:3000/compliance/' + '5e6234fad4ab2a322d9798ea')
+      .get('http://localhost:3000/compliance/' + '5e664847463da44026e3be8b')
       .then(res => (this.form = res.data))
       .catch(er => console.log('Error :', er))
   },
@@ -118,7 +118,6 @@ export default {
     },
     onFileChange(index, e) {
       this.capturedFile[index] = e.target.files[0]
-      console.log(this.capturedFile[index])
     },
     addFile() {
       this.files++
@@ -126,10 +125,12 @@ export default {
     onSubmit(evt) {
       evt.preventDefault()
       const fd = new FormData()
-      fd.append('workImage', this.capturedFile)
-      console.log(fd)
+      this.capturedFile.forEach(file => fd.append('workImage',file));
+      fd.append('comments', JSON.stringify(this.capturedComment))
+      fd.append('taskListValue', JSON.stringify(this.TaskListValue))
+
       axios
-        .post('http://localhost:3000/uploadphoto/5e6234fad4ab2a322d9798ea', fd)
+        .post('http://localhost:3000/submit-compliance/5e664847463da44026e3be8b', fd)
         .then(res => console.log(res.data))
         .catch(e => console.log('Error :', e))
     },
