@@ -54,7 +54,7 @@
                 class="md-list-item-router md-list-item-container md-button-clean dropdown"
               >
                 <div class="md-list-item-content">
-                  <drop-down>
+                  <!-- <drop-down>
                     <md-button
                       slot="title"
                       class="md-button md-just-icon md-simple"
@@ -71,7 +71,7 @@
                       <li><a href="#">Another Notification</a></li>
                       <li><a href="#">Another One</a></li>
                     </ul>
-                  </drop-down>
+                  </drop-down> -->
                 </div>
               </a>
             </li>
