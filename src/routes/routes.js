@@ -15,8 +15,7 @@ const routes = [{
   path: "/",
   component: DashboardLayout,
   redirect: "/joblist",
-  children: [
-    {
+  children: [{
       path: '/joblist',
       name: 'joblist',
       component: TableList

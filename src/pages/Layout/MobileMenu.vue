@@ -13,7 +13,7 @@
       >
     </li>
     <li>
-      <drop-down>
+      <!-- <drop-down>
         <a slot="title" class="dropdown-toggle" data-toggle="dropdown">
           <i class="material-icons">notifications</i>
           <span class="notification">5</span>
@@ -26,7 +26,7 @@
           <li><a href="#">Another Notification</a></li>
           <li><a href="#">Another One</a></li>
         </ul>
-      </drop-down>
+      </drop-down> -->
     </li>
     <li>
       <a href="#" data-toggle="dropdown" class="dropdown-toggle"
