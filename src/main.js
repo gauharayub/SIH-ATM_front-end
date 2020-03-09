@@ -20,6 +20,7 @@ import Chartist from "chartist";
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
+  mode: 'history', //removes # form url
   linkExactActiveClass: "nav-item active"
 });
 
