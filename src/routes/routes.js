@@ -5,6 +5,7 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import TableList from "@/pages/TableList.vue";
 import itemDescription from "@/pages/itemDescription.vue";
 import ComplianceForm from "@/pages/Complianceform.vue";
+import ApprovalForm from "@/pages/ApprovalForm.vue"
 
 // import Typography from "@/pages/Typography.vue";
 // import Icons from "@/pages/Icons.vue";
@@ -32,6 +33,11 @@ const routes = [{
       path: '/complianceform',
       name: 'Compliance Form',
       component: ComplianceForm
+    },
+    {
+      path: '/approval',
+      name: 'Approval Form',
+      component: ApprovalForm
     }
   ]
 }];
