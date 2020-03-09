@@ -65,7 +65,7 @@
               <p>{{ fileName[index] ? fileName[index].name : '' }}</p>
             </div>
             <b-form-group id="input-group-8" label="Comments:" label-for="input-8">
-              <b-form-input id="input-8" v-model="capturedFile[index].comment"></b-form-input>
+              <b-form-input id="input-8" v-model="capturedComment[index]"></b-form-input>
             </b-form-group>
 
             <br />
@@ -96,7 +96,8 @@ export default {
       ],
       TaskListValue: [],
       show: true,
-      capturedFile: [{ file: null, comment: null }], //{file:file, text:comments}
+      capturedFile: [], //{file:file, text:comments}
+      capturedComment: [],
       files: 1,
       fileName: []
     }
@@ -111,28 +112,24 @@ export default {
   methods: {
     deleteFileItem(index) {
       this.capturedFile.splice(index)
+      this.capturedComment.splice(index)
       this.fileName.splice(index)
       this.files--
     },
     onFileChange(index, e) {
-      this.capturedFile[index].file = e.target.files[0]
-      console.log(this.capturedFile[index].file)
+      this.capturedFile[index] = e.target.files[0]
+      console.log(this.capturedFile[index])
     },
     addFile() {
       this.files++
-      this.capturedFile.push({ file: null, comment: null })
     },
     onSubmit(evt) {
       evt.preventDefault()
-
       const fd = new FormData()
-      fd.append('workImage', this.capturedFile[0].file)
+      fd.append('workImage', this.capturedFile)
       console.log(fd)
       axios
-        .post(
-          'http://localhost:3000/uploadphoto/5e6234fad4ab2a322d9798ea',
-          fd
-        )
+        .post('http://localhost:3000/uploadphoto/5e6234fad4ab2a322d9798ea', fd)
         .then(res => console.log(res.data))
         .catch(e => console.log('Error :', e))
     },
@@ -141,11 +138,13 @@ export default {
       // Reset our form values
       this.TaskListValue = []
       this.files = 1
-      this.capturedFile = [{ file: null, comment: null }]
-      this.filename = []
+      this.capturedFile = []
+      this.capturedComment = []
+      this.fileName = []
       // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {
+        //things changed and noticed by vue but showing changing status before rendering to dom
         this.show = true
       })
     }
