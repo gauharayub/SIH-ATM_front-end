@@ -1,4 +1,5 @@
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+// import Login from "@/pages/Login.vue";
 
 // import Dashboard from "@/pages/Dashboard.vue";
 import TableList from "@/pages/TableList.vue";
@@ -14,7 +15,9 @@ import ComplianceForm from "@/pages/Complianceform.vue";
 const routes = [{
   path: "/",
   component: DashboardLayout,
-  redirect: "/joblist",
+  redirect(){
+    window.location.href = 'http://localhost:3000/login'
+  },
   children: [{
       path: '/joblist',
       name: 'joblist',
