@@ -1,7 +1,7 @@
 <template>
   <b-container fluid class="bv-example-row">
     <b-row>
-      <b-col cols="8" offset="2">
+      <b-col cols="12"  md="10" offset-md="2" id="main-box">
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Assignment Number:" label-for="input-1">
             <b-form-input id="input-1" v-model="form.assignmentNumber" type="number" disabled></b-form-input>
@@ -49,7 +49,7 @@
 
           <!-- for files -->
           <div id="fileSelector" v-for="(file, index) in files" :key="index">
-            <label for="file">File :</label>
+            <label for="file" size="sm">File :</label>
             <b-form-file
               name="file"
               class="makeInLine"
@@ -58,6 +58,7 @@
               :state="Boolean(file)"
               placeholder="Choose a file or drop it here..."
               drop-placeholder="Drop file here..."
+              size="sm"
             ></b-form-file>
             <span class="close" @click="deleteFileItem(index)">X</span>
             <div class="mt-3">
@@ -154,7 +155,7 @@ export default {
 </script>
 <style lang="css" scoped>
 .makeInLine {
-  width: 70% !important;
+  width: 65% !important;
   margin: 0 20px;
 }
 .close {
@@ -163,5 +164,8 @@ export default {
   position: relative;
   left: -5%;
   cursor: pointer;
+}
+#main-box{
+  padding: 5px;
 }
 </style>
