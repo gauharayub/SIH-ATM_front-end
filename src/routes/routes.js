@@ -1,10 +1,10 @@
-import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 // import Login from "@/pages/Login.vue";
 
 // import Dashboard from "@/pages/Dashboard.vue";
-import TableList from "@/pages/TableList.vue";
-import itemDescription from "@/pages/itemDescription.vue";
-import ComplianceForm from "@/pages/Complianceform.vue";
+import TableList from '@/pages/TableList.vue'
+import itemDescription from '@/pages/itemDescription.vue'
+import ComplianceForm from '@/pages/Complianceform.vue'
 
 // import Typography from "@/pages/Typography.vue";
 // import Icons from "@/pages/Icons.vue";
@@ -13,11 +13,11 @@ import ComplianceForm from "@/pages/Complianceform.vue";
 // import UserProfile from "@/pages/UserProfile.vue";
 
 const routes = [{
-  path: "/",
+  path: '/',
   component: DashboardLayout,
-  redirect() {
-    window.location.href = 'http://localhost:3000/login'
-  },
+  // redirect() {
+  //   window.location.href = 'http://localhost:3000/login'
+  // },
   children: [{
       path: '/joblist',
       name: 'joblist',
@@ -34,6 +34,6 @@ const routes = [{
       component: ComplianceForm
     }
   ]
-}];
+}]
 
-export default routes;
+export default routes
