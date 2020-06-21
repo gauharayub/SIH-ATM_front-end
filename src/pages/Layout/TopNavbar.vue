@@ -115,6 +115,7 @@ export default {
     logout(){
       console.log("logged-out");
       this.$cookies.remove('token');
+      this.$router.push({name:'login'})
     }
   }
 }

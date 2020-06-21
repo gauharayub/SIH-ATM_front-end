@@ -139,7 +139,11 @@ export default {
   mounted() {
     //first get request to fetch order details
     axios
-      .get('http://localhost:3000/order/' + this.equipmentId)
+      .get('http://localhost:3000/order/' + this.equipmentId,{
+        headers:{
+          authorization:this.$cookies.get('token')
+        }
+      })
       .then(response => (this.info = response.data))
       .catch(er => console.log('Error :', er))
 
@@ -148,13 +152,7 @@ export default {
       .get('http://localhost:3000/engineers')
       .then(response => (this.engineers = response.data))
       .catch(er => console.log('Cant fetch the engineers data:', er))
-      .finally(() => {
-        this.engineers.unshift({
-          engineerID: null,
-          name: 'Select the engineer',
-          disabled: true
-        })
-      })
+      
   },
   data() {
     return {
@@ -167,27 +165,23 @@ export default {
   },
   methods: {
     assignEngineer() {
-      // axios
-      //   .post("http://localhost:3000/submit-form", {
-      //     equipmentCode: this.info.equipmentCode,
-      //     orderId: this.equipmentId,
-      //     engineerID: this.selected,
-      //     additionalRemarks: this.remarks ? this.remarks : "No remarks"
-      //   })
-      //   .then(response => prompt("Data sent"))
-      //   .catch(er => console.log(er));
-
-      let data = {
+     
+      const data = {
         equipmentCode: this.info.equipmentCode,
         orderId: this.equipmentId,
         engineerID: this.selected,
         additionalRemarks: this.remarks ? this.remarks : 'No remarks'
       }
-
-      fetch('http://localhost:3000/submit-form', {
-        method: 'post',
-        body: JSON.stringify(data)
-      })
+     
+      axios.post('http://localhost:3000/submit-form',data,{
+        headers:{
+          authorization:this.$cookies.get('token')
+        }
+      }).then(res=>{
+        if(res.status === 200){
+          this.$router.push({name:'joblist'})
+        }
+      }).catch(er=>console.log(er))
     }
   }
 }

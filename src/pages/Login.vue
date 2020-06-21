@@ -79,18 +79,25 @@ export default {
       password: ''
     }
   },
-  mounted(){
-    if(this.$cookies.isKey('token')){
-      axios.defaults.headers['Authorization'] = this.$cookies.get('token')
-      axios.post('http://localhost:3000/verify')
-      .then(res => {
-        if(res.status === 200){
-          this.$router.push({ path: '/dashboard' })
-        }
-      })
-      .catch(e=>{
-        console.log("Do the login")
-      })
+  mounted() {
+    if (this.$cookies.isKey('token')) {
+      // axios.defaults.headers['Authorization'] = this.$cookies.get('token')
+      axios
+        .post(
+          'http://localhost:3000/verify',
+          {},
+          {headers: {
+            authorization: this.$cookies.get('token')
+          }}
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.$router.push({ name: 'dashboard' })
+          }
+        })
+        .catch(e => {
+          console.log('Do the login')
+        })
     }
   },
   methods: {
@@ -105,7 +112,9 @@ export default {
         .then(res => {
           //redirecting and setup of a cookie return with jwt
           if (res.status === 200) {
-            this.$cookies.set('token',res.data.token)
+            console.log(res.data)
+            this.$cookies.set('token', res.data.token)
+            this.$router.push({ name: 'dashboard' })
           }
         })
         .catch(er => console.log(er))

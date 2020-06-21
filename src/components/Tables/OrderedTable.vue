@@ -25,12 +25,11 @@ export default {
     axios
       .get('http://localhost:3000/get-orders', 
       {
-        headers: { Authorization: this.$cookies.get('token') }
+        headers: { authorization: this.$cookies.get('token') }
       })
       .then(response => (this.items = response.data))
       .catch(er => {
         console.log('Fetch Error:', er);
-        this.$cookies.set('token', 'cookieSetDone3')
       })
   },
 
