@@ -1,5 +1,7 @@
-import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
-// import Login from "@/pages/Login.vue";
+
+import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Login from "@/pages/Login.vue"
+
 
 // import Dashboard from "@/pages/Dashboard.vue";
 import TableList from '@/pages/TableList.vue'
@@ -13,11 +15,13 @@ import ComplianceForm from '@/pages/Complianceform.vue'
 // import UserProfile from "@/pages/UserProfile.vue";
 
 const routes = [{
-  path: '/',
+  path:"/",
+  component:Login
+},{
+  path: "/dashboard",
   component: DashboardLayout,
-  redirect: {
-    name: 'joblist'
-  },
+  redirect: "/joblist",
+
   children: [{
       path: '/joblist',
       name: 'joblist',
