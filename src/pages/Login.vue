@@ -70,32 +70,45 @@
 </template>
 
 <script>
-
 import axios from 'axios'
 export default {
-  name: '#login',
-  data(){
-	  return{
-		  name:'',
-		  password:''
-	  }
+  name: 'login',
+  data() {
+    return {
+      name: '',
+      password: ''
+    }
+  },
+  mounted(){
+    if(this.$cookies.isKey('token')){
+      axios.defaults.headers['Authorization'] = this.$cookies.get('token')
+      axios.post('http://localhost:3000/verify')
+      .then(res => {
+        if(res.status === 200){
+          this.$router.push({ path: '/dashboard' })
+        }
+      })
+      .catch(e=>{
+        console.log("Do the login")
+      })
+    }
   },
   methods: {
     // dashboard(){
     // this.$router.push({ path: '/dashboard' });
     loginMe() {
-		console.log("request fired")
       axios
-        .post('http://localhost:3000/login',{
-			email:this.name,
-			password:this.password
-		})
+        .post('http://localhost:3000/login', {
+          email: this.name,
+          password: this.password
+        })
         .then(res => {
-			//redirecting and setup of a cookie return with jwt
-			console.log("response received")
-
-		})
-        .catch(er => console.log('Error :'))
+          //redirecting and setup of a cookie return with jwt
+          if (res.status === 200) {
+            this.$cookies.set('token',res.data.token)
+          }
+        })
+        .catch(er => console.log(er))
     }
   }
 }
