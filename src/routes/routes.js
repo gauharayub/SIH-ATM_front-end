@@ -1,10 +1,12 @@
+
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import Login from "@/pages/Login.vue"
 
+
 // import Dashboard from "@/pages/Dashboard.vue";
-import TableList from "@/pages/TableList.vue";
-import itemDescription from "@/pages/itemDescription.vue";
-import ComplianceForm from "@/pages/Complianceform.vue";
+import TableList from '@/pages/TableList.vue'
+import itemDescription from '@/pages/itemDescription.vue'
+import ComplianceForm from '@/pages/Complianceform.vue'
 
 // import Typography from "@/pages/Typography.vue";
 // import Icons from "@/pages/Icons.vue";
@@ -19,6 +21,7 @@ const routes = [{
   path: "/dashboard",
   component: DashboardLayout,
   redirect: "/joblist",
+
   children: [{
       path: '/joblist',
       name: 'joblist',
@@ -35,6 +38,6 @@ const routes = [{
       component: ComplianceForm
     }
   ]
-}];
+}]
 
-export default routes;
+export default routes
