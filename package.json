@@ -18,6 +18,7 @@
     "requests": "^0.3.0",
     "vue": "2.6.10",
     "vue-clickaway": "2.2.2",
+    "vue-cookies": "^1.7.0",
     "vue-github-buttons": "3.1.0",
     "vue-material": "1.0.0-beta-11",
     "vue-router": "3.1.3",

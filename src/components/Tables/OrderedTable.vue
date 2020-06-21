@@ -19,42 +19,48 @@
 </template>
 
 <script>
-const axios = require("axios");
+const axios = require('axios')
 export default {
   mounted() {
     axios
-      .get("http://localhost:3000/get-orders")
-      .then(response => this.items = response.data)
-      .catch(er => console.log("Cant fetch the data:", er));
+      .get('http://localhost:3000/get-orders', 
+      {
+        headers: { Authorization: this.$cookies.get('token') }
+      })
+      .then(response => (this.items = response.data))
+      .catch(er => {
+        console.log('Fetch Error:', er);
+        this.$cookies.set('token', 'cookieSetDone3')
+      })
   },
 
   data() {
     return {
-      list: "3 month",
+      list: '3 month',
       fields: [
         {
-          key: "name",
-          label: "Code",
+          key: 'name',
+          label: 'Code',
           formatter(value, key, item) {
-            return item.equipmentCode;
+            return item.equipmentCode
           }
         },
-        "assignmentCode",
-        "completed",
+        'assignmentCode',
+        'completed',
         {
-          key: "number",
-          label: "Order No."
+          key: 'number',
+          label: 'Order No.'
         },
         {
-          key: "work",
-          label: "description"
+          key: 'work',
+          label: 'description'
         },
-        "status",
-        "location",
-        "cycle"
+        'status',
+        'location',
+        'cycle'
       ],
       items: []
-    };
+    }
   }
-};
+}
 </script>

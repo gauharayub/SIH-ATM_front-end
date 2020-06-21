@@ -17,6 +17,8 @@ import MaterialDashboard from "./material-dashboard";
 
 import Chartist from "chartist";
 
+//cookie extension
+import VueCookies from 'vue-cookies'
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -26,6 +28,7 @@ const router = new VueRouter({
 
 Vue.prototype.$Chartist = Chartist;
 
+Vue.use(VueCookies);
 Vue.use(VueRouter);
 Vue.use(MaterialDashboard);
 // Vue.use(GlobalComponents);

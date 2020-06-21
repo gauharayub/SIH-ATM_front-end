@@ -15,9 +15,9 @@ import ComplianceForm from '@/pages/Complianceform.vue'
 const routes = [{
   path: '/',
   component: DashboardLayout,
-  // redirect() {
-  //   window.location.href = 'http://localhost:3000/login'
-  // },
+  redirect: {
+    name: 'joblist'
+  },
   children: [{
       path: '/joblist',
       name: 'joblist',
