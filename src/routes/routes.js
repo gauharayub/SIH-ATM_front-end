@@ -7,7 +7,8 @@ import Login from "@/pages/Login.vue"
 import TableList from '@/pages/TableList.vue'
 import itemDescription from '@/pages/itemDescription.vue'
 import ComplianceForm from '@/pages/Complianceform.vue'
-
+import ApprovalForm from '@/pages/ApprovalForm.vue'
+import engineerDashboard from '@/pages/engineerDashboard.vue'
 // import Typography from "@/pages/Typography.vue";
 // import Icons from "@/pages/Icons.vue";
 // import Maps from "@/pages/Maps.vue";
@@ -35,9 +36,18 @@ const routes = [{
       component: itemDescription
     },
     {
-      path: '/complianceform',
+      path: '/complianceform/:id',
       name: 'Compliance Form',
       component: ComplianceForm
+    }, {
+      path: '/approval/',
+      name: 'approval',
+      component:ApprovalForm
+    },
+    {
+      path: '/engineerDashboard',
+      name: 'engineerDashboard',
+      component: engineerDashboard
     }
   ]
 }]

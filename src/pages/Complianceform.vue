@@ -1,7 +1,7 @@
 <template>
   <b-container fluid class="bv-example-row">
     <b-row>
-      <b-col cols="12"  md="10" offset-md="2" id="main-box">
+      <b-col cols="12"  md="8" offset-md="2" id="main-box">
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Assignment Number:" label-for="input-1">
             <b-form-input id="input-1" v-model="form.assignmentNumber" type="number" disabled></b-form-input>
@@ -106,7 +106,7 @@ export default {
   mounted() {
     //hard coded  id of task
     axios
-      .get('http://localhost:3000/compliance/' + '5e664847463da44026e3be8b')
+      .get('http://localhost:3000/compliance/' + '5eeb50e5890ad91ca47cfc08')
       .then(res => (this.form = res.data))
       .catch(er => console.log('Error :', er))
   },

@@ -44,13 +44,13 @@
               </drop-down>
             </md-list-item>-->
 
-            <li class="md-list-item">
+            <!-- <li class="md-list-item">
               <a
                 href="#/notifications"
                 class="md-list-item-router md-list-item-container md-button-clean dropdown"
               >
                 <div class="md-list-item-content">
-                  <!-- <drop-down>
+                  <drop-down>
                     <md-button
                       slot="title"
                       class="md-button md-just-icon md-simple"
@@ -67,16 +67,16 @@
                       <li><a href="#">Another Notification</a></li>
                       <li><a href="#">Another One</a></li>
                     </ul>
-                  </drop-down>-->
+                  </drop-down>
                 </div>
               </a>
-            </li>
+            </li> -->
 
             <md-menu md-size="small" md-align-trigger>
-              <md-button md-menu-trigger id="profile">
+              <button blue md-menu-trigger id="profile">
                 <i class="material-icons">person</i>
                 <p v-b-toggle.collapse-1 class="hidden-lg hidden-md">Profile</p>
-              </md-button>
+              </button>
 
               <md-menu-content>
                 <md-menu-item>Change Profile</md-menu-item>
@@ -121,6 +121,14 @@ export default {
 }
 </script>
 
-<style lang="css">
-
+<style lang="css" scoped>
+.md-title{
+  text-transform: capitalize;
+}
+#profile{
+  padding: 12px 8px;
+}
+#profile .material-icons{
+  color: seagreen;
+}
 </style>
