@@ -1,23 +1,21 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
-
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/joblist">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-       <sidebar-link to="/joblist">
+      <sidebar-link to="/engineerDashboard">
         <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+        <p>Engineer Dashboard</p>
       </sidebar-link>
-      
     </side-bar>
 
     <div class="main-panel">
       <top-navbar></top-navbar>
 
-      <dashboard-content> </dashboard-content>
+      <dashboard-content></dashboard-content>
 
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
@@ -25,10 +23,10 @@
 </template>
 <style lang="scss"></style>
 <script>
-import TopNavbar from "./TopNavbar.vue";
-import ContentFooter from "./ContentFooter.vue";
-import DashboardContent from "./Content.vue";
-import MobileMenu from "@/pages/Layout/MobileMenu.vue";
+import TopNavbar from './TopNavbar.vue'
+import ContentFooter from './ContentFooter.vue'
+import DashboardContent from './Content.vue'
+import MobileMenu from '@/pages/Layout/MobileMenu.vue'
 
 export default {
   components: {
@@ -37,5 +35,5 @@ export default {
     ContentFooter,
     MobileMenu
   }
-};
+}
 </script>

@@ -27,7 +27,7 @@ export default {
       default: () => {
         return {
           name: "",
-          path: "",
+          path: "#",
           icon: ""
         };
       }

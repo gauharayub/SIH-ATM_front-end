@@ -36,11 +36,11 @@ const routes = [{
       component: itemDescription
     },
     {
-      path: '/complianceform',
+      path: '/complianceform/:id',
       name: 'Compliance Form',
       component: ComplianceForm
     }, {
-      path: '/approval/:id',
+      path: '/approval/',
       name: 'approval',
       component:ApprovalForm
     },
