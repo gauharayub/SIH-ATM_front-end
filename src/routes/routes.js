@@ -16,9 +16,11 @@ import ComplianceForm from '@/pages/Complianceform.vue'
 
 const routes = [{
   path:"/",
-  component:Login
+  component: Login,
+  name:'login'
 },{
   path: "/dashboard",
+  name:"dashboard",
   component: DashboardLayout,
   redirect: "/joblist",
 

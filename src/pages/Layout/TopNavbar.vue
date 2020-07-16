@@ -17,11 +17,7 @@
 
         <div class="md-collapse">
           <div class="md-autocomplete">
-            <md-autocomplete
-              class="search"
-              v-model="selectedEmployee"
-              :md-options="employees"
-            >
+            <md-autocomplete class="search" v-model="selectedEmployee" :md-options="employees">
               <label>Search...</label>
             </md-autocomplete>
           </div>
@@ -46,7 +42,7 @@
                   <li><a href="#">Another One</a></li>
                 </ul>
               </drop-down>
-            </md-list-item> -->
+            </md-list-item>-->
 
             <li class="md-list-item">
               <a
@@ -71,15 +67,23 @@
                       <li><a href="#">Another Notification</a></li>
                       <li><a href="#">Another One</a></li>
                     </ul>
-                  </drop-down> -->
+                  </drop-down>-->
                 </div>
               </a>
             </li>
 
-            <md-list-item href="#/user">
-              <i class="material-icons">person</i>
-              <p class="hidden-lg hidden-md">Profile</p>
-            </md-list-item>
+            <md-menu md-size="small" md-align-trigger>
+              <md-button md-menu-trigger id="profile">
+                <i class="material-icons">person</i>
+                <p v-b-toggle.collapse-1 class="hidden-lg hidden-md">Profile</p>
+              </md-button>
+
+              <md-menu-content>
+                <md-menu-item>Change Profile</md-menu-item>
+                <md-menu-item>Change Password</md-menu-item>
+                <md-menu-item @click="logout">Logout</md-menu-item>
+              </md-menu-content>
+            </md-menu>
           </md-list>
         </div>
       </div>
@@ -93,23 +97,30 @@ export default {
     return {
       selectedEmployee: null,
       employees: [
-        "Jim Halpert",
-        "Dwight Schrute",
-        "Michael Scott",
-        "Pam Beesly",
-        "Angela Martin",
-        "Kelly Kapoor",
-        "Ryan Howard",
-        "Kevin Malone"
+        'Jim Halpert',
+        'Dwight Schrute',
+        'Michael Scott',
+        'Pam Beesly',
+        'Angela Martin',
+        'Kelly Kapoor',
+        'Ryan Howard',
+        'Kevin Malone'
       ]
-    };
+    }
   },
   methods: {
     toggleSidebar() {
-      this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+      this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+    },
+    logout(){
+      console.log("logged-out");
+      this.$cookies.remove('token');
+      this.$router.push({name:'login'})
     }
   }
-};
+}
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+
+</style>
