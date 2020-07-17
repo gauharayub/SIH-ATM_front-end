@@ -14,7 +14,6 @@
         <md-icon>house</md-icon>
         <p>Data Warehouse</p>
       </sidebar-link>
-      
     </side-bar>
 
     <div class="main-panel">
