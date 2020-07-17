@@ -7,13 +7,13 @@
             <div>
               <h5>
                 Name :
-                <span>{{name}}</span>
+                <span>{{data.name}}</span>
               </h5>
             </div>
             <div>
               <h5>
                 Id :
-                <span>{{id}}</span>
+                <span>{{data.id}}</span>
               </h5>
             </div>
           </div>
@@ -26,51 +26,50 @@
       </div>
       <section id="heading">
         Assigned Orders :
-        <span>{{totalOrders}}</span>
+        <span>{{data.totalOrders}}</span>
       </section>
       <div class="orderContainer">
-        <div v-for="number in totalOrders" :key="number">
-          <h3>Order : {{number}}</h3>
+        <div v-for="number in data.totalOrders" :key="number">
+          <h3>Order : {{data.number}}</h3>
           <div class="order">
             <div class="flex">
               <div class="firstChild">
                 Order No. :
-                <span>{{orderNo}}</span>
+                <span>{{data.orderNo}}</span>
               </div>
               <div class="secondChild">
                 Cycle :
-                <span>{{cycle}}</span>
+                <span>{{data.cycle}}</span>
               </div>
             </div>
             <div>
               Equipment :
-              <span>{{equipmentId}}</span>
+              <span>{{data.equipmentId}}</span>
             </div>
             <div>
               Description :
-              <span>{{description}}</span>
+              <span>{{data.description}}</span>
             </div>
             <div>
               Status :
-              <span>{{status}}</span>
+              <span>{{data.status}}</span>
             </div>
             <div>
               Location :
-              <span>{{location}}</span>
+              <span>{{data.location}}</span>
             </div>
             <div class="flex">
               <div class="firstChild">
                 Assigned on :
-                <span>{{assignedDate}}</span>
+                <span>{{data.assignedDate}}</span>
               </div>
               <div class="secondChild">
                 Deadline :
-                <span>{{deadlineDate}}</span>
+                <span>{{data.deadlineDate}}</span>
               </div>
             </div>
             <div class="buttonContainer">
-              <router-link :to="`/approval/${orderNo}`">Visit Compliance Form</router-link>
-      
+              <router-link :to="`/complianceform/${data.orderNo}`">Visit Compliance Form</router-link>
             </div>
           </div>
         </div>
@@ -85,28 +84,36 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      name: 'Anas',
-      id: '18COB037',
-      totalOrders: 4,
-      orderNo: '123jrhj4',
-      cycle: '3 Months',
-      equipmentId: '34hg56',
-      description: 'complete the task',
-      location: 'section 34, Plant 34',
-      status: 'Need replacement',
-      assignedDate: '13-Jun-2020',
-      deadlineDate: '12-July-2020'
+      data: {
+        name: 'Anas',
+        id: '18COB037',
+        totalOrders: 4,
+        orderNo: '123jrhj4',
+        cycle: '3 Months',
+        equipmentId: '34hg56',
+        description: 'complete the task',
+        location: 'section 34, Plant 34',
+        status: 'Need replacement',
+        assignedDate: '13-Jun-2020',
+        deadlineDate: '12-July-2020'
+      }
     }
   },
   mounted() {
     //make a request with authorization jwt header to fetch details from bak here
-    // axios.get("http://localhost:3000")
+    axios
+      .get('http://localhost:3000/engineerOrders', {
+        headers: { authorization: this.$cookies.get('token') }
+      })
+      .then(response => {
+        console.log(response.data)
+        this.data = response.data
+      })
+      .catch(er => {
+        console.log('Fetch Error:', er)
+      })
   },
-  methods:{
-    handleClick(event){
-      console.log(event.target.value)
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -166,28 +173,28 @@ export default {
 .secondChild {
   flex-basis: 40%;
 }
-.buttonContainer{
+.buttonContainer {
   margin: 10px;
   margin-top: 40px;
   margin-left: 0;
 }
-.orderContainer .buttonContainer a{
+.orderContainer .buttonContainer a {
   border-radius: 12px;
   font-weight: 500;
   border: 1px solid;
-  color:cornflowerblue;
+  color: cornflowerblue;
   padding: 8px 12px;
   background-color: white;
 }
-.orderContainer .buttonContainer a:hover{
-  color:cornflowerblue;
+.orderContainer .buttonContainer a:hover {
+  color: cornflowerblue;
 }
-@media (max-width:600px){
-  .firstChild{
+@media (max-width: 600px) {
+  .firstChild {
     flex-basis: 100%;
     margin-bottom: 10px;
   }
-  .secondChild{
+  .secondChild {
     flex-basis: 100%;
   }
 }
