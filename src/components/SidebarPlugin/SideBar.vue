@@ -6,19 +6,18 @@
     :style="sidebarStyle"
   >
     <div class="logo">
-      <a href="#" class="simple-text logo-mini">
+      <route-link to="/" class="simple-text logo-mini">
         <div class="logo-img">
           <img :src="imgLogo" alt="" />
         </div>
-      </a>
+      </route-link>
 
-      <a
-        href="#"
-        target="_blank"
+      <router-link
+        to="/"
         class="simple-text logo-normal"
       >
         {{ title }}
-      </a>
+      </router-link>
     </div>
     <div class="sidebar-wrapper">
       <slot name="content"></slot>
@@ -59,7 +58,7 @@ export default {
     },
     activeColor: {
       type: String,
-      default: "green",
+      default: "blue",
       validator: value => {
         let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
         return acceptedValues.indexOf(value) !== -1;
