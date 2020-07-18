@@ -121,7 +121,7 @@ export default {
 #container {
   padding: 12px;
   min-height: 75vh;
-  background-color: #e6e6e6;
+  background-color: #3b6978;
 }
 .profile {
   background-color: white;
@@ -138,7 +138,7 @@ export default {
   color: white;
   border-radius: 4px;
   padding: 12px 20px;
-  background-color: firebrick;
+  background-color: #e8505b;
 }
 .userImage img {
   height: 150px;
@@ -146,6 +146,9 @@ export default {
 }
 .orderContainer {
   padding: 12px 20px;
+}
+.orderContainer h3{
+  color:white;
 }
 .order {
   margin: 20px 0;

@@ -10,6 +10,10 @@
         <md-icon>dashboard</md-icon>
         <p>Engineer Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/dataWarehousing">
+        <md-icon>house</md-icon>
+        <p>Data Warehouse</p>
+      </sidebar-link>
     </side-bar>
 
     <div class="main-panel">
