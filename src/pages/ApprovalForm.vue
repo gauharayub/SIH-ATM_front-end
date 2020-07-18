@@ -186,7 +186,7 @@
     </div>
 
     <div class="justification">
-    <h1>Justification</h1>
+    <h1>Progress</h1>
     <b-container class="bv-example-row">
   <b-row>
     <b-col>
