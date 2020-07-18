@@ -1,8 +1,9 @@
 <template>
   <b-container fluid class="bv-example-row">
     <b-row>
-      <b-col cols="12"  md="10" offset-md="2" id="main-box">
+      <b-col cols="12"  md="8" offset-md="2" id="main-box">
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-jumbotron>
           <b-form-group id="input-group-1" label="Assignment Number:" label-for="input-1">
             <b-form-input id="input-1" v-model="form.assignmentNumber" type="number" disabled></b-form-input>
           </b-form-group>
@@ -30,6 +31,8 @@
           <b-form-group id="input-group-7" label="Cycle:" label-for="input-7">
             <b-form-input id="input-7" v-model="form.cycle" disabled></b-form-input>
           </b-form-group>
+          </b-jumbotron>
+
           <!-- for tasklist generation  -->
           <b-form-group label="Task List:">
             <div v-for="(task, index) in form.tasklist" :key="index">
@@ -48,7 +51,10 @@
           </b-form-group>
 
           <!-- for files -->
+          
           <div id="fileSelector" v-for="(file, index) in files" :key="index">
+          <div class="card" >
+          <div class="card-body">
             <label for="file" size="sm">File :</label>
             <b-form-file
               name="file"
@@ -60,7 +66,7 @@
               drop-placeholder="Drop file here..."
               size="sm"
             ></b-form-file>
-            <span class="close" @click="deleteFileItem(index)">X</span>
+            <span class="pull-right clickable close-icon" data-effect="fadeOut" @click="deleteFileItem(index)"><i class="fa fa-times"></i></span>
             <div class="mt-3">
               Selected file:
               <p>{{ fileName[index] ? fileName[index].name : '' }}</p>
@@ -68,18 +74,17 @@
             <b-form-group id="input-group-8" label="Comments:" label-for="input-8">
               <b-form-input id="input-8" v-model="capturedComment[index]"></b-form-input>
             </b-form-group>
-
+            </div>
+            </div>
             <br />
           </div>
-
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <p>To add more images <b><a class="clickable" @click="addFile">click here</a></b> </p>
+          <div class="pull-right">
+          <b-button class="mr-1" type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
+          </div>
         </b-form>
-        <br />
-        <!-- //files to add -->
-        <br />
-        <p>To add more images click here</p>
-        <b-button @click="addFile" variant="primary">+</b-button>
+        <br>
       </b-col>
     </b-row>
   </b-container>
@@ -152,6 +157,9 @@ export default {
     }
   }
 }
+$('.close-icon').on('click',function() {
+  $(this).closest('.card').fadeOut();
+  } )
 </script>
 <style lang="css" scoped>
 .makeInLine {
@@ -167,5 +175,10 @@ export default {
 }
 #main-box{
   padding: 5px;
+}
+
+/*close icon*/
+.clickable {
+  cursor: pointer;
 }
 </style>
