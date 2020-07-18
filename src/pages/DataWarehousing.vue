@@ -23,7 +23,7 @@
       </div>
       <div>
         Results Found :
-        <span>{{numResults}}</span>
+        <span>{{equipments.length}}</span>
       </div>
     </section>
 
@@ -31,8 +31,8 @@
       <div>
         <h2>Results :</h2>
       </div>
-      <div class="allOrders" v-for="num in 4" :key="num">
-        <div class="QueryNumber">{{num}}</div>
+      <div class="allOrders" v-for="(equipment, i) in equipments" :key="equipment.equipmentCode">
+        <div class="QueryNumber">{{i+1}}</div>
         <section class="OrderCard">
           <div class="imageContainer">
             <img :src="require('@/assets/img/new_logo.png')" alt="Engineer who completed this task" />
@@ -42,33 +42,33 @@
               <div>
                 <p>
                   EquipmentCode :
-                  <span>{{data.equipmentCode}}</span>
+                  <span>{{equipment.equipmentCode}}</span>
                 </p>
               </div>
               <div>
                 <p>
                   Equipment No. :
-                  <span>{{data.equipmentNumber}}</span>
+                  <span>{{equipment.equipmentNumber}}</span>
                 </p>
               </div>
             </div>
             <div>
               <p>
                 Description :
-                <span>{{data.description}}</span>
+                <span>{{equipment.description}}</span>
               </p>
             </div>
             <div class="MakeFlex">
               <div>
                 <p>
                   Manufacturer :
-                  <span>{{data.manufacturer}}</span>
+                  <span>Default</span>
                 </p>
               </div>
               <div>
                 <p>
-                  Procurement Data :
-                  <span>{{data.procurementData}}</span>
+                  Procurement Date :
+                  <span>2020-07-18</span>
                 </p>
               </div>
             </div>
@@ -80,20 +80,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      data: {
-        equipmentCode: '3ec254e',
-        equipmentNumber: '12422',
-        description: 'Tire of Boeng 327 changed',
-        manufacturer: 'bronze pvt ltd',
-        procurementData: 'No idea, what this is'
-      },
+      equipments: [],
       search: '',
       numResults: ''
     }
-  }
+  },
+
+  mounted(){
+      axios.get('http://localhost:3000/equipment-list', {
+        headers: { authorization: this.$cookies.get('token') }
+      })
+      .then(response => {
+        console.log(response.data);
+        this.equipments = response.data
+      })
+      .catch(er => {
+        console.log('Fetch Error:', er)
+      })
+    }
 }
 </script>
 
