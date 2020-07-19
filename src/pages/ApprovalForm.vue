@@ -180,96 +180,155 @@
         </b-col>
       </b-row>
     </b-container>
-    <div class="status">
-        <h3>Opened on </h3>
-        <h3>Closed on </h3>
-    </div>
+
 
     <div class="justification">
     <h1>Progress</h1>
+
     <b-container class="bv-example-row">
+      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+      <b-row>
+        <b-col cols="12" md="8" offset="2">
+        <div class="status blockquote">
+            <h6 class="mb-0">Opened on <span class="pull-right">Closed on</span> </h6>
+            <footer class="blockquote-footer" style="padding-top:0px">3/10/20 <span class="pull-right">03/10/20</span> </footer>
+        </div>
+
+    <div class="justification card box">
+     <h3 class="card-title" style="padding:5px"><i class="far fa-file-alt"></i> Justification</h3>
+    <b-container class="bv-example-row">
+    <div class="card-body">
   <b-row>
     <b-col>
-        <div>
-        <img src="https://blog.hartleybrody.com/wp-content/uploads/2015/01/logomark-orange@2x.png">
-        <h4>Description</h4>
+        <div class="card" >
+        <img class="card-img-top" height="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Two_man_replace_a_main_landing_gear_tire_of_a_plane.jpg">
+        <div class="card-body">
+        <h5 class="card-title">Description</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <b-button
+                variant="info"
+                id="view-btn"
+                @click="$bvModal.show('bv-more-info1')">
+                View more</b-button>
+
+              <b-modal id="bv-more-info1" hide-footer>
+                <template v-slot:modal-title>Description</template>
+                <div class="d-block" id="moreInfoBlock">
+                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <b-button
+                  class="mt-3"
+                  block
+                  @click="$bvModal.hide('bv-more-info1')"
+                  >Done</b-button>
+              </b-modal>
+        </div>
         </div>
     </b-col>
     <b-col>
-        <div>
-        <img src="https://blog.hartleybrody.com/wp-content/uploads/2015/01/logomark-orange@2x.png">
-        <h4>Description</h4>
+        <div class="card">
+        <img class="card-img-top" height="50%" src="https://www.telegraph.co.uk/content/dam/Travel/leadAssets/32/59/plane-undercarriag_3259724a.jpg?imwidth=450">
+        <div class="card-body">
+        <h5 class="card-title">Description</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <b-button
+                variant="info"
+                id="view-btn"
+                @click="$bvModal.show('bv-more-info2')">
+                View more</b-button>
+
+              <b-modal id="bv-more-info2" hide-footer>
+                <template v-slot:modal-title>Description</template>
+                <div class="d-block" id="moreInfoBlock">
+                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <b-button
+                  class="mt-3"
+                  block
+                  @click="$bvModal.hide('bv-more-info2')"
+                  >Done</b-button>
+              </b-modal>
+        </div>
         </div>
     </b-col>
   </b-row>
+  </div>
 </b-container>
 </div>
 
-<div class="approval">
-<h2>Approval</h2>
-<b-container class="bv-example-row">
+<div class="approval card box">
+<h3 class="card-title content" style="padding:5px"><img :src="require(`@/assets/img/approval.png`)" > Approval</h3>
+<b-container class="bv-example-row card-body content">
   <b-row>
     <b-col>
     <div>
     <b-form-checkbox
+      class="cb"
       id="checkbox-1"
       v-model="status"
       name="checkbox-1"
       value="accepted"
       unchecked-value="not_accepted"
     >
-      Pass
+      Pass <i class="fas fa-check-circle"></i>
     </b-form-checkbox>
     </div>
     </b-col>
     <b-col>
     <div>
     <b-form-checkbox
+      class="cb"
       id="checkbox-2"
       v-model="status"
       name="checkbox-2"
       value="accepted"
       unchecked-value="not_accepted"
     >
-      Fail
+      Fail <i class="fas fa-times-circle"></i>
     </b-form-checkbox>
     </div>
     </b-col>
     <b-col>
         <div>
     <b-form-checkbox
+      class="cb"
       id="checkbox-3"
       v-model="status"
       name="checkbox-3"
       value="accepted"
       unchecked-value="not_accepted"
     >
-      Partially Pass
+      Partially Pass <i class="fas fa-exclamation-circle"></i>
     </b-form-checkbox>
     </div>
     </b-col>
+    {{
+     }}
   </b-row>
 </b-container>
-</div>
-
-
-<div class="remarks">
+<div class="remarks card-body">
 <b-form-textarea
             id="textarea"
             v-model="remarks"
             placeholder="Additional Remarks"
             rows="5"
-          ></b-form-textarea>
+            margin="5px"></b-form-textarea>
+</div>
 </div>
 
+
+
+
 <!-- On clicking approveReport function is called -->
-<b-button @click="approveReport" variant="info">Submit</b-button>
-
-
+<b-button class="pull-right mt-2 mb-2" @click="approveReport" variant="primary">Submit</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
 </div>
 </template>
 
 <script>
+
 const axios=require('axios')
 
 export default {
@@ -305,7 +364,7 @@ export default {
 </script>
 
 <style scoped>
-.btn {
+jumbotron .btn {
   margin-top: 50px !important;
 }
 .row {
@@ -325,5 +384,26 @@ export default {
 #show-btn {
   display: block;
   margin: auto;
+}
+.blockquote-footer::before {
+    content: "";
+}
+.md-theme-default a:not(.md-button) {
+    color: white;
+}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+.box{
+  box-shadow:5px 5px 10px #888888;
+}
+.approval{
+  margin-top:2rem;
+}
+.content{
+  margin-bottom:0px;
+  padding-bottom:0px;
 }
 </style>
