@@ -72,7 +72,7 @@
               <p>{{ fileName[index] ? fileName[index].name : '' }}</p>
             </div>
             <b-form-group id="input-group-8" label="Comments:" label-for="input-8">
-              <b-form-input id="input-8" v-model="capturedComment[index]"></b-form-input>
+              <textarea cols="46" rows="2" id="input-8" v-model="capturedComment[index]"></textarea>
             </b-form-group>
             </div>
             </div>
@@ -157,9 +157,6 @@ export default {
     }
   }
 }
-$('.close-icon').on('click',function() {
-  $(this).closest('.card').fadeOut();
-  } )
 </script>
 <style lang="css" scoped>
 .makeInLine {
@@ -181,4 +178,14 @@ $('.close-icon').on('click',function() {
 .clickable {
   cursor: pointer;
 }
+
+textarea{
+    border: 1px solid grey;
+    padding: 6px 10px;
+    width: 100%;
+    border-radius:10px 10px 10px 10px;
+}
+
+
+
 </style>
