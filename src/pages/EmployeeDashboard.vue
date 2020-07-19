@@ -164,7 +164,9 @@ export default {
 }
 .employeeContainer {
   overflow-x: auto;
+  /*
   background-color: #204051;
+  */
 }
 
 .scrollBox {
@@ -174,12 +176,14 @@ export default {
 .scrollBox > section {
   border-radius: 8px;
   padding: 8px;
-  background-color: #3b6978;
+  background-color:#42aacc;
+  background-image: url("/src/assets/img/arabica-890.svg");
   color: #fff;
-  margin: 10px 30px;
+  margin: 20px 0px 20px 20px;
   min-width: 300px;
   min-height: 80vh;
   overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
 }
 .cardsContainer {
   padding: 8px;
