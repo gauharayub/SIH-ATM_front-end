@@ -2,7 +2,7 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/joblist">
+      <sidebar-link to="/employeedashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
@@ -13,6 +13,10 @@
       <sidebar-link to="/dataWarehousing">
         <md-icon>house</md-icon>
         <p>Data Warehouse</p>
+      </sidebar-link>
+       <sidebar-link to="/searchingorders">
+        <md-icon>search</md-icon>
+        <p>Search Orders</p>
       </sidebar-link>
     </side-bar>
 

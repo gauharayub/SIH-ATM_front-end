@@ -19,7 +19,7 @@
               <p>{{order.description}}</p>
             </div>
             <div class="linkContainer">
-              <router-link :to="`/engineertask`">Check Details</router-link>
+              <a :href="order.toorder">Check Details</a>
             </div>
           </div>
         </div>
@@ -56,6 +56,27 @@ export default {
         },
         {
           heading: 'Progress',
+          totalOrders: 4,
+          orders: [
+            {
+              orderId: '1234e54',
+              description: 'Cleaned the extra lubricant',
+              link: '/toorder'
+            },
+            {
+              orderId: '1234e55',
+              description: 'Cleaned the extra lubricant',
+              link: '/toorder'
+            },
+            {
+              orderId: '1234e56',
+              description: 'Cleaned the extra lubricant',
+              link: '/toorder'
+            }
+          ]
+        },
+        {
+          heading: 'Assigned',
           totalOrders: 4,
           orders: [
             {
