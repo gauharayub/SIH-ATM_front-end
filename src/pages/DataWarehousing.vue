@@ -7,11 +7,23 @@
       <div id="queryContainer">
         <div class="firstSearch">
           <label for="SearchQuery">Search via query:</label>
-          <input type="text" placeholder="Enter Query" id="SearchQuery" />
+          <input
+            v-model="searchQuery"
+            @change="changeHandler()"
+            type="text"
+            placeholder="Enter Query"
+            id="SearchQuery"
+          />
         </div>
         <div class="secondSearch">
           <label for="SearchOrder">Search via Order No. :</label>
-          <input type="text" id="SearchOrder" placeholder="Enter Order No." />
+          <input
+            v-model="searchNumber"
+            @change="changeHandler()"
+            type="text"
+            id="SearchOrder"
+            placeholder="Enter Order No."
+          />
         </div>
       </div>
     </section>
@@ -85,23 +97,31 @@ export default {
   data() {
     return {
       equipments: [],
+      searchQuery: '',
       search: '',
+      searchNumber: '',
       numResults: ''
     }
   },
 
-  mounted(){
-      axios.get('http://localhost:3000/equipment-list', {
+  mounted() {
+    axios
+      .get('http://localhost:3000/equipment-list', {
         headers: { authorization: this.$cookies.get('token') }
       })
       .then(response => {
-        console.log(response.data);
+        console.log(response.data)
         this.equipments = response.data
       })
       .catch(er => {
         console.log('Fetch Error:', er)
       })
+  },
+  methods: {
+    changeHandler(event) {
+      console.log(event)
     }
+  }
 }
 </script>
 
@@ -237,36 +257,36 @@ export default {
   }
   #resultParameter > div {
     flex-basis: 100%;
-    margin:10px 0;
+    margin: 10px 0;
   }
-  .OrderCard{
-    margin:0;
+  .OrderCard {
+    margin: 0;
   }
-  #searchingBox{
-    padding:6px;
-    margin:10px 0;
+  #searchingBox {
+    padding: 6px;
+    margin: 10px 0;
   }
-  #resultParameter{
-    margin:10px 0;
+  #resultParameter {
+    margin: 10px 0;
   }
-  #OrderContainer{
+  #OrderContainer {
     margin: 10px 0;
     padding: 8px;
   }
-  .imageContainer{
+  .imageContainer {
     margin-bottom: 18px;
   }
-  .dataContainer{
+  .dataContainer {
     flex-basis: 100%;
     padding: 0 8px;
   }
-  .dataContainer p{
+  .dataContainer p {
     font-size: 12px;
   }
-  .allOrders{
-    margin:12px 0;
+  .allOrders {
+    margin: 12px 0;
   }
-  .QueryNumber{
+  .QueryNumber {
     position: static;
     text-align: center;
     margin: 10px 0;

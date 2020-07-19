@@ -9,8 +9,10 @@ import TableList from '@/pages/TableList.vue'
 import itemDescription from '@/pages/itemDescription.vue'
 import ComplianceForm from '@/pages/Complianceform.vue'
 import ApprovalForm from '@/pages/ApprovalForm.vue'
+import EmployeeDashboard from '@/pages/EmployeeDashboard.vue'
 import engineerDashboard from '@/pages/engineerDashboard.vue'
-
+import engineerTask from '@/pages/engineerTask.vue'
+import searchingOrders from '@/pages/searchingOrders.vue'
 // import Typography from "@/pages/Typography.vue";
 // import Icons from "@/pages/Icons.vue";
 // import Maps from "@/pages/Maps.vue";
@@ -21,17 +23,23 @@ const routes = [{
   path: "/",
   component: Login,
   name: 'login'
-},{
+}, {
   path: "/dashboard",
   name: "dashboard",
   component: DashboardLayout,
-  redirect: "/joblist",
+  redirect: "/employeedashboard",
 
   children: [{
     path: '/joblist',
     name: 'joblist',
     component: TableList
   },
+  {
+    path: '/employeedashboard',
+    name: 'EmployeeDashboard',
+    component: EmployeeDashboard
+  }
+    ,
   {
     path: '/joblist/:id',
     name: 'Item description',
@@ -50,12 +58,22 @@ const routes = [{
     path: '/engineerDashboard',
     name: 'engineerDashboard',
     component: engineerDashboard
+  },
+  {
+    path: '/dataWarehousing',
+    name: 'DataWarehousing',
+    component: DataWarehousing
     },
     {
-      path: '/dataWarehousing',
-      name: 'DataWarehousing',
-      component: DataWarehousing
-    } 
+      path: '/engineertask',
+      name: 'engineertask',
+      component: engineerTask
+    },
+    {
+      path: '/searchingorders',
+      name:'searchingOrders',
+      component: searchingOrders
+    }
   ]
 }]
 
