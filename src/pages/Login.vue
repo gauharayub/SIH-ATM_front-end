@@ -1,24 +1,18 @@
 <template>
   <div>
-    <div class="limiter">
+  
+    <div class="limiter background">
+    
       <div
-        class="container-login100"
-        style="background-image: url('assets/images/background.jpg');"
-      >
+        class="container-login100 content">
+        
         <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
           <form class="login100-form validate-form flex-sb flex-w">
-            <span class="login100-form-title p-b-53">Sign In With</span>
-
-            <a href="#" class="btn-face m-b-20 loginWays">
-              <i class="fa fa-facebook-official"></i>
-              Facebook
-            </a>
-
-            <a href="#" class="btn-google m-b-20 loginWays">
-              <img src="assets/images/icons/icon-google.png" alt="GOOGLE" />
-              Google
-            </a>
-
+            <div class="logo p-b-20">
+              <img class="logo-image p-b-10" src="assets/images/AAI.png">
+              <h5 style="color:#3c4ba7">AIRPORTS AUTHORITY OF INDIA</h5>
+            </div>
+            <span class="login100-form-title p-b-10">Sign In</span>
             <div class="p-t-31 p-b-9">
               <span class="txt1">Username</span>
             </div>
@@ -125,5 +119,23 @@ export default {
 <style lang="css" scoped>
 .loginWays {
   /* color:white !important; */
+}
+.background{
+  background-image:url('/assets/images/background.jpg');
+  height: 100%;
+  width:100%; /* You must set a specified height */
+  background-position:center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.logo{
+  margin-left: auto;
+  margin-right:auto;
+}
+.logo-image{
+  margin-left: 70px;
+  margin-right:auto;
+  height:5em;
 }
 </style>
