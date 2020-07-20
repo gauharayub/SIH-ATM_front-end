@@ -76,7 +76,7 @@ export default {
           ]
         },
         {
-          heading: 'Review',
+          heading: 'completed',
           totalOrders: 4,
           orders: [
             {
@@ -96,27 +96,7 @@ export default {
             }
           ]
         },
-        {
-          heading: 'Completed',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        }
+
       ]
     }
   }
@@ -155,7 +135,11 @@ export default {
 .scrollBox > section {
   border-radius: 8px;
   padding: 8px;
-  background-color: #42aacc;
+  /*background-color: #42aacc;*/
+  background: #c2e59c;  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #64b3f4, #57d6dd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;

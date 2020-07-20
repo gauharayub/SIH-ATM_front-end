@@ -55,7 +55,7 @@ export default {
           ]
         },
         {
-          heading: 'Progress',
+          heading: 'Assigned',
           totalOrders: 4,
           orders: [
             {
@@ -76,7 +76,7 @@ export default {
           ]
         },
         {
-          heading: 'Assigned',
+          heading: 'Progress',
           totalOrders: 4,
           orders: [
             {
