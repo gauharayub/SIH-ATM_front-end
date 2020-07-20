@@ -8,7 +8,7 @@
         
         <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
           <form class="login100-form validate-form flex-sb flex-w">
-            <div class="logo p-b-20">
+                      <div class="logo p-b-20">
               <img class="logo-image p-b-10" src="assets/images/AAI.png">
               <h5 style="color:#3c4ba7">AIRPORTS AUTHORITY OF INDIA</h5>
             </div>
