@@ -99,19 +99,19 @@ export default {
       }
     }
   },
-  mounted() {
-    //make a request with authorization jwt header to fetch details from bak here
-    axios
-      .get('http://localhost:3000/engineerOrders', {
+  async mounted() {
+    try {
+      //make a request with authorization jwt header to fetch details from bak here
+      const { data } = await axios.get('http://localhost:3000/engineerOrders', {
         headers: { authorization: this.$cookies.get('token') }
       })
-      .then(response => {
-        console.log(response.data)
-        this.data = response.data
-      })
-      .catch(er => {
-        console.log('Fetch Error:', er)
-      })
+      this.data = data
+    } catch (error) {
+       if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
+      console.log('Fetch Error:', error)
+    }
   },
   methods: {}
 }

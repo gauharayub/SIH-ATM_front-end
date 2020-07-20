@@ -131,6 +131,9 @@ export default {
       )
       this.form = data
     } catch (error) {
+      if(error.response && error.reponse.status === 401){
+        this.$router.push({name:'login'})
+      }
       console.log(error)
     }
   },

@@ -257,12 +257,14 @@ export default {
     try {
       //first get request to fetch order details
       const { data: orderData } = await axios.get(
-        `http://localhost:3000/order/${this.equipmentId}`
+        `http://localhost:3000/order/${this.equipmentId}`,
+        {headers: { authorization: this.$cookies.get('token') }}
       )
       this.info = orderData
 
       const { data: engiData } = await axios.get(
-        'http://localhost:3000/engineers'
+        'http://localhost:3000/engineers',
+        {headers: { authorization: this.$cookies.get('token') }}
       )
       this.engineers = engiData
       this.engineers.unshift({
@@ -271,6 +273,9 @@ export default {
         disabled: true
       })
     } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
       console.log(error)
     }
   }

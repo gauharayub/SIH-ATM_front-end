@@ -82,6 +82,9 @@ export default {
       )
       this.engineers = engiData
     } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$route.push({name:'login'})
+      }
       console.log(error)
     }
   },
@@ -117,6 +120,9 @@ export default {
         }
       }
       catch(error){
+         if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
         console.log(error)
       }
     }

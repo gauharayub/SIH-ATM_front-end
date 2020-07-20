@@ -1,7 +1,7 @@
 <template>
   <div class="employeeContainer">
     <div class="scrollBox">
-      <section v-for="element in totalElement" :key="element">
+      <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
           <h5>{{element.heading}}</h5>
           <div class="hamButtons">
@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div class="card" v-for="order in element.orders" :key="order">
+          <div class="card" v-for="order in element.orders" :key="order.orderId">
             <div>
               <p>{{order.orderId}}</p>
             </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -53,91 +54,42 @@ export default {
               link: '/toorder'
             }
           ]
-        },
-        {
-          heading: 'Progress',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'Review',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'Completed',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
         }
       ]
+    }
+  },
+  async mounted() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/engineerOrders`, {
+        headers: { authorization: this.$cookies.get('token') }
+      })
+      console.log('this is data', data)
+      this.totalElement = data
+    } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$router.push({ name: 'login' })
+      }
+      console.log(error)
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.header{
+.header {
   display: flex;
   justify-content: space-between;
 }
-.hamButtons{
+.hamButtons {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-.hamButtons span{
+.hamButtons span {
   display: block;
   height: 5px;
   width: 5px;
-  margin:2px;
+  margin: 2px;
   border-radius: 50%;
   background-color: white;
 }
@@ -161,7 +113,7 @@ export default {
   min-width: 300px;
   min-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 .cardsContainer {
   padding: 8px;
@@ -172,12 +124,12 @@ export default {
   padding: 8px;
   margin: 12px 0;
 }
-.card p{
+.card p {
   font-size: 13px;
   margin-bottom: 8px;
 }
-.linkContainer a{
-  float:right;
+.linkContainer a {
+  float: right;
   /* display: block; */
   border: 1px solid;
   font-size: 12px;
@@ -190,5 +142,4 @@ h1 {
   font-size: 2rem;
   border: 1px solid;
 }
-
 </style>

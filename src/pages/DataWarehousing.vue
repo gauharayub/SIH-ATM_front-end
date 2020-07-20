@@ -109,6 +109,9 @@ export default {
       const { data } = await axios.get(`http://localhost:3000/equipment-list`)
       this.equipments = data
     } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
       console.log(error)
     }
   },
