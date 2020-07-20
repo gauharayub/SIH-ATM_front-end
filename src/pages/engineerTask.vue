@@ -147,8 +147,8 @@ export default {
 .orderContainer {
   padding: 12px 20px;
 }
-.orderContainer h3{
-  color:white;
+.orderContainer h3 {
+  color: white;
 }
 .order {
   margin: 20px 0;

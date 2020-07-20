@@ -50,7 +50,7 @@ export default {
     },
     backgroundImage: {
       type: String,
-      default: require("@/assets/img/sidebar-2.jpg")
+      default: require("@/assets/img/5.jpeg")
     },
     imgLogo: {
       type: String,
