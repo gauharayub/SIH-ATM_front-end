@@ -50,11 +50,12 @@ export default {
     },
     backgroundImage: {
       type: String,
-      default: require("@/assets/img/5.jpeg")
+      default: require("@/assets/img/tumblr_my17j8jhIP1qg20eyo1_500.jpg")
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/vue-logo.png")
+      default: require("@/assets/img/airport (1).svg"),
+      
     },
     activeColor: {
       type: String,
