@@ -2,7 +2,18 @@
   <md-toolbar md-elevation="0" class="md-transparent">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
-        <h3 class="md-title">{{ $route.name }}</h3>
+        <h3 class="md-title">
+        <span class="icon mr-1" v-if="this.$route.name=='dashboard' || this.$route.name=='EmployeeDashboard'"><img src="https://img.icons8.com/color/48/000000/hard-working.png"/></span>
+        <span class="icon mr-2" v-if="this.$route.name=='joblist'"><img style="height:2em" src="https://img.icons8.com/color/48/000000/tasklist.png"/> </span>        
+        <span class="icon mr-1" v-if="this.$route.name=='Item description'"><img src="https://img.icons8.com/color/48/000000/add-property-1.png"/></span>        
+        <span class="icon mr-1" v-if="this.$route.name=='Compliance Form'"> <img src="https://img.icons8.com/color/48/000000/inspection.png"/> </span>
+        <span class="icon mr-1" v-if="this.$route.name=='approval'"><img src="https://img.icons8.com/color/48/000000/test-partial-passed.png"/></span>
+        <span class="icon mr-1" v-if="this.$route.name=='engineerDashboard'"><img src="https://img.icons8.com/color/48/000000/engineer.png"/></span>
+        <span class="icon mr-2" v-if="this.$route.name=='DataWarehousing'"><img src="https://img.icons8.com/color/48/000000/garage-closed.png"/></span>
+        <span class="icon mr-2" v-if="this.$route.name=='engineertask'"><img src="https://img.icons8.com/color/48/000000/maintenance.png"/></span>
+        <span class="icon mr-1" v-if="this.$route.name=='searchingOrders'"><img src="https://img.icons8.com/color/48/000000/search.png"/></span>
+
+         {{ $route.name }}</h3>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
