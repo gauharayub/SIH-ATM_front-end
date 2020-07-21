@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="body">
   
-    <div class="limiter background">
+    <div class="container">
     
-      <div
-        class="container-login100 content">
-        
-        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+      <div class="container-login100 content">
+        <div class="panel-blur"></div>
+        <div class="wrap-login100 panel p-l-110 p-r-110 p-t-62 p-b-33">
           <form class="login100-form validate-form flex-sb flex-w">
                       <div class="logo p-b-20">
               <img class="logo-image p-b-10" src="assets/images/AAI.png">
@@ -120,13 +119,22 @@ export default {
 .loginWays {
   /* color:white !important; */
 }
-.background{
-  background-image:url('/assets/images/background.jpg');
-  height: 100%;
-  width:100%; /* You must set a specified height */
-  background-position:center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+.body{
+  position: relative;
+  background: url('/assets/images/bg.jpg') no-repeat center fixed;
+  background-size: 100% 100%;
+  overflow-y: auto;
+  color:white;
+  @media screen and (min-width: 768px){
+    min-height: 100%;
+    height: auto;
+    max-height: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		overflow-y: visible;
+	}
 }
 
 .logo{
@@ -137,5 +145,37 @@ export default {
   margin-left: 70px;
   margin-right:auto;
   height:5em;
+}
+.panel_blur,
+.panel{
+  background-color: rgba(0,0,0,0.5);
+	width: 60%;
+	height: 100%;
+	overflow-y: auto;
+	@media screen and (min-width: 768px){
+		width: 350px;
+		height: 500px;
+		overflow-y: visible;
+	}
+}
+
+.panel{
+	position: relative;
+	z-index: 1;
+	&__register-form,
+	&__password-form{ display: none; }
+	&__register-form .form__submit{ margin-top: 5px !important; }
+	&__wrap-login100{
+		width: 100%;
+		height: 100%;
+		padding: 10%;
+		background-color: rgba(0,0,0,0.5);
+		overflow-y: auto;
+		@media screen and (min-width: 768px){ 
+			padding: 10% 15%; 
+			border-radius: 10px;
+			overflow-y: visible;
+		}
+	}
 }
 </style>
