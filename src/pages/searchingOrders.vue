@@ -7,11 +7,11 @@
       <section class="searchByquery">
         <div>
           <label for="assignmentId">Assignment Id :</label>
-          <input id="assignmentId" type="text" placeholder="Enter Assignment Id ..." />
+          <input v-model="assignmentId" id="assignmentId" type="text" placeholder="Enter Assignment Id ..." />
         </div>
         <div>
           <label for="equipmentId">Equipment Id :</label>
-          <input type="text" id="equipmentId" placeholder="Enter Equipment Id ..." />
+          <input v-model="equipmentId" type="text" id="equipmentId" placeholder="Enter Equipment Id ..." />
         </div>
       </section>
 
@@ -19,20 +19,20 @@
         <div>
           <div class="selectContainer">
             <label for="location">Location :</label>
-            <select name="location" id="location">
-              <option value="a">select Location</option>
+            <select v-model="locationModel" name="location" id="location">
+              <option disabled value=''>select Location</option>
             </select>
           </div>
           <div class="selectContainer">
             <label for="equipment">Equipment :</label>
-            <select name="equipment" id="equipment">
-              <option value="a">select Equipment</option>
+            <select v-model="equipmentModel" name="equipment" id="equipment">
+              <option value='' selected>select Equipment</option>
             </select>
           </div>
           <div class="selectContainer">
             <label for="date">Date :</label>
             <select name="date" id="date">
-              <option value="a">select Date</option>
+              <option disabled value="a">select Date</option>
             </select>
           </div>
         </div>
@@ -41,15 +41,15 @@
           <div class="radioBox">
             <div>
               <label for="status1">Pending</label>
-              <input type="radio" name="status" id="status1" />
+              <input v-model="statusBox" type="radio" name="status" id="status1" />
             </div>
             <div>
               <label for="status2">Completed</label>
-              <input type="radio" name="status" id="status2" />
+              <input v-model="statusBox" type="radio" name="status" id="status2" />
             </div>
             <div>
               <label for="status3">All</label>
-              <input type="radio" name="status" id="status3" />
+              <input v-model="statusBox" type="radio" name="status" id="status3" />
             </div>
           </div>
         </div>
@@ -120,7 +120,12 @@ export default {
         location: 'section 34, Plant 34',
         status: 'Need replacement',
         assignedDate: '13-Jun-2020',
-        deadlineDate: '12-July-2020'
+        deadlineDate: '12-July-2020',
+        equipmentId:'',
+        assignmentId:'',
+        locationModel: '',
+        equipmentModel: '',
+        statusBox:''
       }
     }
   }

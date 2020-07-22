@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -53,112 +54,43 @@ export default {
               link: '/toorder'
             }
           ]
-        },
-        {
-          heading: 'Assigned',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'Progress',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'Review',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'Completed',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
         }
       ]
+    }
+  },
+  async mounted() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/employeeOrders`, {
+        headers: { authorization: this.$cookies.get('token') }
+      })
+      console.log('this is data', data)
+      this.totalElement = data
+    } catch (error) {
+      
+      if(error.response && error.response.status === 401){
+        this.$router.push({ name: 'login' })
+      }
+      console.log(error)
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.header{
+.header {
   display: flex;
   justify-content: space-between;
 }
-.hamButtons{
+.hamButtons {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-.hamButtons span{
+.hamButtons span {
   display: block;
   height: 5px;
   width: 5px;
-  margin:2px;
+  margin: 2px;
   border-radius: 50%;
   background-color: white;
 }
@@ -176,14 +108,14 @@ export default {
 .scrollBox > section {
   border-radius: 8px;
   padding: 8px;
-  background-color:#42aacc;
-  background-image: url("/src/assets/img/arabica-890.svg");
+  background-color: #42aacc;
+  background-image: url('/src/assets/img/arabica-890.svg');
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
   min-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 .cardsContainer {
   padding: 8px;
@@ -194,12 +126,12 @@ export default {
   padding: 8px;
   margin: 12px 0;
 }
-.card p{
+.card p {
   font-size: 13px;
   margin-bottom: 8px;
 }
-.linkContainer a{
-  float:right;
+.linkContainer a {
+  float: right;
   /* display: block; */
   border: 1px solid;
   font-size: 12px;
@@ -212,5 +144,4 @@ h1 {
   font-size: 2rem;
   border: 1px solid;
 }
-
 </style>

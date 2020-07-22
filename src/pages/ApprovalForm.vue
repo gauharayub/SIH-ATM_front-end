@@ -4,26 +4,26 @@
       <b-row>
         <b-col cols="12" md="8" offset="2">
           <b-jumbotron>
-            <b-form-group id="input-group-1" label="Assignment Code:" label-for="input-1">
+            <b-form-group label="Assignment Code:" label-for="input-1">
               <b-form-input id="input-1" type="number" v-model="info.assignmentNumber" disabled></b-form-input>
             </b-form-group>
-            <b-form-group id="input-group-2" label="Equipment ID:" label-for="input-2">
+            <b-form-group label="Equipment ID:" label-for="input-2">
               <b-form-input id="input-2" v-model="equipmentId" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="input-group-4" label="Equipment Code:" label-for="input-4">
+            <b-form-group label="Equipment Code:" label-for="input-4">
               <b-form-input id="input-4" v-model="info.equipmentCode" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="input-group-6" label="Equipment Name:" label-for="input-6">
+            <b-form-group label="Equipment Name:" label-for="input-6">
               <b-form-input id="input-6" v-model="info.equipmentName" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="input-group-5" label="Description" label-for="input-5">
+            <b-form-group label="Description" label-for="input-5">
               <b-form-input id="input-5" v-model="info.description" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="input-group-3" label="Location:" label-for="input-3">
+            <b-form-group label="Location:" label-for="input-3">
               <b-form-input id="input-3" v-model="info.location" disabled></b-form-input>
             </b-form-group>
             <div>
@@ -53,23 +53,23 @@
       <b-row>
         <b-col cols="12" md="8" offset="2">
           <b-jumbotron>
-            <b-form-group id="engi-group-1" label="Department:" label-for="input-1">
+            <b-form-group label="Department:" label-for="input-1">
               <b-form-input id="engi-1" type="text" v-model="info.engineerDepartment" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="engi-group-5" label="Engineer Id:" label-for="input-5">
+            <b-form-group label="Engineer Id:" label-for="input-5">
               <b-form-input id="engi-5" type="number" v-model="info.engineerId" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="engi-group-2" label="Name:" label-for="input-2">
+            <b-form-group label="Name:" label-for="input-2">
               <b-form-input id="engi-2" type="text" v-model="info.engineerName" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="engi-group-3" label="Email Id:" label-for="input-3">
+            <b-form-group label="Email Id:" label-for="input-3">
               <b-form-input id="engi-3" type="text" v-model="info.engineerEmail" disabled></b-form-input>
             </b-form-group>
 
-            <b-form-group id="engi-group-4" label="Phone Number:" label-for="input-4">
+            <b-form-group label="Phone Number:" label-for="input-4">
               <b-form-input id="engi-4" type="number" v-model="info.engineerPhone" disabled></b-form-input>
             </b-form-group>
           </b-jumbotron>
@@ -108,9 +108,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">Description</h5>
-                        <p
-                          class="card-text"
-                        >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
                         <b-button
                           variant="info"
                           id="view-btn"
@@ -120,7 +121,10 @@
                         <b-modal id="bv-more-info1" hide-footer>
                           <template v-slot:modal-title>Description</template>
                           <div class="d-block" id="moreInfoBlock">
-                            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p>
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
                           </div>
                           <b-button class="mt-3" block @click="$bvModal.hide('bv-more-info1')">Done</b-button>
                         </b-modal>
@@ -136,9 +140,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">Description</h5>
-                        <p
-                          class="card-text"
-                        >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
                         <b-button
                           variant="info"
                           id="view-btn"
@@ -148,7 +153,10 @@
                         <b-modal id="bv-more-info2" hide-footer>
                           <template v-slot:modal-title>Description</template>
                           <div class="d-block" id="moreInfoBlock">
-                            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p>
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
                           </div>
                           <b-button class="mt-3" block @click="$bvModal.hide('bv-more-info2')">Done</b-button>
                         </b-modal>
@@ -245,23 +253,31 @@ export default {
       remarks: null
     }
   },
-  mounted() {
-    //first get request to fetch order details
-    axios
-      .get('http://localhost:3000/order/' + this.equipmentId)
-      .then(response => (this.info = response.data))
-      .catch(er => console.log('Error :', er))
-    axios
-      .get('http://localhost:3000/engineers')
-      .then(response => (this.engineers = response.data))
-      .catch(er => console.log('Cant fetch the engineers data:', er))
-      .finally(() => {
-        this.engineers.unshift({
-          engineerID: null,
-          name: 'Select the engineer',
-          disabled: true
-        })
+  async mounted() {
+    try {
+      //first get request to fetch order details
+      const { data: orderData } = await axios.get(
+        `http://localhost:3000/order/${this.equipmentId}`,
+        {headers: { authorization: this.$cookies.get('token') }}
+      )
+      this.info = orderData
+
+      const { data: engiData } = await axios.get(
+        'http://localhost:3000/engineers',
+        {headers: { authorization: this.$cookies.get('token') }}
+      )
+      this.engineers = engiData
+      this.engineers.unshift({
+        engineerID: null,
+        name: 'Select the engineer',
+        disabled: true
       })
+    } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
+      console.log(error)
+    }
   }
 }
 </script>

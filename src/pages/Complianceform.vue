@@ -2,6 +2,7 @@
 <div class ="body">
   <b-container fluid class="bv-example-row mt-60">
     <b-row>
+
       <b-col cols="12"  md="8" offset-md="2" id="main-box">
         <h2>Compliance form</h2>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -20,6 +21,7 @@
             <!-- for tasklist generation  -->
           <b-form-group>
           <h3>Task List:</h3>
+
             <div v-for="(task, index) in form.tasklist" :key="index">
               <br />
               <p># {{ task }}</p>
@@ -35,36 +37,49 @@
             </div>
           </b-form-group>
 
+
           <div id="fileSelector" v-for="(file, index) in files" :key="index">
-          <div class="card" >
-          <div class="card-body">
-            <label for="file" size="sm">File :</label>
-            <b-form-file
-              name="file"
-              class="makeInLine"
-              v-model="fileName[index]"
-              @change="onFileChange(index, $event)"
-              :state="Boolean(file)"
-              placeholder="Choose a file or drop it here..."
-              drop-placeholder="Drop file here..."
-              size="sm"
-            ></b-form-file>
-            <span class="pull-right clickable close-icon" data-effect="fadeOut" @click="deleteFileItem(index)"><i class="fa fa-times"></i></span>
-            <div class="mt-3">
-              Selected file:
-              <p>{{ fileName[index] ? fileName[index].name : '' }}</p>
-            </div>
-            <b-form-group id="input-group-8" label="Comments:" label-for="input-8">
-              <textarea cols="46" rows="2" id="input-8" v-model="capturedComment[index]"></textarea>
-            </b-form-group>
-            </div>
+            <div class="card">
+              <div class="card-body">
+                <label for="file" size="sm">File :</label>
+                <b-form-file
+                  name="file"
+                  class="makeInLine"
+                  v-model="fileName[index]"
+                  @change="onFileChange(index, $event)"
+                  :state="Boolean(file)"
+                  placeholder="Choose a file or drop it here..."
+                  drop-placeholder="Drop file here..."
+                  size="sm"
+                  accept="image/*"
+                ></b-form-file>
+                <span
+                  class="pull-right clickable close-icon"
+                  data-effect="fadeOut"
+                  @click="deleteFileItem(index)"
+                >
+                  <i class="fa fa-times"></i>
+                </span>
+                <div class="mt-3">
+                  Selected file:
+                  <p>{{ fileName[index] ? fileName[index].name : '' }}</p>
+                </div>
+                <div>
+                  <img :src="image[index]" alt="">
+                </div>
+                <b-form-group id="input-group-8" label="Comments:" label-for="input-8">
+                  <textarea cols="46" rows="2" id="input-8" v-model="capturedComment[index]"></textarea>
+                </b-form-group>
+              </div>
             </div>
             <br />
           </div>
+
           <p style="color:#997">To add more images <b><a class="clickable" @click="addFile">click here</a></b> </p>
+
           <div class="pull-right">
-          <b-button class="mr-1" type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
+            <b-button class="mr-1" type="submit" id="submit">Submit</b-button>
+            <b-button type="reset" >Reset</b-button>
           </div>
 
           </div>
@@ -74,15 +89,15 @@
           
           
         </b-form>
-        <br>
+        <br />
       </b-col>
     </b-row>
   </b-container>
 </div>
 </template>
 <script>
-
 import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -96,15 +111,22 @@ export default {
       capturedFile: [], //{file:file, text:comments}
       capturedComment: [],
       files: 1,
-      fileName: []
+      fileName: [],
+      image:[]
     }
   },
-  mounted() {
-    //hard coded  id of task
-    axios
-      .get('http://localhost:3000/compliance/' + '5eeb50e5890ad91ca47cfc08')
-      .then(res => (this.form = res.data))
-      .catch(er => console.log('Error :', er))
+  async mounted() {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/compliance/${this.$route.params.id}`
+      )
+      this.form = data
+    } catch (error) {
+      if(error.response && error.reponse.status === 401){
+        this.$router.push({name:'login'})
+      }
+      console.log(error)
+    }
   },
   methods: {
     deleteFileItem(index) {
@@ -114,6 +136,13 @@ export default {
       this.files--
     },
     onFileChange(index, e) {
+      console.log(this)
+      const fileReader = new FileReader()
+      fileReader.onload = event => {
+        console.log(event.target.result)
+        image[index] = event.target.result
+      }
+      fileReader.readAsDataURL(e.target.files[0])
       this.capturedFile[index] = e.target.files[0]
     },
     addFile() {
@@ -122,12 +151,15 @@ export default {
     onSubmit(evt) {
       evt.preventDefault()
       const fd = new FormData()
-      this.capturedFile.forEach(file => fd.append('workImage',file));
+      this.capturedFile.forEach(file => fd.append('workImage', file))
       fd.append('comments', JSON.stringify(this.capturedComment))
       fd.append('taskListValue', JSON.stringify(this.TaskListValue))
 
       axios
-        .post('http://localhost:3000/submit-compliance/5e664847463da44026e3be8b', fd)
+        .post(
+          'http://localhost:3000/submit-compliance/5e664847463da44026e3be8b',
+          fd
+        )
         .then(res => console.log(res.data))
         .catch(e => console.log('Error :', e))
     },
@@ -175,17 +207,24 @@ export default {
   left: -5%;
   cursor: pointer;
 }
+
 /*close icon*/
 .clickable {
   cursor: pointer;
 }
 
-textarea{
-    border: 1px solid grey;
-    padding: 6px 10px;
-    width: 100%;
-    border-radius:10px 10px 10px 10px;
+textarea {
+  border: 1px solid grey;
+  padding: 6px 10px;
+  width: 100%;
+  border-radius: 10px 10px 10px 10px;
 }
+#submit{
+  background-color: #2493e2;
+  border:none;
+  width: 100px;
+}
+
 #main-box{
  background-color:white;
  padding: 50px 60px 70px 60px;
@@ -227,4 +266,5 @@ input{
 button{
   box-shadow:  5px 5px 10px #888888;
 }
+
 </style>
