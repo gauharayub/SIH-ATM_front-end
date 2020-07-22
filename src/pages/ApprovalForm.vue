@@ -68,9 +68,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">Description</h5>
-                        <p
-                          class="card-text"
-                        >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
                         <b-button
                           class="button"
                           variant="info"
@@ -81,7 +82,10 @@
                         <b-modal id="bv-more-info1" hide-footer>
                           <template v-slot:modal-title>Description</template>
                           <div class="d-block" id="moreInfoBlock">
-                            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p>
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
                           </div>
                           <b-button class="mt-3" block @click="$bvModal.hide('bv-more-info1')">Done</b-button>
                         </b-modal>
@@ -97,9 +101,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">Description</h5>
-                        <p
-                          class="card-text"
-                        >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
                         <b-button
                           class="button"
                           variant="info"
@@ -110,7 +115,10 @@
                         <b-modal id="bv-more-info2" hide-footer>
                           <template v-slot:modal-title>Description</template>
                           <div class="d-block" id="moreInfoBlock">
-                            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p>
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
                           </div>
                           <b-button class="mt-3" block @click="$bvModal.hide('bv-more-info2')">Done</b-button>
                         </b-modal>
@@ -219,23 +227,31 @@ export default {
       remarks: null
     }
   },
-  mounted() {
-    //first get request to fetch order details
-    axios
-      .get('http://localhost:3000/order/' + this.equipmentId)
-      .then(response => (this.info = response.data))
-      .catch(er => console.log('Error :', er))
-    axios
-      .get('http://localhost:3000/engineers')
-      .then(response => (this.engineers = response.data))
-      .catch(er => console.log('Cant fetch the engineers data:', er))
-      .finally(() => {
-        this.engineers.unshift({
-          engineerID: null,
-          name: 'Select the engineer',
-          disabled: true
-        })
+  async mounted() {
+    try {
+      //first get request to fetch order details
+      const { data: orderData } = await axios.get(
+        `http://localhost:3000/order/${this.equipmentId}`,
+        {headers: { authorization: this.$cookies.get('token') }}
+      )
+      this.info = orderData
+
+      const { data: engiData } = await axios.get(
+        'http://localhost:3000/engineers',
+        {headers: { authorization: this.$cookies.get('token') }}
+      )
+      this.engineers = engiData
+      this.engineers.unshift({
+        engineerID: null,
+        name: 'Select the engineer',
+        disabled: true
       })
+    } catch (error) {
+      if(error.response && error.response.status === 401){
+        this.$router.push({name:'login'})
+      }
+      console.log(error)
+    }
   }
 }
 </script>

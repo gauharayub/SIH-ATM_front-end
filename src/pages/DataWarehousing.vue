@@ -9,7 +9,7 @@
           <label for="SearchQuery">Search via query:</label>
           <input
             v-model="searchQuery"
-            @change="changeHandler()"
+            @change="changeHandler"
             type="text"
             placeholder="Enter Query"
             id="SearchQuery"
@@ -19,7 +19,7 @@
           <label for="SearchOrder">Search via Order No. :</label>
           <input
             v-model="searchNumber"
-            @change="changeHandler()"
+            @change="changeHandler"
             type="text"
             id="SearchOrder"
             placeholder="Enter Order No."
@@ -104,22 +104,21 @@ export default {
     }
   },
 
-  mounted() {
-    axios
-      .get('http://localhost:3000/equipment-list', {
-        headers: { authorization: this.$cookies.get('token') }
-      })
-      .then(response => {
-        console.log(response.data)
-        this.equipments = response.data
-      })
-      .catch(er => {
-        console.log('Fetch Error:', er)
-      })
+  async mounted() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/equipment-list`)
+      this.equipments = data
+    } catch (error) {
+      if(error.response && error.response.status === 401){
+        console.log(error.response)
+        this.$router.push({name:'login'})
+      }
+      console.log(error)
+    }
   },
   methods: {
     changeHandler(event) {
-      console.log(event)
+      // event.target.id === 'SearchQuery'?  : null
     }
   }
 }

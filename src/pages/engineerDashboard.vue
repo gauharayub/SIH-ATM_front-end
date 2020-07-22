@@ -1,7 +1,7 @@
 <template>
   <div class="employeeContainer">
     <div class="scrollBox">
-      <section v-for="element in totalElement" :key="element">
+      <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
           <h5>{{element.heading}}</h5>
           <div class="hamButtons">
@@ -11,15 +11,15 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div class="card" v-for="order in element.orders" :key="order">
+          <div class="card" v-for="order in element.orders" :key="order._id">
             <div>
-              <p>{{order.orderId}}</p>
+              <p>{{order.assignmentCode}}</p>
             </div>
             <div>
-              <p>{{order.description}}</p>
+              <p>{{order.work}}</p>
             </div>
             <div class="linkContainer">
-              <router-link :to="`/engineertask`">Check Details</router-link>
+              <router-link :to="returnLink(element.heading,order._id)">Check Details</router-link>
             </div>
           </div>
         </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -53,71 +54,53 @@ export default {
               link: '/toorder'
             }
           ]
-        },
-        {
-          heading: 'Progress',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-        {
-          heading: 'completed',
-          totalOrders: 4,
-          orders: [
-            {
-              orderId: '1234e54',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e55',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            },
-            {
-              orderId: '1234e56',
-              description: 'Cleaned the extra lubricant',
-              link: '/toorder'
-            }
-          ]
-        },
-
+        }
       ]
+    }
+  },
+  async mounted() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/engineerOrders`, {
+        headers: { authorization: this.$cookies.get('token') }
+      })
+      console.log('this is data', data)
+      this.totalElement = data
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        this.$router.push({ name: 'login' })
+      }
+      console.log(error)
+    }
+  },
+  methods: {
+    returnLink(heading, id) {
+      if (heading === 'Todo' || heading === 'Progress') {
+        return `/complianceform/${id}`
+      }
+      else if(heading === 'Completed' || heading === 'Review'){
+        return `/engineertask`
+      }
+     
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.header{
+.header {
   display: flex;
   justify-content: space-between;
 }
-.hamButtons{
+.hamButtons {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-.hamButtons span{
+.hamButtons span {
   display: block;
   height: 5px;
   width: 5px;
-  margin:2px;
+  margin: 2px;
   border-radius: 50%;
   background-color: white;
 }
@@ -136,16 +119,20 @@ export default {
   border-radius: 8px;
   padding: 8px;
   /*background-color: #42aacc;*/
-  background: #c2e59c;  /* fallback for old browsers */
+  background: #c2e59c; /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #64b3f4, #57d6dd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to bottom,
+    #64b3f4,
+    #57d6dd
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
   min-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 .cardsContainer {
   padding: 8px;
@@ -156,12 +143,13 @@ background: linear-gradient(to bottom, #64b3f4, #57d6dd); /* W3C, IE 10+/ Edge, 
   padding: 8px;
   margin: 12px 0;
 }
-.card p{
+.cardsContainer .card p {
+  color:#204051;
   font-size: 13px;
   margin-bottom: 8px;
 }
-.linkContainer a{
-  float:right;
+.linkContainer a {
+  float: right;
   /* display: block; */
   border: 1px solid;
   font-size: 12px;
@@ -174,5 +162,4 @@ h1 {
   font-size: 2rem;
   border: 1px solid;
 }
-
 </style>
