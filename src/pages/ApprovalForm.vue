@@ -138,47 +138,41 @@
               <b-row>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-1"
+                      id="radio-pass"
                       v-model="status"
-                      name="checkbox-1"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Pass
                       <i class="fas fa-check-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-2"
+                      id="radio-fail"
                       v-model="status"
-                      name="checkbox-2"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Fail
                       <i class="fas fa-times-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-3"
+                      id="radio-partial"
                       v-model="status"
-                      name="checkbox-3"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Partially Pass
                       <i class="fas fa-exclamation-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
               </b-row>
