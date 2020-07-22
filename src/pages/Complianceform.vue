@@ -1,40 +1,27 @@
 <template>
-  <b-container fluid class="bv-example-row">
+<div class ="body">
+  <b-container fluid class="bv-example-row mt-60">
     <b-row>
-      <b-col cols="12" md="8" offset-md="2" id="main-box">
+
+      <b-col cols="12"  md="8" offset-md="2" id="main-box">
+        <h2>Compliance form</h2>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-          <b-jumbotron>
-            <b-form-group label="Assignment Number:" label-for="input-1">
-              <b-form-input id="input-1" v-model="form.assignmentNumber" type="number" disabled></b-form-input>
-            </b-form-group>
+          <div class="form-group-1">
+          <input type="number" id="input-1" v-model="form.assignmentNumber" placeholder="Assignment Number" disabled>
+          <input type="text" id="input-2" v-model="form.equipmentName" placeholder="Equipment Name" disabled>
+          <input type="text" id="input-3" v-model="form.description" placeholder="Description" disabled>          
+          <input type="number" id="input-4" v-model="form.equipmentCode" placeholder="Equipment Code" disabled>
+          <input type="text" id="input-5" v-model="form.status" placeholder="Status" disabled>
+          <input type="text" id="input-6" v-model="form.location" placeholder="Location" disabled>
+          <input type="number" id="input-7" v-model="form.cycle" placeholder="Cycle" disabled>
 
-            <b-form-group label="Equipment Name:" label-for="input-2">
-              <b-form-input id="input-2" v-model="form.equipmentName" disabled></b-form-input>
-            </b-form-group>
+          </div>
+          
+          <div class="form-group-2">
+            <!-- for tasklist generation  -->
+          <b-form-group>
+          <h3>Task List:</h3>
 
-            <b-form-group label="Description:" label-for="input-6">
-              <b-form-input id="input-6" v-model="form.description" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Equipment Code" label-for="input-5">
-              <b-form-input id="input-5" v-model="form.equipmentCode" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Status:" label-for="input-3">
-              <b-form-input id="input-3" v-model="form.status" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Location:" label-for="input-4">
-              <b-form-input id="input-4" v-model="form.location" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Cycle:" label-for="input-7">
-              <b-form-input id="input-7" v-model="form.cycle" disabled></b-form-input>
-            </b-form-group>
-          </b-jumbotron>
-
-          <!-- for tasklist generation  -->
-          <b-form-group label="Task List:">
             <div v-for="(task, index) in form.tasklist" :key="index">
               <br />
               <p># {{ task }}</p>
@@ -50,7 +37,6 @@
             </div>
           </b-form-group>
 
-          <!-- for files -->
 
           <div id="fileSelector" v-for="(file, index) in files" :key="index">
             <div class="card">
@@ -88,21 +74,26 @@
             </div>
             <br />
           </div>
-          <p>
-            To add more images
-            <b>
-              <a class="clickable" @click="addFile">click here</a>
-            </b>
-          </p>
+
+          <p style="color:#997">To add more images <b><a class="clickable" @click="addFile">click here</a></b> </p>
+
           <div class="pull-right">
             <b-button class="mr-1" type="submit" id="submit">Submit</b-button>
             <b-button type="reset" >Reset</b-button>
           </div>
+
+          </div>
+          
+
+          <!-- for files -->
+          
+          
         </b-form>
         <br />
       </b-col>
     </b-row>
   </b-container>
+</div>
 </template>
 <script>
 import axios from 'axios'
@@ -191,9 +182,23 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 .makeInLine {
   width: 65% !important;
   margin: 0 20px;
+}
+.body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
+                       rgba(0, 0, 0, 0.5)),url('https://cdn.hipwallpaper.com/i/57/62/u2yVFf.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+  padding: 60px 0;
+  font-family:'Roboto Slab';
+  font-size:13px;
+  line-height: 1.8;
+  color: black;
+  font-weight:400;
 }
 .close {
   border: 1px solid grey !important;
@@ -201,9 +206,6 @@ export default {
   position: relative;
   left: -5%;
   cursor: pointer;
-}
-#main-box {
-  padding: 5px;
 }
 
 /*close icon*/
@@ -222,4 +224,47 @@ textarea {
   border:none;
   width: 100px;
 }
+
+#main-box{
+ background-color:white;
+ padding: 50px 60px 70px 60px;
+ border-radius:10px;
+ opacity:0.97;
+}
+h2{
+  line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #222;
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+h3{
+  font-weight: bold;
+  color: #222;
+  font-size: 17px;
+  margin: 0px;
+  margin-top:20px;
+  margin-bottom:10px;
+}
+input{
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+  padding: 5px 0;
+  color: #222;
+  margin-bottom: 31px;
+  font-family: 'Roboto Slab'
+}
+.card{
+  background-color:rgba(0, 0, 0,0.1)
+}
+button{
+  box-shadow:  5px 5px 10px #888888;
+}
+
 </style>
