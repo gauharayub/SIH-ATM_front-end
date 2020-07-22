@@ -6,11 +6,11 @@
     :style="sidebarStyle"
   >
     <div class="logo">
-      <route-link to="/" class="simple-text logo-mini">
+      <router-link to="/" class="simple-text logo-mini">
         <div class="logo-img">
           <img :src="imgLogo" alt="" />
         </div>
-      </route-link>
+      </router-link>
 
       <router-link
         to="/"

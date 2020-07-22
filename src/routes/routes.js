@@ -60,7 +60,7 @@ const routes = [{
     component: engineerDashboard
   },
   {
-    path: '/dataWarehousing',
+    path: '/datawarehousing',
     name: 'DataWarehousing',
     component: DataWarehousing
     },
