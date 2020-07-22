@@ -2,16 +2,29 @@
   <section class="searchingcontainer">
     <div class="heading">
       <h1>Assignment Collection</h1>
+      <p>{{equipmentModel}}</p>
     </div>
     <section class="searchFieldContainer">
       <section class="searchByquery">
         <div>
           <label for="assignmentId">Assignment Id :</label>
-          <input v-model="assignmentId" id="assignmentId" type="text" placeholder="Enter Assignment Id ..." />
+          <input
+            @keydown.enter="handleSearch"
+            v-model="assId"
+            id="assignmentId"
+            type="text"
+            placeholder="Enter Assignment Id ..."
+          />
         </div>
         <div>
           <label for="equipmentId">Equipment Id :</label>
-          <input v-model="equipmentId" type="text" id="equipmentId" placeholder="Enter Equipment Id ..." />
+          <input
+            @keydown.enter="handleSearch"
+            v-model="equId"
+            type="text"
+            id="equipmentId"
+            placeholder="Enter Equipment Id ..."
+          />
         </div>
       </section>
 
@@ -20,19 +33,20 @@
           <div class="selectContainer">
             <label for="location">Location :</label>
             <select v-model="locationModel" name="location" id="location">
-              <option disabled value=''>select Location</option>
+              <option disabled value>select Location</option>
+              <option v-for="location in locations" :key="location" :value="location">{{location}}</option>
             </select>
           </div>
           <div class="selectContainer">
             <label for="equipment">Equipment :</label>
             <select v-model="equipmentModel" name="equipment" id="equipment">
-              <option value='' selected>select Equipment</option>
+              <option disabled value>select Equipment</option>
             </select>
           </div>
           <div class="selectContainer">
             <label for="date">Date :</label>
-            <select name="date" id="date">
-              <option disabled value="a">select Date</option>
+            <select v-model="date" name="date" id="date">
+              <option disabled value>select Date</option>
             </select>
           </div>
         </div>
@@ -41,19 +55,22 @@
           <div class="radioBox">
             <div>
               <label for="status1">Pending</label>
-              <input v-model="statusBox" type="radio" name="status" id="status1" />
+              <input v-model="statusBox" value="Pending" type="radio" name="status" id="status1" />
             </div>
             <div>
               <label for="status2">Completed</label>
-              <input v-model="statusBox" type="radio" name="status" id="status2" />
+              <input v-model="statusBox" value="Completed" type="radio" name="status" id="status2" />
             </div>
             <div>
               <label for="status3">All</label>
-              <input v-model="statusBox" type="radio" name="status" id="status3" />
+              <input v-model="statusBox" value type="radio" name="status" id="status3" />
             </div>
           </div>
         </div>
       </section>
+      <div class="searchButton">
+        <button @click="handleSearch">Search</button>
+      </div>
     </section>
 
     <div class="orderContainer">
@@ -106,9 +123,19 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
+      statusBox: '',
+      locations: [],
+      equipments: [],
+      locationModel: '',
+      equipmentModel: '',
+      equId: '',
+      assId: '',
+      date: '',
       data: {
         name: 'Anas',
         id: '18COB037',
@@ -120,12 +147,49 @@ export default {
         location: 'section 34, Plant 34',
         status: 'Need replacement',
         assignedDate: '13-Jun-2020',
-        deadlineDate: '12-July-2020',
-        equipmentId:'',
-        assignmentId:'',
-        locationModel: '',
-        equipmentModel: '',
-        statusBox:''
+        deadlineDate: '12-July-2020'
+      }
+    }
+  },
+  mounted() {
+    this.getLocation()
+    this.getEquipments()
+    this.getOrders()
+  },
+  methods: {
+    handleSearch() {
+      this.getOrders()
+    },
+    async getLocation() {
+      try {
+        const { data: location } = await axios.get(
+          `http://localhost:3000/locations`
+        )
+        console.log('locations fetched', location)
+        this.locations = location
+      } catch (error) {
+        console.error('Error in fetching locations', error)
+      }
+    },
+    async getEquipments() {
+      try {
+        const { data: equipment } = await axios.get(
+          `http://localhost:3000/equipment-list`
+        )
+        console.log('eequipmetns fetched', equipment)
+        this.equipments = equipment
+      } catch (error) {
+        console.error('Error in fetching equipments', error)
+      }
+    },
+    async getOrders() {
+      try {
+        const { data: orders } = await axios.get(
+          `https://localhost:3000/searchorders?completed=${this.statusBox}&locationId=${this.assId}&equipmentId=${this.equId}`
+        )
+        this.data = orders
+      } catch (error) {
+        console.error('Error in orders', error)
       }
     }
   }
@@ -268,6 +332,20 @@ export default {
 }
 .orderContainer .buttonContainer a:hover {
   color: cornflowerblue;
+}
+.searchButton{
+  
+  width: fit-content;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-left: 12px;
+  position: relative;
+  right:-89%;
+}
+.searchButton button{
+  
+  padding: 12px 20px;
+  color: black;
 }
 @media (max-width: 600px) {
   .firstChild {
