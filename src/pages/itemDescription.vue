@@ -67,7 +67,7 @@
 </template>
 
 <script>
-const axios = require('axios')
+import axios from 'axios'
 
 export default {
   async mounted() {
@@ -77,15 +77,16 @@ export default {
       , {
         headers: { authorization: this.$cookies.get('token') } })
       this.info = orderData
-
+      console.log("got the order",orderData)
       const { data: engiData } = await axios.get(
         `http://localhost:3000/engineers`
       , {
         headers: { authorization: this.$cookies.get('token') } })
       this.engineers = engiData
+      console.log("got the engi list",engiData)
     } catch (error) {
       if(error.response && error.response.status === 401){
-        this.$route.push({name:'login'})
+        this.$router.push({name:'login'})
       }
       console.log(error)
     }

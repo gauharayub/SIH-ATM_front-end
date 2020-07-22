@@ -60,6 +60,7 @@ export default {
   },
   async mounted() {
     try {
+      console.log("Firing request for order from engineer dashboard")
       const { data } = await axios.get(`http://localhost:3000/engineerOrders`, {
         headers: { authorization: this.$cookies.get('token') }
       })

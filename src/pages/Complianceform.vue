@@ -121,9 +121,10 @@ export default {
         `http://localhost:3000/compliance/${this.$route.params.id}`
       , {
         headers: { authorization: this.$cookies.get('token') } })
+        console.log(data)
       this.form = data
     } catch (error) {
-      if(error.response && error.reponse.status === 401){
+      if(error.response && error.response.status === 401){
         this.$router.push({name:'login'})
       }
       console.log(error)
@@ -158,7 +159,7 @@ export default {
 
       axios
         .post(
-          'http://localhost:3000/submit-compliance/5e664847463da44026e3be8b',
+          `http://localhost:3000/submit-compliance/${this.$route.params.id}`,
           fd
         )
         .then(res => console.log(res.data))
