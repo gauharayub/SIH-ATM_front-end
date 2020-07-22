@@ -73,20 +73,24 @@ export default {
   async mounted() {
     try {
       const { data: orderData } = await axios.get(
-        `http://localhost:3000/order/${this.equipmentId}`
-      , {
-        headers: { authorization: this.$cookies.get('token') } })
+        `http://localhost:3000/order/${this.equipmentId}`,
+        {
+          headers: { authorization: this.$cookies.get('token') }
+        }
+      )
       this.info = orderData
-      console.log("got the order",orderData)
+      console.log('got the order', orderData)
       const { data: engiData } = await axios.get(
-        `http://localhost:3000/engineers`
-      , {
-        headers: { authorization: this.$cookies.get('token') } })
+        `http://localhost:3000/engineers`,
+        {
+          headers: { authorization: this.$cookies.get('token') }
+        }
+      )
       this.engineers = engiData
-      console.log("got the engi list",engiData)
+      console.log('got the engi list', engiData)
     } catch (error) {
-      if(error.response && error.response.status === 401){
-        this.$router.push({name:'login'})
+      if (error.response && error.response.status === 401) {
+        this.$router.push({ name: 'login' })
       }
       console.log(error)
     }
@@ -107,26 +111,43 @@ export default {
           equipmentCode: this.info.equipmentCode,
           orderId: this.equipmentId,
           engineerID: this.selected,
-          additionalRemarks: this.remarks ? this.remarks : 'No remarks'
+          additionalRemarks: this.remarks || 'No remarks'
         }
 
         const response = await axios.post(
           'http://localhost:3000/submit-form',
-          payLoad
-        ,{}, {
-        headers: { authorization: this.$cookies.get('token') } })
-
+          payLoad,
+          {
+            headers: { authorization: this.$cookies.get('token') }
+          }
+        )
+        console.log('tried submitting form')
         if (response.status === 200) {
-          this.$router.push({ name: 'joblist' })
+          console.log('submitting to progress')
+          const responseProg = await axios.patch(
+            `http://localhost:3000/toprogress/${this.equipmentId}`,
+            {},
+            {
+              headers: { authorization: this.$cookies.get('token') }
+            }
+          )
+          console.log('progress response', responseProg)
+          if (responseProg.status === 200) {
+            console.log("taskdone")
+            this.$router.push({ name: 'joblist' })
+          } else {
+            console.log(
+              'failed to send to progress but form saved from item description'
+            )
+          }
+        } else {
+          alert('Some Error Ocurred,Please submit again!')
         }
-        else{
-          alert("Some Error Ocurred,Please submit again!")
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.log("401 ocured in item description",error)
+          this.$router.push({ name: 'login' })
         }
-      }
-      catch(error){
-         if(error.response && error.response.status === 401){
-        this.$router.push({name:'login'})
-      }
         console.log(error)
       }
     }

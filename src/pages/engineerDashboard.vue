@@ -75,8 +75,11 @@ export default {
   },
   methods: {
     returnLink(heading, id) {
-      if (heading === 'Todo' || heading === 'Progress') {
-        return `/complianceform/${id}`
+      if (heading === 'Todo' || heading === 'Assigned') {
+        return `/engineertask`
+      }
+      else if( heading === 'Progress'){
+return `/complianceform/${id}`
       }
       else if(heading === 'Completed' || heading === 'Review'){
         return `/engineertask`
