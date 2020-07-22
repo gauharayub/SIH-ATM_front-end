@@ -110,6 +110,7 @@ export default {
       this.equipments = data
     } catch (error) {
       if(error.response && error.response.status === 401){
+        console.log(error.response)
         this.$router.push({name:'login'})
       }
       console.log(error)
