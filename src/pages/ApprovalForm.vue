@@ -1,33 +1,19 @@
 <template>
-  <div>
+  <div class="body">
     <b-container class="bv-example-row">
       <b-row>
-        <b-col cols="12" md="8" offset="2">
-          <b-jumbotron>
-            <b-form-group label="Assignment Code:" label-for="input-1">
-              <b-form-input id="input-1" type="number" v-model="info.assignmentNumber" disabled></b-form-input>
-            </b-form-group>
-            <b-form-group label="Equipment ID:" label-for="input-2">
-              <b-form-input id="input-2" v-model="equipmentId" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Equipment Code:" label-for="input-4">
-              <b-form-input id="input-4" v-model="info.equipmentCode" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Equipment Name:" label-for="input-6">
-              <b-form-input id="input-6" v-model="info.equipmentName" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Description" label-for="input-5">
-              <b-form-input id="input-5" v-model="info.description" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Location:" label-for="input-3">
-              <b-form-input id="input-3" v-model="info.location" disabled></b-form-input>
-            </b-form-group>
+        <b-col cols="12" md="8" offset="2" id="main-box">
+        <h2>Approval Form</h2>
+          <div class="form-group-1">
+            <input type="number" id="input-1" v-model="info.assignmentNumber" placeholder="Assignment Code" disabled>
+            <input type="number" id="input-2" v-model="info.equipmentId" placeholder="Equipment ID" disabled>
+            <input type="number" id="input-3" v-model="info.equipmentCode" placeholder="Equipment Code" disabled>
+            <input type="text" id="input-4" v-model="info.equipmentName" placeholder="Equipment Name" disabled>
+            <input type="text" id="input-5" v-model="info.description" placeholder="Description" disabled>
+            <input type="number" id="input-6" v-model="info.location" placeholder="Location" disabled>
             <div>
               <b-button
+              class="button"
                 variant="primary"
                 id="show-btn"
                 @click="$bvModal.show('bv-modal-example')"
@@ -41,47 +27,20 @@
                     <li v-for="(task, index) in info.tasklist" :key="index">{{ task }}</li>
                   </ul>
                 </div>
-                <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Done</b-button>
+                <b-button class="mt-3 button" block @click="$bvModal.hide('bv-modal-example')">Done</b-button>
               </b-modal>
             </div>
-          </b-jumbotron>
-        </b-col>
-      </b-row>
-    </b-container>
-    <b-container class="bv-example-row">
-      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-      <b-row>
-        <b-col cols="12" md="8" offset="2">
-          <b-jumbotron>
-            <b-form-group label="Department:" label-for="input-1">
-              <b-form-input id="engi-1" type="text" v-model="info.engineerDepartment" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Engineer Id:" label-for="input-5">
-              <b-form-input id="engi-5" type="number" v-model="info.engineerId" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Name:" label-for="input-2">
-              <b-form-input id="engi-2" type="text" v-model="info.engineerName" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Email Id:" label-for="input-3">
-              <b-form-input id="engi-3" type="text" v-model="info.engineerEmail" disabled></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Phone Number:" label-for="input-4">
-              <b-form-input id="engi-4" type="number" v-model="info.engineerPhone" disabled></b-form-input>
-            </b-form-group>
-          </b-jumbotron>
-        </b-col>
-      </b-row>
-    </b-container>
-
-    <b-container class="bv-example-row">
-      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-      <b-row>
-        <b-col cols="12" md="8" offset="2">
-          <div class="status blockquote">
+          </div>
+          <hr>
+          <div class="form-group-2">
+            <input type="text" id="engi-1" v-model="info.engineerDepartment" placeholder="Department" disabled>
+            <input type="number" id="engi-2" v-model="info.engineerId" placeholder="Engineer ID" disabled>
+            <input type="text" id="engi-3" v-model="info.engineerName" placeholder="Name" disabled>
+            <input type="text" id="engi-4" v-model="info.engineerEmail" placeholder="Email Id" disabled>
+            <input type="number" id="engi-5" v-model="info.engineerPhone" placeholder="Phone Number" disabled>
+          </div>
+          <hr>
+           <div class="status blockquote form-group-3">
             <h6 class="mb-0">
               Opened on
               <span class="pull-right">Closed on</span>
@@ -92,8 +51,9 @@
             </footer>
           </div>
 
-          <div class="justification card box">
-            <h3 class="card-title" style="padding:5px">
+          <div class="form-group-4">
+            <div class="justification card box">
+            <h3 class="card-title" style="padding:5px; margin-left:10px">
               <i class="far fa-file-alt"></i> Justification
             </h3>
             <b-container class="bv-example-row">
@@ -113,6 +73,7 @@
                           make up the bulk of the card's content.
                         </p>
                         <b-button
+                          class="button"
                           variant="info"
                           id="view-btn"
                           @click="$bvModal.show('bv-more-info1')"
@@ -145,6 +106,7 @@
                           make up the bulk of the card's content.
                         </p>
                         <b-button
+                          class="button"
                           variant="info"
                           id="view-btn"
                           @click="$bvModal.show('bv-more-info2')"
@@ -169,54 +131,48 @@
           </div>
 
           <div class="approval card box">
-            <h3 class="card-title content" style="padding:5px">
-              <img :src="require(`@/assets/img/approval.png`)" /> Approval
+            <h3 class="card-title content" style="padding:5px; margin-left:10px">
+              <img :src="require(`@/assets/img/approval.png`)"  /> Approval
             </h3>
             <b-container class="bv-example-row card-body content">
               <b-row>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-1"
+                      id="radio-pass"
                       v-model="status"
-                      name="checkbox-1"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Pass
                       <i class="fas fa-check-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-2"
+                      id="radio-fail"
                       v-model="status"
-                      name="checkbox-2"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Fail
                       <i class="fas fa-times-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
                 <b-col>
                   <div>
-                    <b-form-checkbox
+                    <b-form-radio
                       class="cb"
-                      id="checkbox-3"
+                      id="radio-partial"
                       v-model="status"
-                      name="checkbox-3"
-                      value="accepted"
-                      unchecked-value="not_accepted"
+                      name="radiobox"
                     >
                       Partially Pass
                       <i class="fas fa-exclamation-circle"></i>
-                    </b-form-checkbox>
+                    </b-form-radio>
                   </div>
                 </b-col>
               </b-row>
@@ -233,7 +189,19 @@
           </div>
 
           <!-- On clicking approveReport function is called -->
-          <b-button class="pull-right mt-2 mb-2" @click="approveReport" variant="primary">Submit</b-button>
+          <b-button class="pull-right mt-2 mb-2 button" @click="approveReport" variant="primary">Submit</b-button>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+
+    <b-container class="bv-example-row">
+      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+      <b-row>
+        <b-col cols="12" md="8" offset="2">
+         
+
+          
         </b-col>
       </b-row>
     </b-container>
@@ -283,6 +251,21 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+.body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.3),
+                       rgba(0, 0, 0, 0.3)),url('https://cdn2.hubspot.net/hubfs/3795684/Satair2018/Content%20dec%202018/ten%20risk%20in%20avaiation%201.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+  padding: 60px 0;
+  font-family:'Roboto Slab';
+  font-size:13px;
+  line-height: 1.8;
+  color: black;
+  font-weight:400;
+}
+
 jumbotron .btn {
   margin-top: 50px !important;
 }
@@ -296,7 +279,12 @@ jumbotron .btn {
 #tasklistBlock > h3 {
   margin-left: 10px;
 }
-
+#textarea{
+border: 1px solid grey;
+    padding: 6px 10px;
+    width: 100%;
+    border-radius:10px 10px 10px 10px;
+}
 #textarea-rows {
   margin-top: 1.5rem;
 }
@@ -310,6 +298,9 @@ jumbotron .btn {
 .md-theme-default a:not(.md-button) {
   color: white;
 }
+h3,h4,h5,h6{
+font-family: 'Roboto Slab'
+}
 .card-img-top {
   width: 100%;
   height: 15vw;
@@ -320,9 +311,62 @@ jumbotron .btn {
 }
 .approval {
   margin-top: 2rem;
+  background-image:linear-gradient(rgba(0, 0, 50,0.5),rgba(0,0,0,0.1));
+  font-size:14px;
+}
+.justification{
+  background-image:linear-gradient(rgba(50, 0,0,0.5),rgba(0,0,0,0.1));
 }
 .content {
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
+#main-box{
+ background-color:white;
+ padding: 50px 60px 70px 60px;
+ border-radius:10px;
+ opacity:0.98;
+}
+h2{
+  line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #222;
+    font-family: 'Roboto Slab', serif;
+    font-size: 25px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+h3{
+  font-weight: bold;
+  color: #222;
+  font-size: 20px;
+  margin: 0px;
+  margin-top:20px;
+  margin-bottom:10px;
+  text-transform: uppercase;
+}
+input{
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+  padding: 5px 0;
+  color: #222;
+  margin-bottom: 31px;
+  font-family: 'Roboto Slab'
+}
+hr{
+  margin-bottom: 40px;
+  margin-top:40px;
+  border : 0;
+  height: 1px; 
+  box-shadow: 0 40px 40px -40px red;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+}
+.button{
+  box-shadow:  5px 5px 10px #888888;
+}
+
 </style>
