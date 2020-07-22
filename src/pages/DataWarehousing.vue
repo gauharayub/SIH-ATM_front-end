@@ -106,7 +106,8 @@ export default {
 
   async mounted() {
     try {
-      const { data } = await axios.get(`http://localhost:3000/equipment-list`)
+      const { data } = await axios.get(`http://localhost:3000/equipment-list`, {
+        headers: { authorization: this.$cookies.get('token') } })
       this.equipments = data
     } catch (error) {
       if(error.response && error.response.status === 401){

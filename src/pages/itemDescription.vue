@@ -74,12 +74,14 @@ export default {
     try {
       const { data: orderData } = await axios.get(
         `http://localhost:3000/order/${this.equipmentId}`
-      )
+      , {
+        headers: { authorization: this.$cookies.get('token') } })
       this.info = orderData
 
       const { data: engiData } = await axios.get(
         `http://localhost:3000/engineers`
-      )
+      , {
+        headers: { authorization: this.$cookies.get('token') } })
       this.engineers = engiData
     } catch (error) {
       if(error.response && error.response.status === 401){
@@ -110,7 +112,8 @@ export default {
         const response = await axios.post(
           'http://localhost:3000/submit-form',
           payLoad
-        )
+        ,{}, {
+        headers: { authorization: this.$cookies.get('token') } })
 
         if (response.status === 200) {
           this.$router.push({ name: 'joblist' })

@@ -119,7 +119,8 @@ export default {
     try {
       const { data } = await axios.get(
         `http://localhost:3000/compliance/${this.$route.params.id}`
-      )
+      , {
+        headers: { authorization: this.$cookies.get('token') } })
       this.form = data
     } catch (error) {
       if(error.response && error.reponse.status === 401){

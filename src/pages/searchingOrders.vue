@@ -164,7 +164,8 @@ export default {
       try {
         const { data: location } = await axios.get(
           `http://localhost:3000/locations`
-        )
+        , {
+        headers: { authorization: this.$cookies.get('token') } })
         console.log('locations fetched', location)
         this.locations = location
       } catch (error) {
@@ -175,7 +176,8 @@ export default {
       try {
         const { data: equipment } = await axios.get(
           `http://localhost:3000/equipment-list`
-        )
+        , {
+        headers: { authorization: this.$cookies.get('token') } })
         console.log('eequipmetns fetched', equipment)
         this.equipments = equipment
       } catch (error) {
@@ -186,7 +188,8 @@ export default {
       try {
         const { data: orders } = await axios.get(
           `https://localhost:3000/searchorders?completed=${this.statusBox}&locationId=${this.assId}&equipmentId=${this.equId}`
-        )
+        , {
+        headers: { authorization: this.$cookies.get('token') } })
         this.data = orders
       } catch (error) {
         console.error('Error in orders', error)
