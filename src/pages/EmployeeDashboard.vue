@@ -1,7 +1,7 @@
 <template>
   <div class="employeeContainer">
     <div class="scrollBox">
-      <section v-for="element in totalElement" :key="element">
+      <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
           <h5>{{element.heading}}</h5>
           <div class="hamButtons">
@@ -11,15 +11,19 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div class="card" v-for="order in element.orders" :key="order">
+          <div class="card" v-for="order in element.orders" :key="order._id">
             <div>
-              <p>{{order.orderId}}</p>
+              <p>{{order.assignmentCode}}</p>
             </div>
             <div>
-              <p>{{order.description}}</p>
+              <p>{{order.work}}</p>
             </div>
             <div class="linkContainer">
-              <a :href="order.toorder">Check Details</a>
+              <router-link v-if="element.heading === 'Todo'" :to="`/joblist/${order._id}`" >Assign</router-link>
+              <router-link v-else-if="element.heading ===  'Progress'" :to="`/approval/${order._id}`">Check</router-link>
+              <router-link v-else-if="element.heading === 'Assigned'" to="/searchingOrders" >Search</router-link>
+              <router-link v-else-if="element.heading ===  'Review'" :to="`/approval/${order._id}`">Approve</router-link>
+              <router-link v-else-if="element.heading ===  'Completed'" to="/searchingorders">Search</router-link>
             </div>
           </div>
         </div>
@@ -72,7 +76,8 @@ export default {
       }
       console.log(error)
     }
-  }
+  },
+ 
 }
 </script>
 

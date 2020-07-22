@@ -11,15 +11,15 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div class="card" v-for="order in element.orders" :key="order.orderId">
+          <div class="card" v-for="order in element.orders" :key="order._id">
             <div>
-              <p>{{order.orderId}}</p>
+              <p>{{order.assignmentCode}}</p>
             </div>
             <div>
-              <p>{{order.description}}</p>
+              <p>{{order.work}}</p>
             </div>
             <div class="linkContainer">
-              <router-link :to="`/engineertask`">Check Details</router-link>
+              <router-link :to="returnLink(element.heading,order._id)">Check Details</router-link>
             </div>
           </div>
         </div>
@@ -66,10 +66,21 @@ export default {
       console.log('this is data', data)
       this.totalElement = data
     } catch (error) {
-      if(error.response && error.response.status === 401){
+      if (error.response && error.response.status === 401) {
         this.$router.push({ name: 'login' })
       }
       console.log(error)
+    }
+  },
+  methods: {
+    returnLink(heading, id) {
+      if (heading === 'Todo' || heading === 'Progress') {
+        return `/complianceform/${id}`
+      }
+      else if(heading === 'Completed' || heading === 'Review'){
+        return `/engineertask`
+      }
+     
     }
   }
 }
@@ -108,9 +119,13 @@ export default {
   border-radius: 8px;
   padding: 8px;
   /*background-color: #42aacc;*/
-  background: #c2e59c;  /* fallback for old browsers */
+  background: #c2e59c; /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #64b3f4, #57d6dd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to bottom,
+    #64b3f4,
+    #57d6dd
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   color: #fff;
   margin: 20px 0px 20px 20px;
@@ -128,7 +143,8 @@ background: linear-gradient(to bottom, #64b3f4, #57d6dd); /* W3C, IE 10+/ Edge, 
   padding: 8px;
   margin: 12px 0;
 }
-.card p {
+.cardsContainer .card p {
+  color:#204051;
   font-size: 13px;
   margin-bottom: 8px;
 }

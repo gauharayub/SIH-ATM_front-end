@@ -50,7 +50,7 @@ const routes = [{
     name: 'Compliance Form',
     component: ComplianceForm
   }, {
-    path: '/approval',
+    path: '/approval/:id',
     name: 'approval',
     component: ApprovalForm
   },
