@@ -9,7 +9,7 @@
  <div class="container content">
   <!-- Left Column / Headphones Image -->
   <div class="left-column">
-    <img class="rounded" data-image="black" src="/assets/images/bg.jpg" alt="">
+    <img class="rounded" data-image="black" src="https://i1.wp.com/thepointsguy.com/wp-content/uploads/2019/05/1_DSC_3589.jpg?fit=1600%2C1065px&ssl=1" alt="">
   </div>
   <!-- Right Column -->
   <div class="right-column">
@@ -208,7 +208,8 @@ p {
 }
 .left-column img{
   width:95%;
-  height:100%;
+  height:80%;
+  margin-top:10%;
   border-radius:10px;
 }
 .item-description {
