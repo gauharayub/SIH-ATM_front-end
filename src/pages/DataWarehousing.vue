@@ -126,7 +126,11 @@ export default {
 
 <style lang="css">
 .wareContainer {
-  background-color: #204051;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.8),
+                       rgba(0, 0, 0, 0.8)),url('https://www.cloudvisit.site/wp-content/uploads/2019/03/iStock-1022905536-1.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
   padding: 8px;
   min-height: 100vh;
 }
@@ -138,7 +142,10 @@ export default {
   border-radius: 8px;
 }
 #searchingBox {
-  background-color: #3b6978;
+  background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+opacity:0.9;
 }
 #queryContainer {
   padding: 8px;
@@ -188,7 +195,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #84a9ac;
+  background: #4b6cb7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+opacity:0.9;
 }
 #resultParameter > div {
   padding: 4px 8px;
@@ -198,7 +208,10 @@ export default {
   background-color: white;
 }
 #OrderContainer {
-  background-color: #3b6978;
+  background: #2b5876;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+opacity:0.9;
 }
 #OrderContainer h2 {
   color: #fff;
