@@ -79,7 +79,7 @@
 
           <div class="pull-right">
             <b-button class="mr-1" type="submit" id="submit">Submit</b-button>
-            <b-button type="reset" >Reset</b-button>
+            <b-button class="btn-danger" type="reset" >Reset</b-button>
           </div>
 
           </div>
