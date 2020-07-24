@@ -84,7 +84,7 @@
 
     <div class="orderContainer">
       <div v-for="(order,index) in data" :key="order._id">
-        <h3>Order : {{ index}}</h3>
+        <h3>Order : {{ index+1 }}</h3>
         <div class="order">
           <div class="flex">
             <div class="firstChild">
@@ -145,7 +145,7 @@ export default {
       equId: '',
       assId: '',
       date: '',
-      data: {
+      data:[ {
         name: 'Anas',
         id: '18COB037',
         totalOrders: 2,
@@ -157,7 +157,7 @@ export default {
         status: 'Need replacement',
         assignedDate: '13-Jun-2020',
         deadlineDate: '12-July-2020'
-      }
+      }]
     }
   },
   mounted() {

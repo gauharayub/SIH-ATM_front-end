@@ -131,11 +131,7 @@ export default {
             headers: { authorization: this.$cookies.get('token') }
           }
         )
-        console.log('tried submitting form')
         if (response.status === 200) {
-          console.log('submitting to progress')
-          
-          
             this.$router.push({ name: 'joblist' })
           
         } else {
