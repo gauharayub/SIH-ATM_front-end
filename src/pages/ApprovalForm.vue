@@ -199,8 +199,6 @@
       <!-- Stack the columns on mobile by making one full-width and the other half-width -->
       <b-row>
         <b-col cols="12" md="8" offset="2">
-         
-
           
         </b-col>
       </b-row>

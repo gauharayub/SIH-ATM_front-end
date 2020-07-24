@@ -124,22 +124,10 @@ export default {
         console.log('tried submitting form')
         if (response.status === 200) {
           console.log('submitting to progress')
-          const responseProg = await axios.patch(
-            `http://localhost:3000/toprogress/${this.equipmentId}`,
-            {},
-            {
-              headers: { authorization: this.$cookies.get('token') }
-            }
-          )
-          console.log('progress response', responseProg)
-          if (responseProg.status === 200) {
-            console.log("taskdone")
+          
+          
             this.$router.push({ name: 'joblist' })
-          } else {
-            console.log(
-              'failed to send to progress but form saved from item description'
-            )
-          }
+          
         } else {
           alert('Some Error Ocurred,Please submit again!')
         }
