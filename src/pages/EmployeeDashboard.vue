@@ -1,5 +1,5 @@
 <template>
-  <div class="employeeContainer">
+  <div class="employeeContainer body">
     <div class="scrollBox">
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
@@ -66,6 +66,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.body{
+
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
+                       rgba(0, 0, 0, 0.5)),url('https://cdn.hipwallpaper.com/i/16/84/BCJGV9.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+  padding: 60px 0;
+  font-family:'Roboto Slab';
+  font-size:13px;
+  line-height: 1.8;
+  color: black;
+  font-weight:400;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -105,6 +120,7 @@ export default {
   min-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  opacity:0.9;
 }
 .cardsContainer {
   padding: 8px;

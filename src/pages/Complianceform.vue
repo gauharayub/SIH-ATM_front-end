@@ -102,12 +102,10 @@
                 <br />
               </div>
 
-              <p style="color:#997">
-                To add more images
-                <b>
-                  <a class="clickable" @click="addFile">click here</a>
-                </b>
-              </p>
+          <div class="pull-right">
+            <b-button class="mr-1" type="submit" id="submit">Submit</b-button>
+            <b-button class="btn-danger" type="reset" >Reset</b-button>
+          </div>
 
               <div class="pull-right">
                 <b-button class="mr-1" type="submit" id="submit">Submit</b-button>

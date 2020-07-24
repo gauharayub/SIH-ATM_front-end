@@ -155,7 +155,11 @@ export default {
 #container {
   padding: 12px;
   min-height: 75vh;
-  background-color: #3b6978;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
+                       rgba(0, 0, 0, 0.5)),url('https://www.lufthansa-technik.com/documents/5875801/6266982/Digtal+on+air+1920x1080/efed82f2-4f47-4000-9be0-e092d8b377c8?t=1578320594487');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
 }
 .profile {
   background-color: white;
@@ -165,6 +169,7 @@ export default {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 8px 20px;
+  opacity:0.9;
 }
 #heading {
   font-size: 1.4rem;
@@ -173,6 +178,7 @@ export default {
   border-radius: 4px;
   padding: 12px 20px;
   background-color: #e8505b;
+  opacity:0.95;
 }
 .userImage img {
   height: 150px;
@@ -190,6 +196,7 @@ export default {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 4px -2px black;
+  opacity:0.9;
 }
 .order > div {
   font-weight: 500;

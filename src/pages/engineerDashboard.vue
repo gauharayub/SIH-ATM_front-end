@@ -1,5 +1,5 @@
 <template>
-  <div class="employeeContainer">
+  <div class="employeeContainer body">
     <div class="scrollBox">
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
@@ -75,6 +75,20 @@ return `/complianceform/${id}`
 </script>
 
 <style lang="css" scoped>
+.body{
+
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
+                       rgba(0, 0, 0, 0.5)),url('https://cdn.hipwallpaper.com/i/73/85/rlcHQp.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+  padding: 60px 0;
+  font-family:'Roboto Slab';
+  font-size:13px;
+  line-height: 1.8;
+  color: black;
+  font-weight:400;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -114,7 +128,7 @@ return `/complianceform/${id}`
     #64b3f4,
     #57d6dd
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  opacity:0.9;
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
