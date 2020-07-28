@@ -103,7 +103,7 @@
     </section>
 
     <div class="orderContainer">
-      <div v-for="(order, index) in data" :key="order._id">
+      <div v-for="(order, index) in orderData" :key="order._id">
         <h3>Order : {{ index + 1 }}</h3>
         <div class="order">
           <div class="flex">
@@ -167,7 +167,7 @@ export default {
       equId: '',
       assId: '',
       date: '',
-      data: [
+      orderData: [
         {
           name: 'Anas',
           id: '18COB037',
@@ -185,28 +185,28 @@ export default {
     }
   },
   mounted() {
-    const getOrders = () => Axios.get('/locations')
-    const getLocation = () => Axios.get('/equipment-list')
-    const getEquipments = () => {
-      const body = {
-        completed: this.statusBox || 'All',
-        locationId: this.assId || 'All',
-        equipmentId: this.equId || 'All',
-        equipmentName: this.equipmentModel || 'All',
-        locationName: this.locationModel || 'All'
-      }
-      Axios.post('/searchorders', body)
-    }
+    try {
+      console.log('request fired')
+      const getOrders = () => Axios.get('/get-orders')
+      const getLocation = () => Axios.get('/locations')
+      const getEquipments = () => Axios.get('/equipment-list')
 
-    axios.all([getOrders(), getLocation(), getEquipments()]).then(
-      axios.spread(
-        ({ data: orders }, { data: location }, { data: equipments }) => {
-          this.data = orders
-          this.locations = location
-          this.equipments = equipments
-        }
-      )
-    )
+      axios
+        .all([getOrders(), getLocation(), getEquipments()])
+        .then(
+          axios.spread(
+            ({ data: orders }, { data: location }, { data: equipment }) => {
+              this.orderData = orders
+              this.locations = location
+              this.equipments = equipment
+              console.log(equipment)
+            }
+          )
+        )
+        .catch(error => console.log(error))
+    } catch (error) {
+      console.log(error, error.response)
+    }
   },
   methods: {
     handleSearch() {
@@ -224,7 +224,7 @@ export default {
         }
 
         const { data: orders } = await Axios.post('/searchorders', body)
-        this.data = orders
+        this.orderData = orders
         console.log('orders fetched', orders)
       } catch (error) {
         console.log('Error in orders', error, error.response)
