@@ -155,7 +155,7 @@
 
 <script>
 import Axios from '@/methods/axiosInstance.js'
-
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -185,33 +185,35 @@ export default {
     }
   },
   mounted() {
-    this.getOrders()
-    this.getLocation()
-    this.getEquipments()
+    const getOrders = () => Axios.get('/locations')
+    const getLocation = () => Axios.get('/equipment-list')
+    const getEquipments = () => {
+      const body = {
+        completed: this.statusBox || 'All',
+        locationId: this.assId || 'All',
+        equipmentId: this.equId || 'All',
+        equipmentName: this.equipmentModel || 'All',
+        locationName: this.locationModel || 'All'
+      }
+      Axios.post('/searchorders', body)
+    }
+
+    axios.all([getOrders(), getLocation(), getEquipments()]).then(
+      axios.spread(
+        ({ data: orders }, { data: location }, { data: equipments }) => {
+          this.data = orders
+          this.locations = location
+          this.equipments = equipments
+        }
+      )
+    )
   },
   methods: {
     handleSearch() {
-      this.getOrders()
+      this.getOrdersSearch()
     },
-    async getLocation() {
-      try {
-        const { data: location } = await Axios.get('/locations')
-        // console.log('locations fetched', location)
-        this.locations = location
-      } catch (error) {
-        console.error('Error in fetching locations', error)
-      }
-    },
-    async getEquipments() {
-      try {
-        const { data: equipment } = await Axios.get('/equipment-list')
-        // console.log('eequipmetns fetched', equipment)
-        this.equipments = equipment
-      } catch (error) {
-        console.error('Error in fetchi&& nullng equipments', error)
-      }
-    },
-    async getOrders() {
+
+    async getOrdersSearch() {
       try {
         const body = {
           completed: this.statusBox || 'All',
@@ -220,6 +222,7 @@ export default {
           equipmentName: this.equipmentModel || 'All',
           locationName: this.locationModel || 'All'
         }
+
         const { data: orders } = await Axios.post('/searchorders', body)
         this.data = orders
         console.log('orders fetched', orders)
