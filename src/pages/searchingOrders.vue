@@ -2,7 +2,7 @@
   <section class="searchingcontainer">
     <div class="heading">
       <h1>Assignment Collection</h1>
-      <p>{{equipmentModel}}</p>
+      <p>{{ equipmentModel }}</p>
     </div>
     <section class="searchFieldContainer">
       <section class="searchByquery">
@@ -38,7 +38,8 @@
                 v-for="location in locations"
                 :key="location._id"
                 :value="location.name"
-              >{{location.name}}</option>
+                >{{ location.name }}</option
+              >
             </select>
           </div>
           <div class="selectContainer">
@@ -49,7 +50,8 @@
                 v-for="equipment in equipments"
                 :key="equipment._id"
                 :value="equipment.name"
-              >{{equipment.name}}</option>
+                >{{ equipment.name }}</option
+              >
             </select>
           </div>
           <div class="selectContainer">
@@ -64,15 +66,33 @@
           <div class="radioBox">
             <div>
               <label for="status1">Pending</label>
-              <input v-model="statusBox" value="Pending" type="radio" name="status" id="status1" />
+              <input
+                v-model="statusBox"
+                value="Pending"
+                type="radio"
+                name="status"
+                id="status1"
+              />
             </div>
             <div>
               <label for="status2">Completed</label>
-              <input v-model="statusBox" value="Completed" type="radio" name="status" id="status2" />
+              <input
+                v-model="statusBox"
+                value="Completed"
+                type="radio"
+                name="status"
+                id="status2"
+              />
             </div>
             <div>
               <label for="status3">All</label>
-              <input v-model="statusBox" value type="radio" name="status" id="status3" />
+              <input
+                v-model="statusBox"
+                value
+                type="radio"
+                name="status"
+                id="status3"
+              />
             </div>
           </div>
         </div>
@@ -83,47 +103,49 @@
     </section>
 
     <div class="orderContainer">
-      <div v-for="(order,index) in data" :key="order._id">
-        <h3>Order : {{ index+1 }}</h3>
+      <div v-for="(order, index) in data" :key="order._id">
+        <h3>Order : {{ index + 1 }}</h3>
         <div class="order">
           <div class="flex">
             <div class="firstChild">
               Order No. :
-              <span>{{order.number}}</span>
+              <span>{{ order.number }}</span>
             </div>
             <div class="secondChild">
               Cycle :
-              <span>{{order.cycle}}</span>
+              <span>{{ order.cycle }}</span>
             </div>
           </div>
           <div>
             Equipment :
-            <span>{{order.equipment}}</span>
+            <span>{{ order.equipment }}</span>
           </div>
           <div>
             Description :
-            <span>{{order.task}}</span>
+            <span>{{ order.task }}</span>
           </div>
           <div>
             Status :
-            <span>{{order.completed}}</span>
+            <span>{{ order.completed }}</span>
           </div>
           <div>
             Location :
-            <span>{{order.location}}</span>
+            <span>{{ order.location }}</span>
           </div>
           <div class="flex">
             <div class="firstChild">
               Assigned on :
-              <span>{{order.assignedDate}}</span>
+              <span>{{ order.assignedDate }}</span>
             </div>
             <div class="secondChild">
               Deadline :
-              <span>{{order.deadlineDate}}</span>
+              <span>{{ order.deadlineDate }}</span>
             </div>
           </div>
           <div class="buttonContainer">
-            <router-link :to="`/complianceform/${order._id}`">Visit Compliance Form</router-link>
+            <router-link :to="`/complianceform/${order._id}`"
+              >Visit Compliance Form</router-link
+            >
           </div>
         </div>
       </div>
@@ -132,7 +154,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Axios from '@/methods/axiosInstance.js'
 
 export default {
   data() {
@@ -145,19 +167,21 @@ export default {
       equId: '',
       assId: '',
       date: '',
-      data:[ {
-        name: 'Anas',
-        id: '18COB037',
-        totalOrders: 2,
-        orderNo: '123jrhj4',
-        cycle: '3 Months',
-        equipmentId: '34hg56',
-        description: 'complete the task',
-        location: 'section 34, Plant 34',
-        status: 'Need replacement',
-        assignedDate: '13-Jun-2020',
-        deadlineDate: '12-July-2020'
-      }]
+      data: [
+        {
+          name: 'Anas',
+          id: '18COB037',
+          totalOrders: 2,
+          orderNo: '123jrhj4',
+          cycle: '3 Months',
+          equipmentId: '34hg56',
+          description: 'complete the task',
+          location: 'section 34, Plant 34',
+          status: 'Need replacement',
+          assignedDate: '13-Jun-2020',
+          deadlineDate: '12-July-2020'
+        }
+      ]
     }
   },
   mounted() {
@@ -171,12 +195,7 @@ export default {
     },
     async getLocation() {
       try {
-        const { data: location } = await axios.get(
-          `http://localhost:3000/locations`,
-          {
-            headers: { authorization: this.$cookies.get('token') }
-          }
-        )
+        const { data: location } = await Axios.get('/locations')
         // console.log('locations fetched', location)
         this.locations = location
       } catch (error) {
@@ -185,12 +204,7 @@ export default {
     },
     async getEquipments() {
       try {
-        const { data: equipment } = await axios.get(
-          `http://localhost:3000/equipment-list`,
-          {
-            headers: { authorization: this.$cookies.get('token') }
-          }
-        )
+        const { data: equipment } = await Axios.get('/equipment-list')
         // console.log('eequipmetns fetched', equipment)
         this.equipments = equipment
       } catch (error) {
@@ -206,13 +220,7 @@ export default {
           equipmentName: this.equipmentModel || 'All',
           locationName: this.locationModel || 'All'
         }
-        const { data: orders } = await axios.post(
-          `http://localhost:3000/searchorders`,
-          body,
-          {
-            headers: { authorization: this.$cookies.get('token') }
-          }
-        )
+        const { data: orders } = await Axios.post('/searchorders', body)
         this.data = orders
         console.log('orders fetched', orders)
       } catch (error) {
@@ -227,11 +235,11 @@ export default {
 .searchingcontainer {
   min-height: 90vh;
   padding: 8px;
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
-                       rgba(0, 0, 0, 0.5)),url('https://ikarosaviationtraining.com/wp-content/uploads/maintenance-2.jpg');
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-size:cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://ikarosaviationtraining.com/wp-content/uploads/maintenance-2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .heading h1 {
   font-size: 2rem;
@@ -239,18 +247,34 @@ export default {
   border-radius: 8px;
   color: #fff;
   text-shadow: -1px 1px 2px #3f4441;
-  background: #ED213A;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-opacity:0.9;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 0.9;
   padding: 8px 12px;
   text-align: center;
 }
 .searchFieldContainer {
   padding: 8px;
-  background: #4b6cb7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #4b6cb7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #182848,
+    #4b6cb7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #182848,
+    #4b6cb7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   margin: 10px;
   border-radius: 8px;
 }
@@ -320,10 +344,18 @@ background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, F
 }
 .orderContainer > div {
   padding: 8px;
-background: #2b5876;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-opacity:0.9;
+  background: #2b5876; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4e4376,
+    #2b5876
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4e4376,
+    #2b5876
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 0.9;
   margin: 10px 0;
   border-radius: 8px;
 }

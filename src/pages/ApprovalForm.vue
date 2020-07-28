@@ -133,7 +133,7 @@
               <b-container class="bv-example-row">
                 <div class="card-body">
                   <b-row>
-                    <b-col v-for="(image,index) in images" :key="index">
+                    <b-col v-for="(image, index) in images" :key="index">
                       <div class="card">
                         <img
                           class="card-img-top"
@@ -173,7 +173,6 @@
                         </div>
                       </div>
                     </b-col>
-                    
                   </b-row>
                 </div>
               </b-container>
@@ -262,8 +261,8 @@
 </template>
 
 <script>
-const axios = require('axios')
-
+import Axios from '@/methods/axiosInstance.js'
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -294,28 +293,29 @@ export default {
   async mounted() {
     try {
       //first get request to fetch order details
-      const {
-        data: orderData
-      } = await axios.get(
-        `http://localhost:3000/approval-form/${this.equipmentId}`,
-        { headers: { authorization: this.$cookies.get('token') } }
-      )
-      this.info = orderData
-      console.log('Order Data', orderData)
-      const { data: engiData } = await axios.get(
-        'http://localhost:3000/engineers',
-        {
-          headers: { authorization: this.$cookies.get('token') }
-        }
-      )
-      this.engineers = engiData
-      this.engineers.unshift({
-        engineerID: null,
-        name: 'Select the engineer',
-        disabled: true
-      })
+      const getorderData = () => Axios.get(`/approval-form/${this.equipmentId}`)
 
-      this.bufferToBase64(this.info.images)
+      const getengiData = () => Axios.get('/engineers')
+
+      axios.all([getorderData(), getengiData()]).then(
+        axios.spread(({ data: orderData }, { data: engiData }) => {
+
+          this.info = orderData
+          console.table(orderData)
+          
+          this.engineers = engiData
+          console.table(engiData)
+          
+          
+          this.engineers.unshift({
+            engineerID: null,
+            name: 'Select the engineer',
+            disabled: true
+          })
+          
+          this.bufferToBase64(this.info.images)
+        })
+      )
     } catch (error) {
       if (error.response && error.response.status === 401) {
         this.$router.push({ name: 'login' })

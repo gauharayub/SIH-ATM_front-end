@@ -3,7 +3,7 @@
     <div class="scrollBox">
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
-          <h5>{{element.heading}}</h5>
+          <h5>{{ element.heading }}</h5>
           <div class="hamButtons">
             <span></span>
             <span></span>
@@ -11,16 +11,25 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div v-if="element.orders.length === 0" class="card">No orders in {{element.heading}}</div>
-          <div class="card" v-else v-for="order in element.orders" :key="order._id">
+          <div v-if="element.orders.length === 0" class="card">
+            No orders in {{ element.heading }}
+          </div>
+          <div
+            class="card"
+            v-else
+            v-for="order in element.orders"
+            :key="order._id"
+          >
             <div>
-              <p>{{order.assignmentCode}}</p>
+              <p>{{ order.assignmentCode }}</p>
             </div>
             <div>
-              <p>{{order.work}}</p>
+              <p>{{ order.work }}</p>
             </div>
             <div class="linkContainer">
-              <router-link :to="returnLink(element.heading,order._id)">Check Details</router-link>
+              <router-link :to="returnLink(element.heading, order._id)"
+                >Check Details</router-link
+              >
             </div>
           </div>
         </div>
@@ -30,7 +39,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Axios from '@/methods/axiosInstance.js'
+
 export default {
   data() {
     return {
@@ -44,10 +54,8 @@ export default {
   },
   async mounted() {
     try {
-      console.log("Firing request for order from engineer dashboard")
-      const { data } = await axios.get(`http://localhost:3000/engineerOrders`, {
-        headers: { authorization: this.$cookies.get('token') }
-      })
+      console.log('Firing request for order from engineer dashboard')
+      const { data } = await Axios.get('/engineerOrders')
       console.log('this is data', data)
       this.totalElement = data
     } catch (error) {
@@ -61,33 +69,29 @@ export default {
     returnLink(heading, id) {
       if (heading === 'Todo' || heading === 'Assigned') {
         return `/engineertask`
-      }
-      else if( heading === 'Progress'){
-return `/complianceform/${id}`
-      }
-      else if(heading === 'Completed' || heading === 'Review'){
+      } else if (heading === 'Progress') {
+        return `/complianceform/${id}`
+      } else if (heading === 'Completed' || heading === 'Review') {
         return `/engineertask`
       }
-     
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.body{
-
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
-                       rgba(0, 0, 0, 0.5)),url('https://cdn.hipwallpaper.com/i/73/85/rlcHQp.jpg');
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-size:cover;
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://cdn.hipwallpaper.com/i/73/85/rlcHQp.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   padding: 60px 0;
-  font-family:'Roboto Slab';
-  font-size:13px;
+  font-family: 'Roboto Slab';
+  font-size: 13px;
   line-height: 1.8;
   color: black;
-  font-weight:400;
+  font-weight: 400;
 }
 .header {
   display: flex;
@@ -128,7 +132,7 @@ return `/complianceform/${id}`
     #64b3f4,
     #57d6dd
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  opacity:0.9;
+  opacity: 0.9;
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
@@ -147,7 +151,7 @@ return `/complianceform/${id}`
   margin: 12px 0;
 }
 .cardsContainer .card p {
-  color:#204051;
+  color: #204051;
   font-size: 13px;
   margin-bottom: 8px;
 }

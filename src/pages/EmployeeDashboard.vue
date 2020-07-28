@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Axios from '@/methods/axiosInstance.js'
 export default {
   data() {
     return {
@@ -48,9 +48,7 @@ export default {
   },
   async mounted() {
     try {
-      const { data } = await axios.get(`http://localhost:3000/employeeOrders`, {
-        headers: { authorization: this.$cookies.get('token') }
-      })
+      const { data } = await Axios.get('/employeeOrders')
       console.log('this is data', data)
       this.totalElement = data
     } catch (error) {
@@ -69,7 +67,7 @@ export default {
 .body{
 
   background-image:linear-gradient(rgba(0, 0, 0, 0.5),
-                       rgba(0, 0, 0, 0.5)),url('https://cdn.hipwallpaper.com/i/16/84/BCJGV9.jpg');
+                       rgba(0, 0, 0, 0.5));
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-size:cover;

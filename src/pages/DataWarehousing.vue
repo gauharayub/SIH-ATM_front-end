@@ -92,7 +92,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Axios from '@/methods/axiosInstance.js'
+
 export default {
   data() {
     return {
@@ -106,8 +107,7 @@ export default {
 
   async mounted() {
     try {
-      const { data } = await axios.get(`http://localhost:3000/equipment-list`, {
-        headers: { authorization: this.$cookies.get('token') } })
+      const { data } = await Axios.get('/equipment-list')
       this.equipments = data
       console.log("Data warehousing",data)
     } catch (error) {
