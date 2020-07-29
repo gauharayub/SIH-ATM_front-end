@@ -170,7 +170,7 @@ export default {
       image: []
     }
   },
-  async mounted() {
+  async created() {
     try {
       const { data } = await Axios().get(`/compliance/${this.$route.params.id}`)
       console.log(data)

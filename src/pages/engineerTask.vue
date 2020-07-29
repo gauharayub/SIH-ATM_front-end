@@ -25,11 +25,11 @@
         </section>
       </div>
       <section id="heading">
-        Assigned Orders : {{ data.orders.length }}
-        <span>{{ data.totalOrders }}</span>
+        Assigned Orders : {{ ordersData.orders.length }}
+        
       </section>
-      <div class="orderContainer">
-        <div v-for="(order, index) in data.orders" :key="index">
+      <div v-if="ordersData.orders" class="orderContainer">
+        <div  v-for="(order, index) in ordersData.orders" :key="index">
           <h3>Order : {{ index + 1 }}</h3>
           <div class="order">
             <div class="flex">
@@ -48,7 +48,7 @@
             </div>
             <div>
               Description :
-              <span>{{ order.tasklist[0] }}</span>
+              <span>{{ order.tasklist && order.tasklist[0] }}</span>
             </div>
             <div>
               Status :
@@ -61,11 +61,11 @@
             <div class="flex">
               <div class="firstChild">
                 Assigned on :
-                <span>{{ data.assignedDate }}</span>
+                <span>{{ ordersData.assignedDate }}</span>
               </div>
               <div class="secondChild">
                 Deadline :
-                <span>{{ data.deadlineDate }}</span>
+                <span>{{ ordersData.deadlineDate }}</span>
               </div>
             </div>
             <div class="buttonContainer">
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       engineer: {},
-      data: {
+      ordersData: {
         heading: '',
         orders: [
           {
@@ -105,7 +105,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.fetchData()
   },
   methods: {
@@ -114,9 +114,9 @@ export default {
         //make a request with authorization jwt header to fetch details from bak here
         const { data } = await Axios().get('/engineerOrders')
 
-        this.data = data[0]
+        this.ordersData = data[0]
         this.engineer = data[4]
-        console.log(data[0])
+        console.log("from engineer task",data[0],data[4])
       } catch (error) {
         if (error.response && error.response.status === 401) {
           this.$router.push({ name: 'login' })

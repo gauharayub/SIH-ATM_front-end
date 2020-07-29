@@ -65,12 +65,7 @@ import Axios from '@/methods/axiosInstance.js'
 export default {
   data() {
     return {
-      totalElement: [
-        {
-          heading: 'Todo',
-          orders: []
-        }
-      ]
+      totalElement: []
     }
   },
   async mounted() {
@@ -90,10 +85,7 @@ export default {
 
 <style lang="css" scoped>
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: hsl(20, 100%, 80%);
   padding: 60px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;

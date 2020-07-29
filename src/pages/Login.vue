@@ -113,12 +113,13 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+
 .loginWays {
   /* color:white !important; */
 }
 .body {
   position: relative;
-  background: url('/assets/images/bg.jpg') no-repeat center fixed;
+  background: url('/assets/images/airplane.jpeg') no-repeat center fixed;
   background-size: 100% 100%;
   overflow-y: auto;
   color: white;
@@ -145,7 +146,7 @@ export default {
 }
 .panel_blur,
 .panel {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: hsl(20, 100%, 76%);
   width: 60%;
   height: 100%;
   overflow-y: auto;
