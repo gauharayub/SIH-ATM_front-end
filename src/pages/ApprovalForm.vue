@@ -293,9 +293,9 @@ export default {
   async mounted() {
     try {
       //first get request to fetch order details
-      const getorderData = () => Axios.get(`/approval-form/${this.equipmentId}`)
+      const getorderData = () => Axios().get(`/approval-form/${this.equipmentId}`)
 
-      const getengiData = () => Axios.get('/engineers')
+      const getengiData = () => Axios().get('/engineers')
 
       axios.all([getorderData(), getengiData()]).then(
         axios.spread(({ data: orderData }, { data: engiData }) => {

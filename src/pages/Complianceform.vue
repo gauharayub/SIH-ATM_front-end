@@ -172,7 +172,7 @@ export default {
   },
   async mounted() {
     try {
-      const { data } = await Axios.get(`/compliance/${this.$route.params.id}`)
+      const { data } = await Axios().get(`/compliance/${this.$route.params.id}`)
       console.log(data)
       this.form = data
     } catch (error) {
@@ -209,7 +209,7 @@ export default {
       fd.append('comments', JSON.stringify(this.capturedComment))
       fd.append('taskListValue', JSON.stringify(this.TaskListValue))
 
-      Axios.post(`/submit-compliance/${this.$route.params.id}`, fd)
+      Axios().post(`/submit-compliance/${this.$route.params.id}`, fd)
         .then(res => {
           this.$router.push({ name: 'dashboard' })
         })

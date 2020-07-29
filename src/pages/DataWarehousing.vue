@@ -107,7 +107,7 @@ export default {
 
   async mounted() {
     try {
-      const { data } = await Axios.get('/equipment-list')
+      const { data } = await Axios().get('/equipment-list')
       this.equipments = data
       console.log("Data warehousing",data)
     } catch (error) {

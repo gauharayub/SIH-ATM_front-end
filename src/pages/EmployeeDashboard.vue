@@ -3,7 +3,7 @@
     <div class="scrollBox">
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
-          <h5>{{element.heading}}</h5>
+          <h5>{{ element.heading }}</h5>
           <div class="hamButtons">
             <span></span>
             <span></span>
@@ -11,20 +11,47 @@
           </div>
         </div>
         <div class="cardsContainer">
-          <div class="card" v-if="element.orders.length === 0">No Orders in {{element.heading}}</div>
-          <div class="card" v-else v-for="order in element.orders" :key="order._id">
+          <div class="card" v-if="element.orders.length === 0">
+            No Orders in {{ element.heading }}
+          </div>
+          <div
+            class="card"
+            v-else
+            v-for="order in element.orders"
+            :key="order._id"
+          >
             <div>
-              <p>{{order.assignmentCode}}</p>
+              <p>{{ order.assignmentCode }}</p>
             </div>
             <div>
-              <p>{{order.work}}</p>
+              <p>{{ order.work }}</p>
             </div>
             <div class="linkContainer">
-              <router-link v-if="element.heading === 'Todo'" :to="`/joblist/${order._id}`" >Assign</router-link>
-              <router-link v-else-if="element.heading ===  'Progress'" :to="`/approval/${order._id}`">Check</router-link>
-              <router-link v-else-if="element.heading === 'Assigned'" to="/searchingOrders" >Search</router-link>
-              <router-link v-else-if="element.heading ===  'Review'" :to="`/approval/${order._id}`">Approve</router-link>
-              <router-link v-else-if="element.heading ===  'Completed'" to="/searchingorders">Search</router-link>
+              <router-link
+                v-if="element.heading === 'Todo'"
+                :to="`/joblist/${order._id}`"
+                >Assign</router-link
+              >
+              <router-link
+                v-else-if="element.heading === 'Progress'"
+                :to="`/approval/${order._id}`"
+                >Check</router-link
+              >
+              <router-link
+                v-else-if="element.heading === 'Assigned'"
+                to="/searchingOrders"
+                >Search</router-link
+              >
+              <router-link
+                v-else-if="element.heading === 'Review'"
+                :to="`/approval/${order._id}`"
+                >Approve</router-link
+              >
+              <router-link
+                v-else-if="element.heading === 'Completed'"
+                to="/searchingorders"
+                >Search</router-link
+              >
             </div>
           </div>
         </div>
@@ -48,35 +75,31 @@ export default {
   },
   async mounted() {
     try {
-      const { data } = await Axios.get('/employeeOrders')
+      const { data } = await Axios().get('/employeeOrders')
       console.log('this is data', data)
       this.totalElement = data
     } catch (error) {
-      
-      if(error.response && error.response.status === 401){
+      if (error.response && error.response.status === 401) {
         this.$router.push({ name: 'login' })
       }
       console.log(error)
     }
-  },
- 
+  }
 }
 </script>
 
 <style lang="css" scoped>
-.body{
-
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5),
-                       rgba(0, 0, 0, 0.5));
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-size:cover;
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   padding: 60px 0;
-  font-family:'Roboto Slab';
-  font-size:13px;
+  font-family: 'Roboto Slab';
+  font-size: 13px;
   line-height: 1.8;
   color: black;
-  font-weight:400;
+  font-weight: 400;
 }
 
 .header {
@@ -118,7 +141,7 @@ export default {
   min-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  opacity:0.9;
+  opacity: 0.9;
 }
 .cardsContainer {
   padding: 8px;

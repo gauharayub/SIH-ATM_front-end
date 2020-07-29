@@ -187,9 +187,9 @@ export default {
   mounted() {
     try {
       console.log('request fired')
-      const getOrders = () => Axios.get('/get-orders')
-      const getLocation = () => Axios.get('/locations')
-      const getEquipments = () => Axios.get('/equipment-list')
+      const getOrders = () => Axios().get('/get-orders')
+      const getLocation = () => Axios().get('/locations')
+      const getEquipments = () => Axios().get('/equipment-list')
 
       axios
         .all([getOrders(), getLocation(), getEquipments()])
@@ -223,7 +223,7 @@ export default {
           locationName: this.locationModel || 'All'
         }
 
-        const { data: orders } = await Axios.post('/searchorders', body)
+        const { data: orders } = await Axios().post('/searchorders', body)
         this.orderData = orders
         console.log('orders fetched', orders)
       } catch (error) {

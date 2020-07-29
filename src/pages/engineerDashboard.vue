@@ -55,7 +55,7 @@ export default {
   async mounted() {
     try {
       console.log('Firing request for order from engineer dashboard')
-      const { data } = await Axios.get('/engineerOrders')
+      const { data } = await Axios().get('/engineerOrders')
       console.log('this is data', data)
       this.totalElement = data
     } catch (error) {

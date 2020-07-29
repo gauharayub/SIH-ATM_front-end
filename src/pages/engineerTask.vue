@@ -112,7 +112,7 @@ export default {
     async fetchData() {
       try {
         //make a request with authorization jwt header to fetch details from bak here
-        const { data } = await Axios.get('/engineerOrders')
+        const { data } = await Axios().get('/engineerOrders')
 
         this.data = data[0]
         this.engineer = data[4]
@@ -127,7 +127,7 @@ export default {
     async moveToProgress(event) {
       try {
         console.log('Press the button', event.target.value)
-        const response = await Axios.patch(`/toprogress/${event.target.value}`)
+        const response = await Axios().patch(`/toprogress/${event.target.value}`)
         if (response.status === 200) {
           console.log('Accepted order successfully')
           this.fetchData()

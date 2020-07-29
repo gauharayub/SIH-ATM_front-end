@@ -132,8 +132,8 @@ export default {
   },
   async mounted() {
     try {
-      const getOrder = () => Axios.get(`/order/${this.equipmentId}`)
-      const getEngineerList = () => Axios.get(`/engineers`)
+      const getOrder = () => Axios().get(`/order/${this.equipmentId}`)
+      const getEngineerList = () => Axios().get(`/engineers`)
 
       axios.all([getOrder(), getEngineerList()]).then(
         axios.spread(({ data: orderData }, { data: engiData }) => {
@@ -160,7 +160,7 @@ export default {
           additionalRemarks: this.remarks || 'No remarks'
         }
 
-        const response = await Axios.post('/submit-form', payLoad)
+        const response = await Axios().post('/submit-form', payLoad)
         if (response.status === 200) {
           this.$router.push({ name: 'joblist' })
         } else {

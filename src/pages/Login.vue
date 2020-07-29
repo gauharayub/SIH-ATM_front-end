@@ -80,7 +80,7 @@ export default {
   },
   mounted() {
     if (this.$cookies.isKey('token')) {
-      Axios.post('/verify')
+      Axios().post('/verify')
         .then(res => {
           if (res.status === 200) {
             this.$router.push({ name: 'dashboard' })
@@ -95,7 +95,7 @@ export default {
     // dashboard(){
     // this.$router.push({ path: '/dashboard' });
     loginMe() {
-      Axios.post('/login', {
+      Axios().post('/login', {
         email: this.name,
         password: this.password
       })

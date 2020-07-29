@@ -25,7 +25,7 @@ import Axios from '@/methods/axiosInstance.js'
 
 export default {
   mounted() {
-    Axios.get('/get-orders')
+    Axios().get('/get-orders')
       .then(response => (this.items = response.data))
       .catch(er => {
         console.log('Fetch Error:', er)
