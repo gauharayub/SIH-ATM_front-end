@@ -80,7 +80,7 @@ export default {
 .body {
   background-color: hsl(20, 100%, 80%);
 
-  padding: 60px 0;
+  padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
   line-height: 1.8;
@@ -119,7 +119,6 @@ export default {
   border-radius: 8px;
   padding: 8px;
   background-color: #42aacc;
-
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
