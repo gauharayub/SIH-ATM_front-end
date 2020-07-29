@@ -123,9 +123,19 @@ export default {
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
-  min-height: 80vh;
+  height: 80vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+.scrollBox > ::-webkit-scrollbar {
+  width: 5px !important;
+  display: block;
+}
+.scrollBox > ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.scrollBox > ::-webkit-scrollbar-thumb {
+  background-color: gold;
 }
 .cardsContainer {
   padding: 8px;

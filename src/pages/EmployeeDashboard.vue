@@ -86,12 +86,12 @@ export default {
 <style lang="css" scoped>
 .body {
   background-color: hsl(20, 100%, 80%);
-  padding: 60px 0;
+  padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
   line-height: 1.8;
   color: black;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .header {
@@ -123,6 +123,7 @@ export default {
 }
 
 .scrollBox > section {
+  height: 80vh;
   border-radius: 8px;
   padding: 8px;
   background-color: #42aacc;
@@ -130,17 +131,27 @@ export default {
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
-  min-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   opacity: 0.9;
 }
+.scrollBox > ::-webkit-scrollbar {
+  width:5px !important;
+  display: block;
+}
+.scrollBox > ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.scrollBox> ::-webkit-scrollbar-thumb {
+  background-color: gold;
+}
 .cardsContainer {
   padding: 8px;
   border-radius: 8px;
-  /* background-color: #84a9ac; */
+ 
 }
 .card {
+ 
   padding: 8px;
   color: #000;
   margin: 12px 0;
