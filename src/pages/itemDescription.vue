@@ -29,10 +29,7 @@
                     Equipment Code{{ info.equipmentCode }}
                   </p>
                   <p class="description value">
-                    Equipment Description {{ info.description }} The preferred
-                    choice of a vast range of acclaimed DJs. Punchy,
-                    bass-focused sound and high isolation. Sturdy headband and
-                    on-ear cushions suitable for live performance
+                    Equipment Description {{ info.description }} 
                   </p>
                   <p class="value" style="color:#8a1d07">
                     <b>Assignment Code</b><span class="pull-right">712832</span>
@@ -44,17 +41,17 @@
                   <b-button
                     class="btn-sm btn-info"
                     id="show-btn"
-                    @click="$bvModal.show('bv-modal-example')"
+                    @click="$bvModal.show('tasklistModal')"
                     >Show Task List</b-button
                   >
                   <b-button
                     class="btn-sm btn-success pull-right"
                     id="assign-btn"
-                    @click="$bvModal.show('bv-modal-assign')"
+                    @click="$bvModal.show('assignModal')"
                     >Assign To</b-button
                   >
 
-                  <b-modal id="bv-modal-example" hide-footer>
+                  <b-modal id="tasklistModal" hide-footer>
                     <template v-slot:modal-title>List of the tasks</template>
                     <div class="d-block" id="tasklistBlock">
                       <h3>Tasks</h3>
@@ -67,12 +64,12 @@
                     <b-button
                       class="mt-3"
                       block
-                      @click="$bvModal.hide('bv-modal-example')"
+                      @click="$bvModal.hide('tasklistModal')"
                       >Done</b-button
                     >
                   </b-modal>
 
-                  <b-modal id="bv-modal-assign" hide-footer>
+                  <b-modal id="assignModal" hide-footer>
                     <template class="header" v-slot:modal-title
                       >Assign To:</template
                     >
@@ -81,14 +78,14 @@
                       <b-form-select
                         name="engiSelect"
                         :options="engineers"
-                        option:selected="Select Engineer"
+                        option:selected="selected"
                         size="sm"
+                        v-model="selected"
                         class="mt-3"
                         value-field="engineerID"
                         text-field="name"
                       >
-                        <option value="Select Engineer"></option>
-                        <option value="engineerID"></option>
+                       
                       </b-form-select>
                       <b-form-textarea
                         class="comments"
@@ -101,7 +98,7 @@
                     <b-button
                       class="mt-3"
                       block
-                      @click="$bvModal.hide('bv-modal-example')"
+                      @click="assignEngineer"
                       >Assign</b-button
                     >
                   </b-modal>
@@ -153,15 +150,17 @@ export default {
   methods: {
     async assignEngineer() {
       try {
+        
         const payLoad = {
           equipmentCode: this.info.equipmentCode,
           orderId: this.equipmentId,
           engineerID: this.selected,
           additionalRemarks: this.remarks || 'No remarks'
         }
-
+console.log(payLoad)
         const response = await Axios().post('/submit-form', payLoad)
         if (response.status === 200) {
+          this.$bvModal.hide('assignModal')
           this.$router.push({ name: 'joblist' })
         } else {
           alert('Some Error Ocurred,Please submit again!')
@@ -180,11 +179,8 @@ export default {
 
 <style scoped>
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://www.vaughn.edu/wp-content/uploads/2019/05/Aviation-Maintenance.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: hsl(20, 100%, 80%);
+ 
   padding: 60px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;

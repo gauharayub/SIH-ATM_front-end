@@ -44,19 +44,16 @@ import Axios from '@/methods/axiosInstance.js'
 export default {
   data() {
     return {
-      totalElement: [
-        {
-          heading: 'Todo',
-          orders: []
-        }
-      ]
+      totalElement: []
     }
   },
   async mounted() {
     try {
       console.log('Firing request for order from engineer dashboard')
       const { data } = await Axios().get('/engineerOrders')
-      console.log('this is data', data)
+      console.log('engineer dashboard', data)
+      //removing engineer data from array
+      data.pop()
       this.totalElement = data
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -67,12 +64,12 @@ export default {
   },
   methods: {
     returnLink(heading, id) {
-      if (heading === 'Todo' || heading === 'Assigned') {
+      if (heading === 'Assigned') {
         return `/engineertask`
       } else if (heading === 'Progress') {
         return `/complianceform/${id}`
       } else if (heading === 'Completed' || heading === 'Review') {
-        return `/engineertask`
+        return `/approval/${id}`
       }
     }
   }
@@ -81,12 +78,9 @@ export default {
 
 <style lang="css" scoped>
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://cdn.hipwallpaper.com/i/73/85/rlcHQp.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 60px 0;
+  background-color: hsl(20, 100%, 80%);
+
+  padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
   line-height: 1.8;
@@ -124,21 +118,23 @@ export default {
 .scrollBox > section {
   border-radius: 8px;
   padding: 8px;
-  /*background-color: #42aacc;*/
-  background: #c2e59c; /* fallback for old browsers */
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #64b3f4,
-    #57d6dd
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  opacity: 0.9;
+  background-color: #42aacc;
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
-  min-height: 80vh;
+  height: 80vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+.scrollBox > ::-webkit-scrollbar {
+  width: 5px !important;
+  display: block;
+}
+.scrollBox > ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.scrollBox > ::-webkit-scrollbar-thumb {
+  background-color: gold;
 }
 .cardsContainer {
   padding: 8px;
