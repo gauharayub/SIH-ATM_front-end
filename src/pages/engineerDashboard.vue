@@ -1,5 +1,6 @@
 <template>
   <div class="employeeContainer body">
+   
     <div class="scrollBox">
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
@@ -40,7 +41,6 @@
 
 <script>
 import Axios from '@/methods/axiosInstance.js'
-
 export default {
   data() {
     return {
@@ -79,7 +79,6 @@ export default {
 <style lang="css" scoped>
 .body {
   background-color: hsl(20, 100%, 80%);
-
   padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
