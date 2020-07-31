@@ -1,8 +1,8 @@
 <template>
-  <md-toolbar md-elevation="0" class="md-transparent">
+  <md-toolbar md-elevation="0" class="md-transparent" style="background-color:#0d1b2a !important;">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
-        <h3 class="md-title">
+        <h3 class="md-title" style="color:white !important;">
         <span class="icon mr-1" v-if="this.$route.name=='dashboard' || this.$route.name=='EmployeeDashboard'"><img src="https://img.icons8.com/color/48/000000/hard-working.png"/></span>
         <span class="icon mr-2" v-else-if="this.$route.name=='joblist'"><img style="height:2em" src="https://img.icons8.com/color/48/000000/tasklist.png"/> </span>        
         <span class="icon mr-1" v-else-if="this.$route.name=='Item description'"><img src="https://img.icons8.com/color/48/000000/add-property-1.png"/></span>        
@@ -34,7 +34,7 @@
           </div>
           <md-list>
             <md-list-item href="/">
-              <i class="material-icons">dashboard</i>
+              <i class="material-icons" style="color:white !important;">dashboard</i>
               <p class="hidden-lg hidden-md">Dashboard</p>
             </md-list-item>
 
@@ -133,6 +133,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 .md-title{
   text-transform: capitalize;
 }

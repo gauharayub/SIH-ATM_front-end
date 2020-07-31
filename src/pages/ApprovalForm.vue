@@ -320,11 +320,8 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('https://cdn2.hubspot.net/hubfs/3795684/Satair2018/Content%20dec%202018/ten%20risk%20in%20avaiation%201.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color:#0d1b2a;
+  background-size:cover;
   padding: 60px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
@@ -381,11 +378,12 @@ h6 {
 }
 .approval {
   margin-top: 2rem;
-  background-image: linear-gradient(rgba(0, 0, 50, 0.5), rgba(0, 0, 0, 0.1));
+  background-color:#c6dabf;
   font-size: 14px;
 }
 .justification {
-  background-image: linear-gradient(rgba(50, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  background-color:#778da9;
+  color:white !important;
 }
 .content {
   margin-bottom: 0px;

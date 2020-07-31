@@ -78,7 +78,7 @@ export default {
 
 <style lang="css" scoped>
 .body {
-  background-color: hsl(20, 100%, 80%);
+  background-color: #e0e1dd;
   padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
@@ -117,7 +117,7 @@ export default {
 .scrollBox > section {
   border-radius: 8px;
   padding: 8px;
-  background-color: #42aacc;
+  background-color: #0d1b2a;
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;

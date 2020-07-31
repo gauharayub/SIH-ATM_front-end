@@ -7,13 +7,13 @@
             <div>
               <h5>
                 Name :
-                <span>{{ engineer.name }}</span>
+                <span style="color:#e0e1dd">{{ engineer.name }}</span>
               </h5>
             </div>
             <div>
               <h5>
                 Id :
-                <span>{{ engineer.engineerID }}</span>
+                <span style="color:#e0e1dd">{{ engineer.engineerID }}</span>
               </h5>
             </div>
           </div>
@@ -144,21 +144,19 @@ export default {
 #container {
   padding: 12px;
   min-height: 75vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://www.lufthansa-technik.com/documents/5875801/6266982/Digtal+on+air+1920x1080/efed82f2-4f47-4000-9be0-e092d8b377c8?t=1578320594487');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color:#e0e1dd;
 }
 .profile {
-  background-color: white;
+  background-color: #0d1b2a;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 8px 20px;
-  opacity: 0.9;
+}
+h5{
+  color:white;
 }
 #heading {
   font-size: 1.4rem;
@@ -166,8 +164,8 @@ export default {
   color: white;
   border-radius: 4px;
   padding: 12px 20px;
-  background-color: #e8505b;
-  opacity: 0.95;
+  background-color: #ff0054;
+  opacity: 0.9;
 }
 .userImage img {
   height: 150px;
@@ -177,12 +175,12 @@ export default {
   padding: 12px 20px;
 }
 .orderContainer h3 {
-  color: white;
+  color: #1b263b;
 }
 .order {
   margin: 20px 0;
   padding: 16px;
-  background-color: white;
+  background-color: #778da9;
   border-radius: 8px;
   box-shadow: 0 0 4px -2px black;
   opacity: 0.9;

@@ -117,7 +117,7 @@ export default {
 
 <style lang="css" scoped>
 .body {
-  background-color: hsl(20, 100%, 80%);
+  background-color: #e0e1dd;
   padding: 10px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
@@ -170,14 +170,13 @@ export default {
   height: 80vh;
   border-radius: 8px;
   padding: 8px;
-  background-color: #42aacc;
+  background-color: #0d1b2a;
   background-image: url('/src/assets/img/arabica-890.svg');
   color: #fff;
   margin: 20px 0px 20px 20px;
   min-width: 300px;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  opacity: 0.9;
 }
 .scrollBox > ::-webkit-scrollbar {
   width: 5px !important;
