@@ -1,19 +1,65 @@
 <template>
-  <md-toolbar md-elevation="0" class="md-transparent" style="background-color:#0d1b2a !important;">
+  <Loader :background="true" v-if="loading" />
+  <md-toolbar
+    v-else
+    md-elevation="0"
+    class="md-transparent"
+    style="background-color:#0d1b2a !important;"
+  >
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
         <h3 class="md-title" style="color:white !important;">
-        <span class="icon mr-1" v-if="this.$route.name=='dashboard' || this.$route.name=='EmployeeDashboard'"><img src="https://img.icons8.com/color/48/000000/hard-working.png"/></span>
-        <span class="icon mr-2" v-else-if="this.$route.name=='joblist'"><img style="height:2em" src="https://img.icons8.com/color/48/000000/tasklist.png"/> </span>        
-        <span class="icon mr-1" v-else-if="this.$route.name=='Item description'"><img src="https://img.icons8.com/color/48/000000/add-property-1.png"/></span>        
-        <span class="icon mr-1" v-else-if="this.$route.name=='Compliance Form'"> <img src="https://img.icons8.com/color/48/000000/inspection.png"/> </span>
-        <span class="icon mr-1" v-else-if="this.$route.name=='approval'"><img src="https://img.icons8.com/color/48/000000/test-partial-passed.png"/></span>
-        <span class="icon mr-1" v-else-if="this.$route.name=='engineerDashboard'"><img src="https://img.icons8.com/color/48/000000/engineer.png"/></span>
-        <span class="icon mr-2" v-else-if="this.$route.name=='DataWarehousing'"><img src="https://img.icons8.com/color/48/000000/garage-closed.png"/></span>
-        <span class="icon mr-2" v-else-if="this.$route.name=='engineertask'"><img src="https://img.icons8.com/color/48/000000/maintenance.png"/></span>
-        <span class="icon mr-1" v-else-if="this.$route.name=='searchingOrders'"><img src="https://img.icons8.com/color/48/000000/search.png"/></span>
+          <span
+            class="icon mr-1"
+            v-if="
+              this.$route.name == 'dashboard' ||
+                this.$route.name == 'EmployeeDashboard'
+            "
+            ><img src="https://img.icons8.com/color/48/000000/hard-working.png"
+          /></span>
+          <span class="icon mr-2" v-else-if="this.$route.name == 'joblist'"
+            ><img
+              style="height:2em"
+              src="https://img.icons8.com/color/48/000000/tasklist.png"
+            />
+          </span>
+          <span
+            class="icon mr-1"
+            v-else-if="this.$route.name == 'Item description'"
+            ><img
+              src="https://img.icons8.com/color/48/000000/add-property-1.png"
+          /></span>
+          <span
+            class="icon mr-1"
+            v-else-if="this.$route.name == 'Compliance Form'"
+          >
+            <img src="https://img.icons8.com/color/48/000000/inspection.png" />
+          </span>
+          <span class="icon mr-1" v-else-if="this.$route.name == 'approval'"
+            ><img
+              src="https://img.icons8.com/color/48/000000/test-partial-passed.png"
+          /></span>
+          <span
+            class="icon mr-1"
+            v-else-if="this.$route.name == 'engineerDashboard'"
+            ><img src="https://img.icons8.com/color/48/000000/engineer.png"
+          /></span>
+          <span
+            class="icon mr-2"
+            v-else-if="this.$route.name == 'DataWarehousing'"
+            ><img src="https://img.icons8.com/color/48/000000/garage-closed.png"
+          /></span>
+          <span class="icon mr-2" v-else-if="this.$route.name == 'engineertask'"
+            ><img src="https://img.icons8.com/color/48/000000/maintenance.png"
+          /></span>
+          <span
+            class="icon mr-1"
+            v-else-if="this.$route.name == 'searchingOrders'"
+            ><img src="https://img.icons8.com/color/48/000000/search.png"
+          /></span>
 
-         {{ $route.name }}</h3>
+          {{ $route.name }}
+        </h3>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -28,13 +74,19 @@
 
         <div class="md-collapse">
           <div class="md-autocomplete">
-            <md-autocomplete class="search" v-model="selectedEmployee" :md-options="employees">
+            <md-autocomplete
+              class="search"
+              v-model="selectedEmployee"
+              :md-options="employees"
+            >
               <label>Search...</label>
             </md-autocomplete>
           </div>
           <md-list>
             <md-list-item href="/">
-              <i class="material-icons" style="color:white !important;">dashboard</i>
+              <i class="material-icons" style="color:white !important;"
+                >dashboard</i
+              >
               <p class="hidden-lg hidden-md">Dashboard</p>
             </md-list-item>
 
@@ -103,10 +155,15 @@
 </template>
 
 <script>
+import Axios from '@/methods/axiosInstance.js'
+
+import Loader from '@/pages/Layout/Loader'
+
 export default {
   data() {
     return {
       selectedEmployee: null,
+      loading: false,
       employees: [
         'Jim Halpert',
         'Dwight Schrute',
@@ -119,28 +176,40 @@ export default {
       ]
     }
   },
+  components: {
+    Loader
+  },
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
     },
-    logout(){
-      console.log("logged-out");
-      this.$cookies.remove('token');
-      this.$router.push({name:'login'})
+    async logout() {
+      try {
+        this.loading = true
+        const res = await Axios().post('/logout')
+        if (res.status === 200) {
+          console.log('logged-out')
+          this.$cookies.remove('token')
+          this.$router.push({ name: 'login' })
+        }
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        console.log(error)
+      }
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-
-.md-title{
+.md-title {
   text-transform: capitalize;
 }
-#profile{
+#profile {
   padding: 12px 8px;
 }
-#profile .material-icons{
+#profile .material-icons {
   color: seagreen;
 }
 </style>
