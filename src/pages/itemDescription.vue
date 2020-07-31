@@ -31,7 +31,7 @@
                     >Equipment Id {{ info.equipmentId }}</span
                   >
                   <h1 class="value">
-                    Equipment Name {{ info.assignmentNumber }}
+                    Equipment Name {{ info.equipmentName.slice(0,20) }}
                   </h1>
                   <p class="blockquote-footer value" style="#417500">
                     Equipment Code{{ info.equipmentCode }}
@@ -40,11 +40,11 @@
                     Equipment Description {{ info.description }}
                   </p>
                   <p class="value" style="color:#8a1d07">
-                    <b>Assignment Code</b><span class="pull-right">712832</span>
+                    <b>Assignment Code</b><span class="pull-right">{{info.equipmentCode}}</span>
                   </p>
                   <p class="value" style="color:#7a0043">
                     <b>Location</b
-                    ><span class="pull-right">Ljkalsjoiawkljaoiwe</span>
+                    ><span class="pull-right">{{info.location}}</span>
                   </p>
                   <b-button
                     class="btn-sm btn-info"
