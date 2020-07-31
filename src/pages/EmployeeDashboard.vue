@@ -1,9 +1,28 @@
 <template>
   <div class="employeeContainer body">
     <div class="scrollBox">
+      <div v-if="totalElement.length === 0">No Orders</div>
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
           <h5>{{ element.heading }}</h5>
+          <div v-if="element.heading === 'Todo'" class="selectTheTime">
+            <div>
+              <select
+                @change="changeOrders"
+                v-model="orderByTime"
+                name="orders"
+                id="OrderByTime"
+              >
+                <option value="" disabled>select Time</option>
+                <option value="daily">daily</option>
+                <option value="weekly">weekly</option>
+
+                <option value="monthly">monthly</option>
+
+                <option value="six-monthly">six-monthly</option>
+              </select>
+            </div>
+          </div>
           <div class="hamButtons">
             <span></span>
             <span></span>
@@ -14,44 +33,42 @@
           <div class="card" v-if="element.orders.length === 0">
             No Orders in {{ element.heading }}
           </div>
-          <div
-            class="card"
-            v-else
-            v-for="order in element.orders"
-            :key="order._id"
-          >
-            <div>
-              <p>{{ order.assignmentCode }}</p>
-            </div>
-            <div>
-              <p>{{ order.work }}</p>
-            </div>
-            <div class="linkContainer">
-              <router-link
-                v-if="element.heading === 'Todo'"
-                :to="`/joblist/${order._id}`"
-                >Assign</router-link
-              >
-              <router-link
-                v-else-if="element.heading === 'Progress'"
-                :to="`/approval/${order._id}`"
-                >Check</router-link
-              >
-              <router-link
-                v-else-if="element.heading === 'Assigned'"
-                to="/searchingOrders"
-                >Search</router-link
-              >
-              <router-link
-                v-else-if="element.heading === 'Review'"
-                :to="`/approval/${order._id}`"
-                >Approve</router-link
-              >
-              <router-link
-                v-else-if="element.heading === 'Completed'"
-                to="/searchingorders"
-                >Search</router-link
-              >
+          <div v-else><p class="totalText">Total Orders : {{ element.orders.length }}</p></div>
+          <div v-if="element.orders.length !== 0">
+            <div class="card" v-for="order in element.orders" :key="order._id">
+              <div>
+                <p>{{ order.assignmentCode }}</p>
+              </div>
+              <div>
+                <p>{{ order.work }}</p>
+              </div>
+              <div class="linkContainer">
+                <router-link
+                  v-if="element.heading === 'Todo'"
+                  :to="`/joblist/${order._id}`"
+                  >Assign</router-link
+                >
+                <router-link
+                  v-else-if="element.heading === 'Progress'"
+                  :to="`/approval/${order._id}`"
+                  >Check</router-link
+                >
+                <router-link
+                  v-else-if="element.heading === 'Assigned'"
+                  to="/searchingOrders"
+                  >Search</router-link
+                >
+                <router-link
+                  v-else-if="element.heading === 'Review'"
+                  :to="`/approval/${order._id}`"
+                  >Approve</router-link
+                >
+                <router-link
+                  v-else-if="element.heading === 'Completed'"
+                  to="/searchingorders"
+                  >Search</router-link
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -65,7 +82,22 @@ import Axios from '@/methods/axiosInstance.js'
 export default {
   data() {
     return {
-      totalElement: []
+      totalElement: [],
+      orderByTime: ''
+    }
+  },
+  methods: {
+    async changeOrders() {
+      try {
+        const { data } = await Axios().get(`/orders/${this.orderByTime}`)
+        console.log(`orders change,${this.orderByTime}`, data)
+        this.totalElement[0].orders = data
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          this.$router.push({ name: 'login' })
+        }
+        console.log(error)
+      }
     }
   },
   async mounted() {
@@ -98,6 +130,14 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+#OrderByTime {
+  padding: 4px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  background-color: white;
+}
 .hamButtons {
   cursor: pointer;
   display: flex;
@@ -117,7 +157,11 @@ export default {
   background-color: #204051;
   */
 }
-
+.totalText{
+  font-size: 15px;
+  color:white;
+  font-weight: 600;
+}
 .scrollBox {
   display: inline-flex;
 }
@@ -136,22 +180,20 @@ export default {
   opacity: 0.9;
 }
 .scrollBox > ::-webkit-scrollbar {
-  width:5px !important;
+  width: 5px !important;
   display: block;
 }
 .scrollBox > ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-.scrollBox> ::-webkit-scrollbar-thumb {
+.scrollBox > ::-webkit-scrollbar-thumb {
   background-color: gold;
 }
 .cardsContainer {
   padding: 8px;
   border-radius: 8px;
- 
 }
 .card {
- 
   padding: 8px;
   color: #000;
   margin: 12px 0;
