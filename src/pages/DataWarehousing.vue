@@ -108,7 +108,7 @@ export default {
     return {
       equipments: [],
       searchQuery: '',
-      search: '',
+      search: 'All',
       searchNumber: '',
       numResults: '',
       loading: true
@@ -142,7 +142,7 @@ export default {
 
 <style lang="css">
 .wareContainer {
-  background-color:#e0e1dd;
+  background-color: #e0e1dd;
   padding: 8px;
   min-height: 100vh;
 }
@@ -154,15 +154,15 @@ export default {
   border-radius: 8px;
 }
 #searchingBox {
-  background: #0d1b2a;  /* fallback for old browsers */
-
+  background: #0d1b2a; /* fallback for old browsers */
+  padding-bottom: 24px;
 }
 #queryContainer {
-  padding: 8px;
+  padding: 16px 8px;
   border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
-  background: white;
+  background-color: #ddd;
   justify-content: space-evenly;
 }
 #queryContainer > div {
@@ -181,11 +181,11 @@ export default {
 }
 .firstSearch input,
 .secondSearch input {
-  border-bottom: 1px solid;
+  border: 1px solid;
   width: 60%;
   min-width: 200px;
   margin: 10px 0;
-  padding: 4px 8px;
+  padding: 8px 8px;
   border-radius: 8px;
   color: black;
   transition: all 0.3s ease;
@@ -204,20 +204,21 @@ export default {
 #resultParameter {
   display: flex;
   flex-wrap: wrap;
+  padding: 16px 8px;
   justify-content: space-between;
-  background: #415a77;  /* fallback for old browsers */
-
+  background: #415a77; /* fallback for old browsers */
+  margin: 32px 10px;
 }
 #resultParameter > div {
-  padding: 4px 8px;
+  padding: 8px;
   flex-basis: 45%;
   border-radius: 8px;
   min-height: 30px;
-  background-color: white;
+  color: white;
+  font-weight: bold;
 }
 #OrderContainer {
-  background: #1b263b;  /* fallback for old browsers */
-
+  background: #1b263b; /* fallback for old browsers */
 }
 #OrderContainer h2 {
   color: #fff;
@@ -227,12 +228,20 @@ export default {
   margin: 18px;
   border-radius: 8px;
   padding: 8px 0;
-  background-color: white;
+  min-height: 200px;
+  background-color: #ddd;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.dataContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  min-height: 250px;
+}
 .OrderCard p {
+  font-size: 16px;
   font-weight: 600;
   color: black;
 }
