@@ -94,6 +94,7 @@ export default {
           this.loading = false
           this.$router.push({ name: 'dashboard' })
         }
+        this.loading = false
       }
     } catch (error) {
       console.log(error)
@@ -117,6 +118,8 @@ export default {
           this.loading = false
           this.$router.push({ name: 'dashboard' })
         }
+          this.loading = false
+
       } catch (error) {
         console.log(error)
         this.loading = false
