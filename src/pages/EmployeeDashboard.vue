@@ -1,5 +1,7 @@
 <template>
-  <div class="employeeContainer body">
+  <Loader v-if="loading" />
+
+  <div v-else class="employeeContainer body">
     <div class="scrollBox">
       <div v-if="totalElement.length === 0">No Orders</div>
       <section v-for="element in totalElement" :key="element.heading">
@@ -33,7 +35,9 @@
           <div class="card" v-if="element.orders.length === 0">
             No Orders in {{ element.heading }}
           </div>
-          <div v-else><p class="totalText">Total Orders : {{ element.orders.length }}</p></div>
+          <div v-else>
+            <p class="totalText">Total Orders : {{ element.orders.length }}</p>
+          </div>
           <div v-if="element.orders.length !== 0">
             <div class="card" v-for="order in element.orders" :key="order._id">
               <div>
@@ -78,21 +82,30 @@
 </template>
 
 <script>
+import Loader from '@/pages/Layout/Loader'
 import Axios from '@/methods/axiosInstance.js'
 export default {
   data() {
     return {
       totalElement: [],
-      orderByTime: ''
+      orderByTime: '',
+      loading: true
     }
+  },
+  components: {
+    Loader
   },
   methods: {
     async changeOrders() {
       try {
+        this.loading = true
         const { data } = await Axios().get(`/orders/${this.orderByTime}`)
         console.log(`orders change,${this.orderByTime}`, data)
         this.totalElement[0].orders = data
+        this.loading = false
       } catch (error) {
+        this.loading = false
+
         if (error.response && error.response.status === 401) {
           this.$router.push({ name: 'login' })
         }
@@ -102,10 +115,14 @@ export default {
   },
   async mounted() {
     try {
+
       const { data } = await Axios().get('/employeeOrders')
       console.log('this is data', data)
       this.totalElement = data
+      this.loading = false
     } catch (error) {
+      this.loading = false
+
       if (error.response && error.response.status === 401) {
         this.$router.push({ name: 'login' })
       }
@@ -157,9 +174,9 @@ export default {
   background-color: #204051;
   */
 }
-.totalText{
+.totalText {
   font-size: 15px;
-  color:white;
+  color: white;
   font-weight: 600;
 }
 .scrollBox {
