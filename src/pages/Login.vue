@@ -87,15 +87,14 @@ export default {
   async mounted() {
     try {
       if (this.$cookies.isKey('token')) {
-        
         const res = await Axios().post('/verify')
 
         if (res.status === 200) {
           this.loading = false
           this.$router.push({ name: 'dashboard' })
         }
-        this.loading = false
       }
+      this.loading = false
     } catch (error) {
       console.log(error)
       this.loading = false
@@ -118,8 +117,7 @@ export default {
           this.loading = false
           this.$router.push({ name: 'dashboard' })
         }
-          this.loading = false
-
+        this.loading = false
       } catch (error) {
         console.log(error)
         this.loading = false
