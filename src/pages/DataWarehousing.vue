@@ -53,7 +53,7 @@
         <section class="OrderCard">
           <div class="imageContainer">
             <img
-              :src="require('@/assets/img/new_logo.png')"
+              :src="require('@/assets/img/controller.jpeg')"
               alt="Engineer who completed this task"
             />
           </div>
@@ -250,16 +250,20 @@ export default {
   color: rgb(34, 34, 34);
 }
 .imageContainer {
-  flex-basis: 10%;
+  padding:10px;
+  padding-right:15px;
+  flex-basis: 20%;
   min-width: 100px;
-  max-width: 200px;
+  max-width: 400px;
 }
 .imageContainer img {
   width: 100%;
-  height: 100%;
+  height:60% !important;
+  border-radius:10px;
+  margin-top:25%;
 }
 .dataContainer {
-  flex-basis: 85%;
+  flex-basis: 80%;
 }
 .MakeFlex {
   display: flex;
