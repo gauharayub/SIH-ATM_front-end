@@ -30,8 +30,10 @@
                   <span class="value eid"
                     >Equipment Id {{ info.equipmentId }}</span
                   >
+
                   <h1 class="value">
                     Equipment Name {{ info.equipmentName.slice(0,20) }}
+
                   </h1>
                   <p class="blockquote-footer value" style="#417500">
                     Equipment Code{{ info.equipmentCode }}
@@ -39,10 +41,12 @@
                   <p class="description value">
                     Equipment Description {{ info.description }}
                   </p>
+
                   <p class="value" style="color:#8a1d07">
                     <b>Assignment Code</b><span class="pull-right">{{info.equipmentCode}}</span>
+
                   </p>
-                  <p class="value" style="color:#7a0043">
+                  <p class="value" style="color:#ff5400">
                     <b>Location</b
                     ><span class="pull-right">{{info.location}}</span>
                   </p>
@@ -194,8 +198,8 @@ export default {
 
 <style scoped>
 .body {
-  background-color: hsl(20, 100%, 80%);
-
+  background-color:#e0e1dd;
+ 
   padding: 60px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;
@@ -217,7 +221,7 @@ export default {
   margin: 0;
   padding: 0;
   font-weight: bold;
-  color: #222;
+  color: #e0e1dd;
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
   margin-bottom: 30px;
@@ -250,7 +254,7 @@ p {
 }
 
 #main-box {
-  background-color: white;
+  background-color: #0d1b2a;
   padding: 30px 40px 50px 40px;
   border-radius: 10px;
   opacity: 0.97;
@@ -275,7 +279,7 @@ p {
 }
 .item-description .eid {
   font-size: 12px;
-  color: #358ed7;
+  color: #778da9;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;

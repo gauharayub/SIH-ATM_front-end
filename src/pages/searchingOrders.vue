@@ -254,11 +254,7 @@ export default {
 .searchingcontainer {
   min-height: 90vh;
   padding: 8px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://ikarosaviationtraining.com/wp-content/uploads/maintenance-2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color:#e0e1dd;
 }
 .heading h1 {
   font-size: 2rem;
@@ -266,34 +262,14 @@ export default {
   border-radius: 8px;
   color: #fff;
   text-shadow: -1px 1px 2px #3f4441;
-  background: #ed213a; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #93291e,
-    #ed213a
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #93291e,
-    #ed213a
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color:#ff0054;
   opacity: 0.9;
   padding: 8px 12px;
   text-align: center;
 }
 .searchFieldContainer {
   padding: 8px;
-  background: #4b6cb7; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #182848,
-    #4b6cb7
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #182848,
-    #4b6cb7
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color:#0d1b2a;
   margin: 10px;
   border-radius: 8px;
 }
@@ -363,17 +339,7 @@ export default {
 }
 .orderContainer > div {
   padding: 8px;
-  background: #2b5876; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #4e4376,
-    #2b5876
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #4e4376,
-    #2b5876
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color:#1b263b;
   opacity: 0.9;
   margin: 10px 0;
   border-radius: 8px;

@@ -135,13 +135,6 @@
                 >
                 <b-button class="btn-danger" type="reset">Reset</b-button>
               </div>
-
-              <div class="pull-right">
-                <b-button class="mr-1" type="submit" id="submit"
-                  >Submit</b-button
-                >
-                <b-button type="reset">Reset</b-button>
-              </div>
             </div>
 
             <!-- for files -->
@@ -260,11 +253,7 @@ export default {
   margin: 0 20px;
 }
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://cdn.hipwallpaper.com/i/57/62/u2yVFf.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color:#0d1b2a;
   padding: 60px 0;
   font-family: 'Roboto Slab';
   font-size: 13px;

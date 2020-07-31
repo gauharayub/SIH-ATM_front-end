@@ -142,6 +142,7 @@ export default {
 
 <style lang="css">
 .wareContainer {
+  background-color:#e0e1dd;
   padding: 8px;
   min-height: 100vh;
 }
@@ -153,7 +154,8 @@ export default {
   border-radius: 8px;
 }
 #searchingBox {
-  background: #0f0c29; /* fallback for old browsers */
+  background: #0d1b2a;  /* fallback for old browsers */
+
 }
 #queryContainer {
   padding: 8px;
@@ -203,7 +205,8 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: #4b6cb7; /* fallback for old browsers */
+  background: #415a77;  /* fallback for old browsers */
+
 }
 #resultParameter > div {
   padding: 4px 8px;
@@ -213,7 +216,8 @@ export default {
   background-color: white;
 }
 #OrderContainer {
-  background: #2b5876; /* fallback for old browsers */
+  background: #1b263b;  /* fallback for old browsers */
+
 }
 #OrderContainer h2 {
   color: #fff;
