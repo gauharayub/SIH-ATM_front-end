@@ -38,40 +38,48 @@
           <div v-else>
             <p class="totalText">Total Orders : {{ element.orders.length }}</p>
           </div>
-          <div v-if="element.orders.length !== 0">
-            <div class="card" v-for="order in element.orders" :key="order._id">
-              <div>
-                <p>{{ order.assignmentCode }}</p>
-              </div>
-              <div>
-                <p>{{ order.work }}</p>
-              </div>
-              <div class="linkContainer">
-                <router-link
-                  v-if="element.heading === 'Todo'"
-                  :to="`/joblist/${order._id}`"
-                  >Assign</router-link
-                >
-                <router-link
-                  v-else-if="element.heading === 'Progress'"
-                  :to="`/approval/${order._id}`"
-                  >Check</router-link
-                >
-                <router-link
-                  v-else-if="element.heading === 'Assigned'"
-                  to="/searchingOrders"
-                  >Search</router-link
-                >
-                <router-link
-                  v-else-if="element.heading === 'Review'"
-                  :to="`/approval/${order._id}`"
-                  >Approve</router-link
-                >
-                <router-link
-                  v-else-if="element.heading === 'Completed'"
-                  to="/searchingorders"
-                  >Search</router-link
-                >
+
+          <Loader v-if="element.heading === 'Todo' && loadingS" />
+          <div v-else>
+            <div v-if="element.orders.length !== 0">
+              <div
+                class="card"
+                v-for="order in element.orders"
+                :key="order._id"
+              >
+                <div>
+                  <p>{{ order.assignmentCode }}</p>
+                </div>
+                <div>
+                  <p>{{ order.work }}</p>
+                </div>
+                <div class="linkContainer">
+                  <router-link
+                    v-if="element.heading === 'Todo'"
+                    :to="`/joblist/${order._id}`"
+                    >Assign</router-link
+                  >
+                  <router-link
+                    v-else-if="element.heading === 'Progress'"
+                    :to="`/approval/${order._id}`"
+                    >Check</router-link
+                  >
+                  <router-link
+                    v-else-if="element.heading === 'Assigned'"
+                    to="/searchingOrders"
+                    >Search</router-link
+                  >
+                  <router-link
+                    v-else-if="element.heading === 'Review'"
+                    :to="`/approval/${order._id}`"
+                    >Approve</router-link
+                  >
+                  <router-link
+                    v-else-if="element.heading === 'Completed'"
+                    to="/searchingorders"
+                    >Search</router-link
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -89,7 +97,8 @@ export default {
     return {
       totalElement: [],
       orderByTime: '',
-      loading: true
+      loading: true,
+      loadingS:false
     }
   },
   components: {
@@ -98,13 +107,13 @@ export default {
   methods: {
     async changeOrders() {
       try {
-        this.loading = true
+        this.loadingS = true
         const { data } = await Axios().get(`/orders/${this.orderByTime}`)
         console.log(`orders change,${this.orderByTime}`, data)
         this.totalElement[0].orders = data
-        this.loading = false
+        this.loadingS = false
       } catch (error) {
-        this.loading = false
+        this.loadingS = false
 
         if (error.response && error.response.status === 401) {
           this.$router.push({ name: 'login' })
@@ -115,7 +124,6 @@ export default {
   },
   async mounted() {
     try {
-
       const { data } = await Axios().get('/employeeOrders')
       console.log('this is data', data)
       this.totalElement = data
@@ -209,6 +217,8 @@ export default {
 .cardsContainer {
   padding: 8px;
   border-radius: 8px;
+  position: relative;
+  min-height: 200px;
 }
 .card {
   padding: 8px;

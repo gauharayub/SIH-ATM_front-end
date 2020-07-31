@@ -10,8 +10,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh !important;
-    width: 100vw !important;
+    /* padding-left: 5%; */
+    height: 100% !important;
+    width: 100% !important;
     background-color: white;
     display: flex;
     align-items: center;
