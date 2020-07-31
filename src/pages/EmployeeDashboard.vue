@@ -31,7 +31,8 @@
             <span></span>
           </div>
         </div>
-        <div class="cardsContainer">
+        <Loader v-if="element.heading === 'Todo' && loadingS" />
+        <div v-else class="cardsContainer">
           <div class="card" v-if="element.orders.length === 0">
             No Orders in {{ element.heading }}
           </div>
@@ -39,8 +40,8 @@
             <p class="totalText">Total Orders : {{ element.orders.length }}</p>
           </div>
 
-          <Loader v-if="element.heading === 'Todo' && loadingS" />
-          <div v-else>
+          
+          <div >
             <div v-if="element.orders.length !== 0">
               <div
                 class="card"
@@ -195,6 +196,7 @@ export default {
   height: 80vh;
   border-radius: 8px;
   padding: 8px;
+  position:relative;
   background-color: #0d1b2a;
   background-image: url('/src/assets/img/arabica-890.svg');
   color: #fff;

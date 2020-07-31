@@ -79,14 +79,15 @@
   background: #46dff0;
 }
 .loadingio-spinner-interwind-46tfzgunr0x {
-  width: 100%;
+  width: 95%;
+  position: absolute;
   height: 100%;
   display: inline-block;
   overflow: hidden;
-  background: #ffffff;
+  background: transparent;
 }
 .ldio-oe1ega0nt1 {
-  width: 200px;
+  width: 180px;
   height: 200px;
   left:50%;
   top:50%;
