@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="loading" />
+  <Loader :background="true" v-if="loading" />
   <div v-else class="body">
     <div class="container">
       <div class="container-login100 content">
@@ -86,6 +86,7 @@ export default {
   },
   async mounted() {
     try {
+      
       if (this.$cookies.isKey('token')) {
         const res = await Axios().post('/verify')
 
