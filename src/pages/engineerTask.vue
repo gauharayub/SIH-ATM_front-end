@@ -123,9 +123,9 @@ export default {
         this.ordersData = data[0]
         this.engineer = data[4]
         console.log('from engineer task', data[0], data[4])
-        loading = false
+        this.loading = false
       } catch (error) {
-        loading = false
+        this.loading = false
 
         if (error.response && error.response.status === 401) {
           this.$router.push({ name: 'login' })
@@ -135,7 +135,7 @@ export default {
     },
     async moveToProgress(event) {
       try {
-        loading = ture
+        this.loading = ture
 
         console.log('Press the button', event.target.value)
         const response = await Axios().patch(
@@ -145,9 +145,9 @@ export default {
           console.log('Accepted order successfully')
           this.fetchData()
         }
-        loading: false
+        this.loading= false
       } catch (error) {
-        loading: false
+        this.loading= false
 
         console.log(error)
       }
