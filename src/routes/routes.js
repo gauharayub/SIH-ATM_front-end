@@ -13,7 +13,7 @@ import TableList from '@/pages/TableList.vue'
 import itemDescription from '@/pages/itemDescription.vue'
 import ComplianceForm from '@/pages/Complianceform.vue'
 import ApprovalForm from '@/pages/ApprovalForm.vue'
-import EmployeeDashboard from '@/pages/EmployeeDashboard.vue'
+import Superintendent from '@/pages/Superintendent.vue'
 import engineerDashboard from '@/pages/engineerDashboard.vue'
 import engineerTask from '@/pages/engineerTask.vue'
 import searchingOrders from '@/pages/searchingOrders.vue'
@@ -31,7 +31,7 @@ const routes = [{
   path: "/dashboard",
   name: "dashboard",
   component: DashboardLayout,
-  redirect: "/employeedashboard",
+  redirect: "/superintendent",
 
   children: [{
     path: '/joblist',
@@ -49,9 +49,9 @@ const routes = [{
     component: ThatForm
   },
   {
-    path: '/employeedashboard',
-    name: 'EmployeeDashboard',
-    component: EmployeeDashboard
+    path: '/superintendent',
+    name: 'Superintendent',
+    component: Superintendent
   }
     ,
   {

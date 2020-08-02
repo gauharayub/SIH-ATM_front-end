@@ -2,23 +2,23 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/employeedashboard">
+      <sidebar-link v-if="user === 'employee'" to="/superintendent">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="/engineerDashboard">
+      <sidebar-link v-if="user !== 'employee'" to="/engineerDashboard">
         <md-icon>dashboard</md-icon>
         <p>Engineer Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="/dataWarehousing">
+      <sidebar-link v-if="user === 'employee'" to="/dataWarehousing">
         <md-icon>house</md-icon>
         <p>Data Warehouse</p>
       </sidebar-link>
-      <sidebar-link to="/searchingorders">
+      <sidebar-link v-if="user === 'employee'" to="/searchingorders">
         <md-icon>search</md-icon>
         <p>Search Orders</p>
       </sidebar-link>
-       <sidebar-link to="/monitor">
+      <sidebar-link to="/monitor">
         <md-icon>monitor</md-icon>
         <p>Monitor</p>
       </sidebar-link>
@@ -42,12 +42,27 @@ import TopNavbar from './TopNavbar.vue'
 import DashboardContent from './Content.vue'
 import MobileMenu from '@/pages/Layout/MobileMenu.vue'
 
+import Axios from '@/methods/axiosInstance.js'
+
 export default {
   components: {
     TopNavbar,
     DashboardContent,
-    //ContentFooter,
     MobileMenu
+  },
+  data() {
+    return {
+      user: 'employee'
+    }
+  },
+  async mounted() {
+    this.usertype()
+  },
+  methods:{
+    async usertype()  {
+      const { data } = await Axios().get('/typeofuser')
+      this.user = data.typeofUser
+    }
   }
 }
 </script>

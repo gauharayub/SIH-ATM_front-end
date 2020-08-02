@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import Axios from '@/methods/axiosInstance.js'
+
 export default {
   data() {
     return {
@@ -45,10 +47,20 @@ export default {
       temp: ''
     }
   },
-  props: { i: Number },
+  props: { i: Number, equipment: String },
   methods: {
-    submitform(event) {
-      console.log('submit', event,this.current,this.voltage,this.temp)
+    async submitform(event) {
+      try {
+        const response = await Axios().post('/sethealth', {
+          equipmentId: this.equipment,
+          current: this.current,
+          voltage: this.voltage,
+          temperature: this.temperature
+        })
+        console.log("sethealt",response)
+      } catch (error) {
+        console.log('Error in that form', error)
+      }
     }
   }
 }

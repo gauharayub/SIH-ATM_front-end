@@ -101,7 +101,7 @@
               </b-button>
 
               <b-modal :id="'ManualForm' + i" hide-footer>
-                <ThatForm :i="i"/>
+                <ThatForm :equipment="equipment._id" :i="i"/>
               </b-modal>
             </div>
           </div>
