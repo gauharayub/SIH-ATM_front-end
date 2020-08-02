@@ -237,8 +237,9 @@ export default {
   font-size: 12px;
   border-radius: 6px;
   padding: 4px 8px;
-  color: #204051 !important;
   cursor: pointer;
+  background-color: #0d1b2a;
+  color:white !important;
 }
 h1 {
   font-size: 2rem;
