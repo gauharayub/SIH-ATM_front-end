@@ -2,12 +2,7 @@
   <Loader v-if="loading" />
 
   <div v-else class="body">
-    <div class="graphContainer">
-      <iframe
-        src="https://snapshot.raintank.io/dashboard/snapshot/9uEVbIDFc34TcnbGtFS87zOcYnGa2XAg?orgId=2&from=1578446449310&to=1578446489626&viewPanel=4"
-        frameborder="0"
-      ></iframe>
-    </div>
+  
     <b-container class="bv-example-row">
       <b-row>
         <b-col cols="12" md="10" offset="1">
@@ -207,15 +202,7 @@ export default {
   color: black;
   font-weight: 400;
 }
-.graphContainer{
-  margin-bottom: 30px;
-}
-.graphContainer>iframe{
-  height: 400px;
-  width: 800px;
-  margin: auto;
-  display: block;
-}
+
 .heading {
   line-height: 1.8;
   margin: 0;
