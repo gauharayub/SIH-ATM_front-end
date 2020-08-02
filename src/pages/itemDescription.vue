@@ -22,27 +22,27 @@
               <div class="right-column">
                 <!-- Product Description -->
                 <div class="item-description ">
-                  <span class="value eid"
-                    >Equipment Id {{ info.equipmentId }}</span
+                  <span class="eid"
+                    >Equipment Id : {{ info.equipmentId }}</span
                   >
 
-                  <h1 class="value">
-                    Equipment Name {{ info.equipmentName.slice(0,20) }}
+                  <h1 class="equipmentName">
+                    Equipment Name : {{ info.equipmentName.slice(0,20) }}
 
                   </h1>
-                  <p class="blockquote-footer value" style="#417500">
-                    Equipment Code{{ info.equipmentCode }}
+                  <p class="value" >
+                    Equipment Code : {{ info.equipmentCode }}
                   </p>
                   <p class="description value">
-                    Equipment Description {{ info.description }}
+                    Equipment Description : {{ info.description }}
                   </p>
 
-                  <p class="value" style="color:#8a1d07">
-                    <b>Assignment Code</b><span class="pull-right">{{info.equipmentCode}}</span>
+                  <p class="value" style="color:#fff">
+                    <b>Assignment Code : </b><span class="pull-right">{{info.equipmentCode}}</span>
 
                   </p>
-                  <p class="value" style="color:#ff5400">
-                    <b>Location</b
+                  <p class="value" style="color:#fff">
+                    <b>Location : </b
                     ><span class="pull-right">{{info.location}}</span>
                   </p>
                   <b-button
@@ -55,7 +55,7 @@
                     class="btn-sm btn-success pull-right"
                     id="assign-btn"
                     @click="$bvModal.show('assignModal')"
-                    >Assign To</b-button
+                    >Assign To : </b-button
                   >
 
                   <b-modal id="tasklistModal" hide-footer>
@@ -173,7 +173,7 @@ export default {
         if (response.status === 200) {
           this.$bvModal.hide('assignModal')
           this.loading = false
-          this.$router.push({ name: 'joblist' })
+          this.$router.push({ name: 'EmployeeDashboard' })
         } else {
           this.loading = false
           alert('Some Error Ocurred,Please submit again!')
@@ -218,7 +218,7 @@ export default {
   width: 100% !important;
 }
 p {
-  color: #3f4441;
+  color: #fff;
 }
 #tasklistBlock {
   width: 80%;
@@ -235,7 +235,7 @@ p {
   border-bottom: none;
   padding-top: 12px;
   padding-right: 24px;
-  background-color: cadetblue;
+  background-color: #fff;
   padding-bottom: 12px;
   padding-left: 24px;
 }
@@ -248,16 +248,17 @@ p {
 }
 
 .left-column {
-  width: 65%;
+  width: 50%;
   position: relative;
 }
 .right-column {
-  width: 35%;
+  width: 50%;
   margin-top: 10px;
 }
 .left-column img {
   width: 95%;
-  height: 80%;
+  max-width: 400px;
+  /* height: 80%; */
   margin-top: 10%;
   border-radius: 10px;
 }
@@ -272,21 +273,21 @@ p {
   text-decoration: none;
 }
 .item-description h1 {
-  font-weight: 300;
-  font-size: 38px;
-  color: #43484d;
-  letter-spacing: -2px;
+  font-weight: 400;
+  font-size: 20px;
+  color: #fff;
+  
 }
 .description {
   font-size: 16px;
   font-weight: 300;
-  color: #86939e;
+  color: #fff;
   line-height: 24px;
 }
 .blockquote-footer {
   font-size: 14px;
   font-weight: 300;
-  color: green;
+  color: #fff;
 }
 .assign {
   margin-top: 20px;

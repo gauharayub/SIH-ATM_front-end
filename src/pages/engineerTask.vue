@@ -171,6 +171,9 @@ export default {
   flex-wrap: wrap;
   padding: 8px 20px;
 }
+button#profile{
+  background-color: transparent;
+}
 h5{
   color:white;
 }
@@ -196,20 +199,20 @@ h5{
 .order {
   margin: 20px 0;
   padding: 16px;
-  background-color: #778da9;
+  background-color: #0d1b2a;
   border-radius: 8px;
   box-shadow: 0 0 4px -2px black;
   opacity: 0.9;
 }
 .order > div {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.9);
+  color: #fff;
   margin-bottom: 10px;
   /* border-bottom: 1px solid; */
 }
 .order > div span,
 .details span {
-  color: rgba(0, 0, 0, 0.7);
+  color: #fff;
   font-weight: 450;
 }
 .flex {
@@ -225,15 +228,15 @@ h5{
   margin-top: 40px;
   margin-left: 0;
 }
-.orderContainer .buttonContainer a {
+.orderContainer .buttonContainer button {
   border-radius: 12px;
   font-weight: 500;
   border: 1px solid;
-  color: cornflowerblue;
+  color: #111;
   padding: 8px 12px;
   background-color: white;
 }
-.orderContainer .buttonContainer a:hover {
+.orderContainer .buttonContainer button:hover {
   color: cornflowerblue;
 }
 @media (max-width: 600px) {
