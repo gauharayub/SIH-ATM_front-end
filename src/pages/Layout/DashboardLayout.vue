@@ -14,9 +14,13 @@
         <md-icon>house</md-icon>
         <p>Data Warehouse</p>
       </sidebar-link>
-       <sidebar-link to="/searchingorders">
+      <sidebar-link to="/searchingorders">
         <md-icon>search</md-icon>
         <p>Search Orders</p>
+      </sidebar-link>
+       <sidebar-link to="/monitor">
+        <md-icon>monitor</md-icon>
+        <p>Monitor</p>
       </sidebar-link>
     </side-bar>
 
@@ -48,10 +52,10 @@ export default {
 }
 </script>
 <style scoped>
-.main-panel{
+.main-panel {
   min-height: 100vh;
 }
-p{
-  color : white
+p {
+  color: white;
 }
 </style>

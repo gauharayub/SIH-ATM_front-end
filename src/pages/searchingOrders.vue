@@ -4,7 +4,7 @@
   <section v-else class="searchingcontainer">
     <div class="heading">
       <h1>Assignment Collection</h1>
-      <p>{{ equipmentModel }}</p>
+
     </div>
     <section class="searchFieldContainer">
       <section class="searchByquery">
@@ -58,9 +58,8 @@
           </div>
           <div class="selectContainer">
             <label for="date">Date :</label>
-            <select v-model="date" name="date" id="date">
-              <option disabled value>select Date</option>
-            </select>
+            <input type="date" v-model="date" name="date" id="date">
+           
           </div>
         </div>
         <div class="radioContainer">
@@ -229,6 +228,7 @@ export default {
         this.loading = true
 
         const body = {
+          date: this.date || 'All',
           completed: this.statusBox || 'All',
           locationId: this.assId || 'All',
           equipmentId: this.equId || 'All',
