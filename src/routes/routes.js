@@ -5,6 +5,8 @@ import Login from "@/pages/Login.vue"
 
 // import Dashboard from "@/pages/Dashboard.vue";
 import Monitor from '@/pages/Monitor.vue'
+import ThatForm from '@/pages/ThatForm.vue'
+
 
 import DataWarehousing from '@/pages/DataWarehousing.vue'
 import TableList from '@/pages/TableList.vue'
@@ -40,6 +42,11 @@ const routes = [{
     path:'/monitor',
     name:'Monitor',
     component: Monitor
+  },
+  {
+    path:'/that',
+    name:'ThatForm',
+    component: ThatForm
   },
   {
     path: '/employeedashboard',
