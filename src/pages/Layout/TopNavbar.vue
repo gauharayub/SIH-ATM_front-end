@@ -73,15 +73,7 @@
         </md-button>
 
         <div class="md-collapse">
-          <div class="md-autocomplete">
-            <md-autocomplete
-              class="search"
-              v-model="selectedEmployee"
-              :md-options="employees"
-            >
-              <label>Search...</label>
-            </md-autocomplete>
-          </div>
+          
           <md-list>
             <md-list-item href="/">
               <i class="material-icons" style="color:white !important;"
@@ -208,6 +200,7 @@ export default {
 }
 #profile {
   padding: 12px 8px;
+  background: transparent;
 }
 #profile .material-icons {
   color: seagreen;

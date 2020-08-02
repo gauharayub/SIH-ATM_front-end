@@ -4,6 +4,8 @@ import Login from "@/pages/Login.vue"
 
 
 // import Dashboard from "@/pages/Dashboard.vue";
+import Monitor from '@/pages/Monitor.vue'
+
 import DataWarehousing from '@/pages/DataWarehousing.vue'
 import TableList from '@/pages/TableList.vue'
 import itemDescription from '@/pages/itemDescription.vue'
@@ -33,6 +35,11 @@ const routes = [{
     path: '/joblist',
     name: 'joblist',
     component: TableList
+  },
+  {
+    path:'/monitor',
+    name:'Monitor',
+    component: Monitor
   },
   {
     path: '/employeedashboard',
