@@ -58,9 +58,8 @@
           </div>
           <div class="selectContainer">
             <label for="date">Date :</label>
-            <select v-model="date" name="date" id="date">
-              <option disabled value>select Date</option>
-            </select>
+            <input type="date" v-model="date" name="date" id="date">
+           
           </div>
         </div>
         <div class="radioContainer">
