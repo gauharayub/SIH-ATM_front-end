@@ -49,7 +49,7 @@
                 :key="order._id"
               >
                 <div>
-                  <p>{{ order.assignmentCode }}</p>
+                  <p>{{ order.number }}</p>
                 </div>
                 <div>
                   <p>{{ order.work }}</p>

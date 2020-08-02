@@ -138,6 +138,7 @@
             </div>
 
             <!-- for files -->
+            <b-button class="mr-1" @click="addFile" >Add Files</b-button>
           </b-form>
           <br />
         </b-col>
@@ -170,7 +171,7 @@ export default {
   components: {
     Loader
   },
-  async created() {
+  async mounted() {
     try {
       const { data } = await Axios().get(`/compliance/${this.$route.params.id}`)
       console.log(data)
@@ -202,7 +203,8 @@ export default {
       fileReader.readAsDataURL(e.target.files[0])
       this.capturedFile[index] = e.target.files[0]
     },
-    addFile() {
+    addFile(event) {
+      event.preventDefault()
       this.files++
     },
     async onSubmit(evt) {

@@ -117,6 +117,7 @@ export default {
   methods: {
     async fetchData() {
       try {
+        this.loading = true
         //make a request with authorization jwt header to fetch details from bak here
         const { data } = await Axios().get('/engineerOrders')
 
@@ -135,7 +136,7 @@ export default {
     },
     async moveToProgress(event) {
       try {
-        this.loading = ture
+        this.loading = true
 
         console.log('Press the button', event.target.value)
         const response = await Axios().patch(
@@ -143,7 +144,7 @@ export default {
         )
         if (response.status === 200) {
           console.log('Accepted order successfully')
-          this.fetchData()
+          await this.fetchData()
         }
         this.loading= false
       } catch (error) {

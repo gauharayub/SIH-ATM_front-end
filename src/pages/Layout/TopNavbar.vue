@@ -200,6 +200,7 @@ export default {
 }
 #profile {
   padding: 12px 8px;
+  background: transparent;
 }
 #profile .material-icons {
   color: seagreen;
