@@ -11,8 +11,15 @@
         <div class="layer"></div>
       </div>
     </div>
-    <div v-if="graphical" class="chartContainer">
+    <div v-if="graphical" class="container-fluid">
+    <div class="row">
+    <div class="col-sm-3 col-md-6 chart" style="padding:30px;">
       <pie-chart :chart-data="chartData"></pie-chart>
+    </div>
+    <div class="col-sm-3 col-md-6 chart" style="padding:30px;">
+      <bar-chart :chart-data="chartData"></bar-chart>
+    </div>
+    </div>
     </div>
     <div v-else class="scrollBox">
       <div v-if="totalElement.length === 0">No Orders</div>
@@ -106,6 +113,7 @@ import Loader from '@/pages/Layout/Loader'
 import Axios from '@/methods/axiosInstance.js'
 
 import PieChart from '@/pages/Layout/PieChart.js'
+import BarChart from '@/pages/Layout/BarChart.js'
 
 export default {
   data() {
@@ -120,7 +128,8 @@ export default {
   },
   components: {
     Loader,
-    PieChart
+    PieChart,
+    BarChart
   },
   methods: {
     async changeOrders() {
@@ -185,14 +194,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.chartContainer {
-  width: 70%;
-  margin: 15px auto;
-}
-.chartContainer div {
-  width: 500px;
-  height: 500px;
-  margin: 0 auto;
+.chart{
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
 }
 .body {
   background-color: #e0e1dd;
