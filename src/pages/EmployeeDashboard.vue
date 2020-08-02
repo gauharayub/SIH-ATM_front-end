@@ -2,7 +2,19 @@
   <Loader v-if="loading" />
 
   <div v-else class="employeeContainer body">
-    <div class="scrollBox">
+    <div class="button-cover">
+      <div class="button r" id="button-9">
+        <input type="checkbox" @click="changeView" class="checkbox" />
+        <div class="knobs">
+          <span></span>
+        </div>
+        <div class="layer"></div>
+      </div>
+    </div>
+    <div v-if="graphical" class="chartContainer">
+      <pie-chart :chart-data="chartData"></pie-chart>
+    </div>
+    <div v-else class="scrollBox">
       <div v-if="totalElement.length === 0">No Orders</div>
       <section v-for="element in totalElement" :key="element.heading">
         <div class="header">
@@ -40,8 +52,7 @@
             <p class="totalText">Total Orders : {{ element.orders.length }}</p>
           </div>
 
-          
-          <div >
+          <div>
             <div v-if="element.orders.length !== 0">
               <div
                 class="card"
@@ -93,17 +104,23 @@
 <script>
 import Loader from '@/pages/Layout/Loader'
 import Axios from '@/methods/axiosInstance.js'
+
+import PieChart from '@/pages/Layout/PieChart.js'
+
 export default {
   data() {
     return {
       totalElement: [],
       orderByTime: '',
       loading: true,
-      loadingS:false
+      loadingS: false,
+      chartData: null,
+      graphical:true
     }
   },
   components: {
-    Loader
+    Loader,
+    PieChart
   },
   methods: {
     async changeOrders() {
@@ -121,6 +138,9 @@ export default {
         }
         console.log(error)
       }
+    },
+    changeView(){
+      this.graphical = !this.graphical
     }
   },
   async mounted() {
@@ -129,6 +149,29 @@ export default {
       console.log('this is data', data)
       this.totalElement = data
       this.loading = false
+
+      //pie chart view
+      this.chartData = {
+        labels: ['Todo', 'Assigned', 'Progress', 'Review', 'Completed'],
+        datasets: [
+          {
+            backgroundColor: [
+              '#2ecc71',
+              '#3498db',
+              '#95a5a6',
+              '#9b59b6',
+              '#34495e'
+            ],
+            data: [
+              this.totalElement[0].orders.length,
+              this.totalElement[1].orders.length,
+              this.totalElement[2].orders.length,
+              this.totalElement[3].orders.length,
+              this.totalElement[4].orders.length
+            ]
+          }
+        ]
+      }
     } catch (error) {
       this.loading = false
 
@@ -142,6 +185,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.chartContainer {
+  width: 70%;
+  margin: 15px auto;
+}
+.chartContainer div {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
 .body {
   background-color: #e0e1dd;
   padding: 10px 0;
@@ -150,6 +202,7 @@ export default {
   line-height: 1.8;
   color: black;
   font-weight: 500;
+  min-height: 100vh;
 }
 
 .header {
@@ -196,7 +249,7 @@ export default {
   height: 80vh;
   border-radius: 8px;
   padding: 8px;
-  position:relative;
+  position: relative;
   background-color: #0d1b2a;
   background-image: url('/src/assets/img/arabica-890.svg');
   color: #fff;
@@ -243,5 +296,137 @@ export default {
 h1 {
   font-size: 2rem;
   border: 1px solid;
+}
+
+.button-cover {
+  margin: 10px;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #d7e3e3;
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+}
+
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  
+  width: 150px;
+  height: 36px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 8px;
+}
+
+.button.b2 {
+  border-radius: 2px;
+}
+
+.checkbox {
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  
+  width: 100%;
+  background-color: #ebf7fc;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+#button-9 .knobs:before,
+#button-9 .knobs:after,
+#button-9 .knobs span {
+  position: absolute;
+  top: 2px;
+  width: 20px;
+  height: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  border-radius: 500px;
+  transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-9 .knobs:before {
+  content: 'Graph';
+  width: 50px;
+  left: 4px;
+  top:5px;
+  height: 36px;
+}
+
+#button-9 .knobs:after {
+  content: 'Card';
+  width: 50px;
+  right:-50px;
+  top:5px;
+}
+
+#button-9 .knobs:before,
+#button-9 .knobs:after {
+  color: #fff;
+  z-index: 2;
+}
+
+#button-9 .knobs span {
+  left: 4px;
+  width: 50px;
+  height: 30px;
+  background-color: #03a9f4;
+  z-index: 1;
+}
+
+#button-9 .checkbox:checked + .knobs:before {
+  left: -50px;
+}
+
+#button-9 .checkbox:checked + .knobs:after {
+  right: 4px;
+}
+
+#button-9 .checkbox:checked + .knobs span {
+  left: 100px;
+  background-color: #f44336;
+  
+}
+
+#button-9 .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
 }
 </style>
