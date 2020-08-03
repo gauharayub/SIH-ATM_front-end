@@ -18,6 +18,10 @@
         <md-icon>search</md-icon>
         <p>Search Orders</p>
       </sidebar-link>
+      <sidebar-link v-if="user === 'employee'" to="/addequipment">
+        <md-icon>equipment</md-icon>
+        <p>Add Equipment</p>
+      </sidebar-link>
       <div id="monitorContainer">
         <a id="newPageMonitor" target="_blank" href="http://localhost:3000/d/sHqZLA4Gz/equipment1?from=now-5m&orgId=1&refresh=1s&to=now">
           <md-icon>monitor</md-icon>

@@ -7,6 +7,7 @@ import Login from "@/pages/Login.vue"
 import Monitor from '@/pages/Monitor.vue'
 import ThatForm from '@/pages/ThatForm.vue'
 
+import AddEquipment from '@/pages/AddEquipment.vue'
 
 import DataWarehousing from '@/pages/DataWarehousing.vue'
 import TableList from '@/pages/TableList.vue'
@@ -87,6 +88,11 @@ const routes = [{
       path: '/searchingorders',
       name:'searchingOrders',
       component: searchingOrders
+    },
+    {
+      path: '/addequipment',
+      name:'addequipment',
+      component: AddEquipment
     }
   ]
 }]
