@@ -15,8 +15,10 @@ import routes from "./routes/routes";
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
 
-import Chartist from "chartist";
+// import Chartist from "chartist";
 
+//cookie extension
+import VueCookies from 'vue-cookies'
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -24,8 +26,9 @@ const router = new VueRouter({
   linkExactActiveClass: "nav-item active"
 });
 
-Vue.prototype.$Chartist = Chartist;
+// Vue.prototype.$Chartist = Chartist;
 
+Vue.use(VueCookies);
 Vue.use(VueRouter);
 Vue.use(MaterialDashboard);
 // Vue.use(GlobalComponents);
@@ -45,7 +48,7 @@ new Vue({
   el: "#app",
   render: h => h(App),
   router,
-  data: {
-    Chartist: Chartist
-  }
+  // data: {
+  //   Chartist: Chartist
+  // }
 });

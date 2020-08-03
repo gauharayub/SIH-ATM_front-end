@@ -6,19 +6,18 @@
     :style="sidebarStyle"
   >
     <div class="logo">
-      <a href="#" class="simple-text logo-mini">
+      <router-link to="/" class="simple-text logo-mini">
         <div class="logo-img">
           <img :src="imgLogo" alt="" />
         </div>
-      </a>
+      </router-link>
 
-      <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
-        target="_blank"
+      <router-link
+        to="/"
         class="simple-text logo-normal"
       >
         {{ title }}
-      </a>
+      </router-link>
     </div>
     <div class="sidebar-wrapper">
       <slot name="content"></slot>
@@ -51,15 +50,16 @@ export default {
     },
     backgroundImage: {
       type: String,
-      default: require("@/assets/img/sidebar-2.jpg")
+      default: require("@/assets/img/tumblr_my17j8jhIP1qg20eyo1_500.jpg")
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/vue-logo.png")
+      default: require("@/assets/img/airport (1).svg"),
+      
     },
     activeColor: {
       type: String,
-      default: "green",
+      default: "blue",
       validator: value => {
         let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
         return acceptedValues.indexOf(value) !== -1;
@@ -93,5 +93,8 @@ export default {
   .nav-mobile-menu {
     display: none;
   }
+}
+.active{
+  background-color:"#1b263b !important"
 }
 </style>
