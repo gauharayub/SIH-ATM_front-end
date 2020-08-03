@@ -19,7 +19,7 @@
         <p>Search Orders</p>
       </sidebar-link>
       <div id="monitorContainer">
-        <a id="newPageMonitor" target="_blank" href="http://localhost:3000">
+        <a id="newPageMonitor" target="_blank" href="http://localhost:3000/d/sHqZLA4Gz/equipment1?from=now-5m&orgId=1&refresh=1s&to=now">
           <md-icon>monitor</md-icon>
           <p>Monitor</p>
         </a>
