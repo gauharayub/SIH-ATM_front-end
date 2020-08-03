@@ -4,7 +4,7 @@
   <div v-else class="employeeContainer body">
     <div class="button-cover">
       <div class="button r" id="button-9">
-        <input type="checkbox" @click="changeView" class="checkbox" />
+        <input type="checkbox" checked @click="changeView" class="checkbox" />
         <div class="knobs">
           <span></span>
         </div>
@@ -123,7 +123,7 @@ export default {
       loading: true,
       loadingS: false,
       chartData: null,
-      graphical: true,
+      graphical: false,
       barChart: null,
       healthData: ''
     }
@@ -156,6 +156,12 @@ export default {
   },
   async mounted() {
     try {
+
+      const {data:userdata} = await Axios().get('/typeofuser')
+
+      if(userdata.typeofUser === 'engineer'){
+        this.$router.push({name:'engineerDashboard'})
+      }
       const { data } = await Axios().get('/employeeOrders')
       console.log('this is data', data)
       this.totalElement = data

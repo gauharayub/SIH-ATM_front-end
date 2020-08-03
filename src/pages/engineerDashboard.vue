@@ -3,7 +3,7 @@
   <div v-else class="employeeContainer body">
     <div class="button-cover">
       <div class="button r" id="button-9">
-        <input type="checkbox" @click="changeView" class="checkbox" />
+        <input checked type="checkbox" @click="changeView" class="checkbox" />
         <div class="knobs">
           <span></span>
         </div>
@@ -71,7 +71,7 @@ export default {
       totalElement: [],
       loading: true,
       chartData: null,
-      graphical: true,
+      graphical: false,
       typeofuser: '',
       barChart: null,
       healthData: ''
