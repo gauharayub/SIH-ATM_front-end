@@ -18,10 +18,12 @@
         <md-icon>search</md-icon>
         <p>Search Orders</p>
       </sidebar-link>
-      <sidebar-link to="/monitor">
-        <md-icon>monitor</md-icon>
-        <p>Monitor</p>
-      </sidebar-link>
+      <div id="monitorContainer">
+        <a id="newPageMonitor" target="_blank" href="http://localhost:3000">
+          <md-icon>monitor</md-icon>
+          <p>Monitor</p>
+        </a>
+      </div>
     </side-bar>
 
     <div class="main-panel">
@@ -58,8 +60,8 @@ export default {
   async mounted() {
     this.usertype()
   },
-  methods:{
-    async usertype()  {
+  methods: {
+    async usertype() {
       const { data } = await Axios().get('/typeofuser')
       this.user = data.typeofUser
     }
@@ -67,6 +69,19 @@ export default {
 }
 </script>
 <style scoped>
+#monitorContainer {
+  margin: 0 auto;
+  width: 225px;
+  padding: 10px;
+  padding-left: 30px;
+  margin-left: 5px;
+}
+#newPageMonitor {
+  max-width: 225px;
+}
+#newPageMonitor p {
+  display: inline;
+}
 .main-panel {
   min-height: 100vh;
 }
